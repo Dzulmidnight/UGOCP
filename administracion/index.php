@@ -395,15 +395,22 @@ if (!function_exists("GetSQLValueString")) {
                                       <a href="#" onclick="consultar_check()"><img src="img/pdf.png"> Crendial(es)</a>
                                       <!--<button type="button" class="btn btn-primary" name="btn_checkbox" id="btn_checkbox" onclick="consultar_check()">Generar<br>Credenciales</button>-->
                                     </td>
-
-                                    <!--<td>Generar Excel</td>-->
-                                    <td colspan="3">
-                                      <p>Simbologia:</p>
-                                        <button class="btn btn-primary btn-xs"><i class="fa fa-folder"></i> Archivos</button>
-                                        <button id="" type="button" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> Editar</button>
-                                        <button type="button" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Eliminar</button>                                   
+                                </form>
+                                <form name="formulario2" action="" method="POST" id="frm_checkbox">
+                                    <td>
+                                      <a href="generar_excel.php" target="_new"><img src="img/excel.png"> Base de datos</a>
+                                      <!--<button type="button" class="btn btn-primary" name="btn_checkbox" id="btn_checkbox" onclick="consultar_check()">Generar<br>Credenciales</button>-->
                                     </td>
                                 </form>
+
+                                  <!--<td>Generar Excel</td>-->
+                                  <td colspan="3">
+                                    <p>Simbologia:</p>
+                                      <button class="btn btn-primary btn-xs"><i class="fa fa-folder"></i> Archivos</button>
+                                      <button id="" type="button" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> Editar</button>
+                                      <button type="button" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Eliminar</button>                                   
+                                  </td>
+                                
                             </tr>
                             <tr>
                                 <th>
