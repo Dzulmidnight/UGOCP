@@ -392,7 +392,7 @@ if (!function_exists("GetSQLValueString")) {
                                 </td>
                                 <form name="formulario2" action="" method="POST" id="frm_checkbox">
                                     <td>
-                                      <a href="" onclick="consultar_check()" target="_blank"><img src="img/pdf.png"> Crendial(es)</a>
+                                      <a href="#" onclick="consultar_check()"><img src="img/pdf.png"> Crendial(es)</a>
                                       <!--<button type="button" class="btn btn-primary" name="btn_checkbox" id="btn_checkbox" onclick="consultar_check()">Generar<br>Credenciales</button>-->
                                     </td>
 
@@ -1073,7 +1073,7 @@ if (!function_exists("GetSQLValueString")) {
         }else{
           function abrirEnPestana(url) {
               var a = document.createElement("a");
-              a.target = "_blank";
+              a.target = "_new";
               a.href = url;
               a.click();
           }

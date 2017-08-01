@@ -2,41 +2,44 @@
     require('../conexion/conexion.php');
     require('../conexion/sesion.php');
 
-    if(isset($_SESSION['usuario'])){
-        if($_SESSION['usuario']['tipo'] != 'administrador'){
-            header('Location: conexion/salir.php');
-        }
-    }
+
 /*$sql2="SELECT idSolicitante FROM Solicitante ORDER BY idSolicitante DESC LIMIT 1";
             $idsol=$mysqli->query($sql2);
             $resultado=$idsol->fetch_assoc();
 */
   if(isset($_POST['guardar_usuario']) && $_POST['guardar_usuario'] == 1){
-    $nombre = $_POST['nombre1'];
-    $user = $_POST['user1'];
-    $tipo = $_POST['tipo1'];
-    $password = $_POST['password1'];
+    $nombre01 = $_POST['nombre01'];
+    $ap_paterno01 = $_POST['ap_paterno01'];
+    $ap_materno01 = $_POST['ap_materno01'];
+    $telefono01 = $_POST['telefono01'];
+    $correo01 = $_POST['correo01'];
+    $usuario01 = $_POST['usuario01'];
+    $password01 = $_POST['password01'];
+    $tipo01 = 'administrador';
 
-    $sql = "INSERT INTO usuarios (nombre, user, password, tipo) VALUES ('$nombre', '$user', '$password', '$tipo')";
+    $sql = "INSERT INTO administradores(nombre, ap_paterno, ap_materno, telefono, correo, username, password, tipo) VALUES ('$nombre01', '$ap_paterno01', '$ap_materno01', '$telefono01', '$correo01', '$usuario01', '$password01', '$tipo01')";
     $mysqli->query($sql);
 
   }
   if(isset($_POST['eliminar_usuario'])){
-    $idusuario = $_POST['eliminar_usuario'];
-    $sql = "DELETE FROM usuarios WHERE idusuario = $idusuario";
+    $idadministrador = $_POST['eliminar_usuario'];
+    $sql = "DELETE FROM administradores WHERE idadministrador = $idadministrador";
     $mysqli->query($sql);
   }
   if(isset($_POST['guardar_cambios'])){
-    $idusuario = $_POST['guardar_cambios'];
-    $nombre = $_POST['nombre'.$idusuario];
-    $user = $_POST['user'.$idusuario];
-    $tipo = $_POST['tipo'.$idusuario];
-    $password = $_POST['password'.$idusuario];
-    $sql = "UPDATE usuarios SET nombre = '$nombre', user = '$user', tipo = '$tipo', password = '$password' WHERE idusuario = $idusuario";
+    $idadministrador = $_POST['guardar_cambios'];
+
+    $nombre = $_POST['nombre'.$idadministrador];
+    $ap_paterno = $_POST['ap_paterno'.$idadministrador];
+    $ap_materno = $_POST['ap_materno'.$idadministrador];
+    $telefono = $_POST['telefono'.$idadministrador];
+    $correo = $_POST['correo'.$idadministrador];
+    $usuario = $_POST['usuario'.$idadministrador];
+    $password = $_POST['password'.$idadministrador];
+    $sql = "UPDATE administradores SET nombre = '$nombre', ap_paterno = '$ap_paterno', ap_materno = '$ap_materno', telefono = '$telefono', correo = '$correo', username = '$usuario', password = '$password' WHERE idadministrador = $idadministrador";
     $mysqli->query($sql);
   }
 
-  $seccion = 'informacion';
   $menu = 'usuarios';
 
 
@@ -75,13 +78,10 @@
     <![endif]-->
   </head>
 
-  <body>
+  <body class="full-width">
 
   <section id="container" class="">
-      <!--header start-->
-      <?php 
-      include('header.php');
-       ?>
+
       <!--header end-->
       <!--sidebar start-->
       <?php 
@@ -113,8 +113,11 @@
                     <table class="table table-striped table-hover table-bordered" id="editable-sample">
                         <thead>
                           <tr>
-                              <th>Nombre completo</th>
-                              <th>Tipo</th>
+                              <th>Nombre</th>
+                              <th>Ap Paterno</th>
+                              <th>Ap Materno</th>
+                              <th>Telefono</th>
+                              <th>Correo</th>
                               <th>Usuario</th>
                               <th>Contraseña</th>
                               <th>Editar</th>
@@ -123,33 +126,45 @@
                         </thead>
                         <tbody>
                         <?php 
-                          $query = "SELECT * FROM usuarios";
+                          $query = "SELECT * FROM administradores";
                           $ejecutar = $mysqli->query($query);
                           
                           while($registros = $ejecutar->fetch_assoc()){
                           ?>
-                            <tr id="<?php echo 'row_info'.$registros['idusuario']; ?>" class="">
+                            <tr id="<?php echo 'row_info'.$registros['idadministrador']; ?>" class="">
                                 <td>
-                                  <input type="text" class="<?php echo 'frm-usuario'.$registros['idusuario']; ?> form-control" name="<?php echo 'nombre'.$registros['idusuario']; ?>" value="<?php echo $registros['nombre']; ?>" readonly>
+                                  <input type="text" class="<?php echo 'frm-usuario'.$registros['idadministrador']; ?> form-control" name="<?php echo 'nombre'.$registros['idadministrador']; ?>" value="<?php echo $registros['nombre']; ?>" readonly>
                                   
                                 </td>
                                 <td>
-                                  <select class="<?php echo 'frm-usuario'.$registros['idusuario']; ?> form-control" name="<?php echo 'tipo'.$registros['idusuario']; ?>" id="" readonly>
-                                    <option value="<?php echo $registros['tipo']; ?>">Administrador</option>
-                                  </select>
+                                  <input type="text" class="<?php echo 'frm-usuario'.$registros['idadministrador']; ?> form-control" name="<?php echo 'ap_paterno'.$registros['idadministrador']; ?>" value="<?php echo $registros['ap_paterno']; ?>" readonly>
+                                  
                                 </td>
                                 <td>
-                                  <input type="text" class="<?php echo 'frm-usuario'.$registros['idusuario']; ?> form-control" name="<?php echo 'user'.$registros['idusuario']; ?>" value="<?php echo $registros['user']; ?>" readonly>
+                                  <input type="text" class="<?php echo 'frm-usuario'.$registros['idadministrador']; ?> form-control" name="<?php echo 'ap_materno'.$registros['idadministrador']; ?>" value="<?php echo $registros['ap_materno']; ?>" readonly>
+                                  
+                                </td>
+                                <td>
+                                  <input type="text" class="<?php echo 'frm-usuario'.$registros['idadministrador']; ?> form-control" name="<?php echo 'telefono'.$registros['idadministrador']; ?>" value="<?php echo $registros['telefono']; ?>" readonly>
+                                  
+                                </td>
+                                <td>
+                                  <input type="text" class="<?php echo 'frm-usuario'.$registros['idadministrador']; ?> form-control" name="<?php echo 'correo'.$registros['idadministrador']; ?>" value="<?php echo $registros['correo']; ?>" readonly>
+                                  
+                                </td>
+
+                                <td>
+                                  <input type="text" class="<?php echo 'frm-usuario'.$registros['idadministrador']; ?> form-control" name="<?php echo 'usuario'.$registros['idadministrador']; ?>" value="<?php echo $registros['username']; ?>" readonly>
                                 </td>
                                 <td class="center">
-                                  <input type="text" class="<?php echo 'frm-usuario'.$registros['idusuario']; ?> form-control" name="<?php echo 'password'.$registros['idusuario']; ?>" value="<?php echo $registros['password']; ?>" readonly>
+                                  <input type="text" class="<?php echo 'frm-usuario'.$registros['idadministrador']; ?> form-control" name="<?php echo 'password'.$registros['idadministrador']; ?>" value="<?php echo $registros['password']; ?>" readonly>
                                 </td>
-                                <td id="<?php echo 'td-editar'.$registros['idusuario']; ?>">
-                                  <!--<button type="submit" class="" name="editar_usuario" value="<?php echo $registros['idusuario']; ?>" onclick="editar('<?php echo $registros['idusuario']; ?>')">Editar</button>-->
-                                  <a id="btn-editar" class="" href="#" onclick="editar('<?php echo $registros['idusuario']; ?>')">Editar</a>
+                                <td id="<?php echo 'td-editar'.$registros['idadministrador']; ?>">
+                                  <!--<button type="submit" class="" name="editar_usuario" value="<?php echo $registros['idadministrador']; ?>" onclick="editar('<?php echo $registros['idadministrador']; ?>')">Editar</button>-->
+                                  <a id="btn-editar" class="" href="#" onclick="editar('<?php echo $registros['idadministrador']; ?>')">Editar</a>
                                 </td>
-                                <td id="<?php echo 'td-eliminar'.$registros['idusuario']; ?>">
-                                  <button class="btn btn-danger btn-xs" type="submit" class="" name="eliminar_usuario" value="<?php echo $registros['idusuario'] ?>" onclick="return confirm('¿Desea eliminar el usuario?');">Eliminar</button>
+                                <td id="<?php echo 'td-eliminar'.$registros['idadministrador']; ?>">
+                                  <button class="btn btn-danger btn-xs" type="submit" class="" name="eliminar_usuario" value="<?php echo $registros['idadministrador'] ?>" onclick="return confirm('¿Desea eliminar el usuario?');">Eliminar</button>
                                   <!--<a id="btn-eliminar" class="delete" href="">Eliminar</a>-->
                                 </td>
                             </tr>
@@ -215,14 +230,20 @@
                 var cell4 = row.insertCell(3);
                 var cell5 = row.insertCell(4);
                 var cell6 = row.insertCell(5);
+                var cell7 = row.insertCell(6);
+                var cell8 = row.insertCell(7);
+                var cell9 = row.insertCell(8);
 
-                cell1.innerHTML = '<input type="text" class="form-control" name="nombre1" id="" placeholder="">';
-                cell2.innerHTML = '<select class="form-control" name="tipo1"><option value="administrador">Administrador</option></select>';
-                cell3.innerHTML = '<input type="text" class="form-control" name="user1" id="" placeholder="">';
-                cell4.innerHTML = '<input type="text" class="form-control" name="password1" id="" placeholder="">';
-                cell5.innerHTML = '<button class="btn btn-success btn-xs" type="submit" id="btn-editar" name="guardar_usuario" class="" value="1">Guardar</button>';
+                cell1.innerHTML = '<input type="text" class="form-control" name="nombre01" id="" placeholder="">';
+                cell2.innerHTML = '<input type="text" class="form-control" name="ap_paterno01" id="" placeholder="">';
+                cell3.innerHTML = '<input type="text" class="form-control" name="ap_materno01" id="" placeholder="">';
+                cell4.innerHTML = '<input type="text" class="form-control" name="telefono01" id="" placeholder="">';
+                cell5.innerHTML = '<input type="text" class="form-control" name="correo01" id="" placeholder="">';
+                cell6.innerHTML = '<input type="text" class="form-control" name="usuario01" id="" placeholder="">';
+                cell7.innerHTML = '<input type="text" class="form-control" name="password01" id="" placeholder="">';
+                cell8.innerHTML = '<button class="btn btn-success btn-xs" type="submit" id="btn-editar" name="guardar_usuario" class="" value="1">Guardar</button>';
                 //cell5.innerHTML = '<button type="submit" class="" value="1" >Guardar</button><a id="btn-editar" class="" href="#" onclick="editar()">Guardar</a>';
-                cell6.innerHTML = '<a id="btn-eliminar" class="delete" href="#" onclick="quitar_registro()">Cancelar</a>';
+                cell9.innerHTML = '<a id="btn-eliminar" class="delete" href="#" onclick="quitar_registro()">Cancelar</a>';
             }
           }
           function quitar_registro(){

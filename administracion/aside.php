@@ -12,7 +12,7 @@
               <!--logo end-->
               <div class="horizontal-menu navbar-collapse collapse ">
                   <ul class="nav navbar-nav">
-                    <li class="active">
+                    <li <?php if(isset($menu) && $menu == 'inicio'){echo 'class="active"';} ?>>
                         <!--<a <?php if(isset($menu) && $menu == 'inicio'){echo 'class="active"';} ?> href="index.php">
                             <i class="fa fa-dashboard"></i>
                             <span>Principal</span>
@@ -22,6 +22,17 @@
                             <span>Principal</span>
                         </a>
                     </li>
+                    <li <?php if(isset($menu) && $menu == 'usuarios'){echo 'class="active"';} ?>>
+                        <!--<a <?php if(isset($menu) && $menu == 'inicio'){echo 'class="active"';} ?> href="index.php">
+                            <i class="fa fa-dashboard"></i>
+                            <span>Principal</span>
+                        </a>-->
+                        <a  href="usuarios.php">
+                            <i class="fa fa-users" aria-hidden="true"></i>
+                            <span>Usuarios</span>
+                        </a>
+                    </li>
+
 
                     <!--<li class="sub-menu">
                         <a <?php if(isset($seccion) && $seccion == 'afiliacion'){echo 'class="active"'; } ?> href="javascript:;" >
@@ -31,7 +42,7 @@
                         <ul class="sub">
                             <li <?php if(isset($menu) && $menu == 'formato_afiliacion'){echo 'class="active"'; } ?>><a  href="formato_afiliacion.php">Formato de Afiliación</a></li>
                         </ul>
-                    </li>
+                    </li>-->
                     <!--<li class="sub-menu">
                         <a <?php if(isset($seccion) && $seccion == 'formularios'){echo 'class="active"'; } ?> href="javascript:;" >
                             <i class="fa fa-files-o"></i>

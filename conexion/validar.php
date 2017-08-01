@@ -10,7 +10,7 @@ if(!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQU
   $usuario = $mysqli->real_escape_string($_POST['usuario']);
   $password = $mysqli->real_escape_string($_POST['password']);
 
-  if($nueva_consulta = $mysqli->prepare("SELECT * FROM administradores WHERE correo = ?")){
+  if($nueva_consulta = $mysqli->prepare("SELECT * FROM administradores WHERE username = ?")){
     $nueva_consulta->bind_param('s', $usuario);
     $nueva_consulta->execute();
     $resultado = $nueva_consulta->get_result();
