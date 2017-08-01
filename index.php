@@ -37,7 +37,7 @@
     <div class="container">
       <form class="form-signin" id="form-login" action="" method="POST">
 
-        <h2 class="form-signin-heading">INICIAR SESIÓN</h2>
+        <h2 class="form-signin-heading">INICIO DE SESIÓN</h2>
         <div class="login-wrap">
             <div class="error alert alert-danger alert-dismissible" style="display:none" role="alert">
                 <strong>Datos incorrectos, inténtalo de nuevo por favor.

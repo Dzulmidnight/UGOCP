@@ -6,6 +6,12 @@ $mysqli = new mysqli('localhost','root','','ugocp');
 		echo "Error:" .$mysqli->connect_errno()."\n";
 		exit;
 	}
+/*$mysqli = new mysqli('localhost','iotechda_ugocp','De8Rps%beWZp','iotechda_ugocp');
+	if($mysqli->connect_errno){
+		echo "No se puede conectar";
+		echo "Error:" .$mysqli->connect_errno()."\n";
+		exit;
+	}*/
 /*
 $mysqli = new mysqli('localhost','usuario','password','bd');
 
