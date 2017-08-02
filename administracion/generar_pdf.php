@@ -10,7 +10,7 @@
 		$query = "SELECT afiliado.*, datos_generales.*, informacion_laboral.* FROM afiliado INNER JOIN datos_generales ON afiliado.folio = datos_generales.folio INNER JOIN informacion_laboral ON afiliado.folio = informacion_laboral.folio WHERE afiliado.folio = $folio";
 		$ejecutar = $mysqli->query($query);
 		$detalle = $ejecutar->fetch_assoc();
-		$num_folio = str_pad($detalle['folio'], 4, '0', STR_PAD_LEFT);
+		$num_folio = str_pad($detalle['folio'], 6, '0', STR_PAD_LEFT);
 		$fecha_nacimiento = date('d/m/Y', $detalle['fecha_nacimiento']);
 		$sexo = '';
 		if($detalle['sexo'] = 'H'){
@@ -239,7 +239,7 @@
 	            </td>
 	            <td style="width:25%;text-align:center">
 	            	<img style="width:145px;height:170px;" src="'.$detalle['foto'].'">
-	            	<h2 style="color:red">'.$num_folio.'</h2>
+	            	<h2>FOLIO: <span style="color:red">'.$num_folio.'</span></h2>
 	            </td>
 	          </tr>
 	        </table>
@@ -283,7 +283,7 @@
 		$query = "SELECT afiliado.*, datos_generales.*, informacion_laboral.* FROM afiliado INNER JOIN datos_generales ON afiliado.folio = datos_generales.folio INNER JOIN informacion_laboral ON afiliado.folio = informacion_laboral.folio WHERE afiliado.folio = $folio";
 		$ejecutar = $mysqli->query($query);
 		$detalle = $ejecutar->fetch_assoc();
-		$num_folio = str_pad($detalle['folio'], 4, '0', STR_PAD_LEFT);
+		$num_folio = str_pad($detalle['folio'], 6, '0', STR_PAD_LEFT);
 		$fecha_nacimiento = date('d/m/Y', $detalle['fecha_nacimiento']);
 		$sexo = '';
 		if($detalle['sexo'] = 'H'){
@@ -321,7 +321,7 @@
 
 				            <td colspan="4" rowspan="4" style="text-align:center;color:red">
 				                <img src="'.$detalle['foto'].'" style="width:80px; height:120px;"/>
-				                <span>'.$num_folio.'</span>
+				                Folio: <span>'.$num_folio.'</span>
 				            </td>
 				          </tr>
 				          <tr>
@@ -434,7 +434,7 @@
       $query = "SELECT afiliado.*, datos_generales.*, informacion_laboral.* FROM afiliado INNER JOIN datos_generales ON afiliado.folio = datos_generales.folio INNER JOIN informacion_laboral ON afiliado.folio = informacion_laboral.folio WHERE afiliado.folio = $folio";
       $ejecutar = $mysqli->query($query);
       $detalle = $ejecutar->fetch_assoc();
-      $num_folio = str_pad($detalle['folio'], 4, '0', STR_PAD_LEFT);
+      $num_folio = str_pad($detalle['folio'], 6, '0', STR_PAD_LEFT);
       $fecha_nacimiento = date('d/m/Y', $detalle['fecha_nacimiento']);
       $sexo = '';
       if($detalle['sexo'] = 'H'){
@@ -475,7 +475,7 @@
 
                         <td colspan="4" rowspan="4" style="text-align:center;color:red">
                             <img src="'.$detalle['foto'].'" style="width:80px; height:120px;"/>
-                            <span>'.$num_folio.'</span>
+                            Folio: <span>'.$num_folio.'</span>
                         </td>
                       </tr>
                       <tr>
@@ -825,7 +825,7 @@
 			  }
 			  </style>';
 		while($detalle = $ejecutar -> fetch_assoc()){
-			$num_folio = str_pad($detalle['folio'], 4, '0', STR_PAD_LEFT);
+			$num_folio = str_pad($detalle['folio'], 6, '0', STR_PAD_LEFT);
 			$fecha_nacimiento = date('d/m/Y', $detalle['fecha_nacimiento']);
 			$sexo = '';
 			if($detalle['sexo'] = 'H'){
@@ -854,7 +854,7 @@
 
 				            <td colspan="4" rowspan="4" style="text-align:center;color:red">
 				                <img src="'.$detalle['foto'].'" style="width:80px; height:120px;"/>
-				                <span>'.$num_folio.'</span>
+				                Folio: <span>'.$num_folio.'</span>
 				            </td>
 				          </tr>
 				          <tr>

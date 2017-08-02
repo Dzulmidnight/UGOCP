@@ -29,7 +29,7 @@
                         </a>-->
                         <a  href="usuarios.php">
                             <i class="fa fa-users" aria-hidden="true"></i>
-                            <span>Usuarios</span>
+                            <span>Administradores</span>
                         </a>
                     </li>
 

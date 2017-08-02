@@ -141,7 +141,7 @@ if (!function_exists("GetSQLValueString")) {
 
       $fecha_nacimiento = $dia.'/'.$mes.'/'.$anio;
 
-      $insertSQL = "INSERT INTO datos_generales(folio, nombre, ap_paterno, ap_materno, calle, numero, colonia, cp, municipio, estado, telefono, correo, celular, edad, sexo, estado_civil, fecha_nacimiento, grupo_indigena, nombre_comunidad) VALUES ($folio, '$_POST[nombre]', '$_POST[ap_paterno]', '$_POST[ap_materno]', '$_POST[calle]', '$_POST[numero]', '$colonia', '$_POST[cp]', '$_POST[municipio]', '$_POST[estado]', '$_POST[telefono]', '$_POST[correo]', '$_POST[celular]', '$_POST[edad]', '$_POST[sexo]', '$_POST[estado_civil]', '$_POST[fecha_nacimiento]', '$_POST[grupo_indigena]', '$_POST[nombre_comunidad]')";
+      $insertSQL = "INSERT INTO datos_generales(folio, nombre, ap_paterno, ap_materno, calle, numero, colonia, cp, municipio, num_municipio, estado, num_estado, telefono, correo, celular, edad, sexo, estado_civil, fecha_nacimiento, grupo_indigena, nombre_comunidad) VALUES ($folio, '$_POST[nombre]', '$_POST[ap_paterno]', '$_POST[ap_materno]', '$_POST[calle]', '$_POST[numero]', '$colonia', '$_POST[cp]', '$_POST[municipio]', $_POST[num_municipio], '$_POST[estado]', $_POST[num_estado], '$_POST[telefono]', '$_POST[correo]', '$_POST[celular]', '$_POST[edad]', '$_POST[sexo]', '$_POST[estado_civil]', '$_POST[fecha_nacimiento]', '$_POST[grupo_indigena]', '$_POST[nombre_comunidad]')";
       $insertar = $mysqli->query($insertSQL);
 
       /// INSERTARMOS LA INFORMACIÓN LABORAL
@@ -159,7 +159,7 @@ if (!function_exists("GetSQLValueString")) {
         $query = "SELECT afiliado.*, datos_generales.*, informacion_laboral.* FROM afiliado INNER JOIN datos_generales ON afiliado.folio = datos_generales.folio INNER JOIN informacion_laboral ON afiliado.folio = informacion_laboral.folio WHERE afiliado.folio = $folio";
         $ejecutar = $mysqli->query($query);
         $detalle = $ejecutar->fetch_assoc();
-        $num_folio = str_pad($detalle['folio'], 4, '0', STR_PAD_LEFT);
+        $num_folio = str_pad($detalle['folio'], 6, '0', STR_PAD_LEFT);
         //$fecha_nacimiento = date('d/m/Y', $detalle['fecha_nacimiento']);
         $formato_fecha = date("d/m/Y:h:i:sa", time());
 
@@ -389,13 +389,12 @@ if (!function_exists("GetSQLValueString")) {
                                       <input type="checkbox" id="marcar" value="" onclick="marcar_desmarcar();" /> Marcar/Desmarcar
                                     </label>
                                   </div>
+                                  <form name="formulario2" action="" method="POST" id="frm_checkbox">
+                                    <a href="#" onclick="consultar_check()"><img src="img/pdf.png"> Crendial(es)</a>
+                                    <!--<button type="button" class="btn btn-primary" name="btn_checkbox" id="btn_checkbox" onclick="consultar_check()">Generar<br>Credenciales</button>-->
+                                  </form>
                                 </td>
-                                <form name="formulario2" action="" method="POST" id="frm_checkbox">
-                                    <td>
-                                      <a href="#" onclick="consultar_check()"><img src="img/pdf.png"> Crendial(es)</a>
-                                      <!--<button type="button" class="btn btn-primary" name="btn_checkbox" id="btn_checkbox" onclick="consultar_check()">Generar<br>Credenciales</button>-->
-                                    </td>
-                                </form>
+
                                 <form name="formulario2" action="" method="POST" id="frm_checkbox">
                                     <td>
                                       <a href="generar_excel.php" target="_new"><img src="img/excel.png"> Base de datos</a>
@@ -433,7 +432,7 @@ if (!function_exists("GetSQLValueString")) {
                             $consultar = $mysqli->query($query);
 
                             while($registros = $consultar->fetch_assoc()){
-                              $folio = str_pad($registros['folio'], 4, '0', STR_PAD_LEFT);
+                              $folio = str_pad($registros['folio'], 6, '0', STR_PAD_LEFT);
                             ?>
                               <tr class="gradeX">
                                 <td>
@@ -906,15 +905,23 @@ if (!function_exists("GetSQLValueString")) {
                                                   </select>
                                                 </td>
                                                 <td>
-                                                    <p>Grupo Indigena</p>
-                                                  <input type="text" class="form-control" id="grupo_indigena" name="grupo_indigena" placeholder="" onBlur="ponerMayusculas(this)">
+                                                    <p>¿Pertenece a un grupo indígena?</p>
+                                                    <select name="grupo_indigena" id="grupo_indigena" onchange="consultar_grupo()">
+                                                      <option value="">Seleccione una opción</option>
+                                                      <option value="SI">SI</option>
+                                                      <option value="NO">NO</option>
+                                                    </select>
                                                 </td>
-                                                <td>
-                                                    <p>Nombre del Grupo, Ejido o Comunidad</p>
-                                                  <input type="text" class="form-control" id="nombre_comunidad" name="nombre_comunidad" placeholder="" onBlur="ponerMayusculas(this)">
+                                                <td id="campo_oculto" style="display:none">
+                                                    <p>Nombre del Grupo</p>
+                                                  <input style="border: 2px solid red;" type="text" class="form-control" id="nombre_comunidad" name="nombre_comunidad" placeholder="" onBlur="ponerMayusculas(this)">
                                                 </td>
-
+                                              
                                               </tr>
+                                              <tr class="info">
+                                                  <th colspan="3">INFORMACIÓN DOMICILIARIA</th>
+                                              </tr>
+                                              <tr>
                                                 <td>
                                                     <p>Código Postal</p>
                                                   <input type="text" class="form-control" id="cp" name="cp" placeholder="" onchange="otra_consulta()" onBlur="ponerMayusculas(this)">
@@ -922,16 +929,19 @@ if (!function_exists("GetSQLValueString")) {
                                                 <td>
                                                     <p>Estado</p>
                                                   <input type="text" style="border: 2px solid #2980b9;" class="form-control" id="estado" name="estado" placeholder="" onBlur="ponerMayusculas(this)">
+                                                  <input type="hidden" id="num_estado" name="num_estado" value="">
                                                 </td>
                                                 <td>
                                                     <p>Ciudad, Población o Localidad</p>
                                                   <input type="text" style="border: 2px solid #2980b9;" class="form-control" id="ciudad" name="ciudad" placeholder="" onBlur="ponerMayusculas(this)">
                                                 </td>
                                               </tr>
+
                                               <tr>
                                                 <td>
                                                     <p>Municipio</p>
                                                   <input type="text" style="border: 2px solid #2980b9;" class="form-control" id="municipio" name="municipio" placeholder="" onBlur="ponerMayusculas(this)">
+                                                  <input type="hidden" id="num_municipio" name="num_municipio">
                                                 </td>
                                                 <td colspan="2">
                                                   <p>Colonia</p>
@@ -955,6 +965,9 @@ if (!function_exists("GetSQLValueString")) {
                                                     <p>Número</p>
                                                   <input type="text" class="form-control" id="numero" name="numero" placeholder="" onBlur="ponerMayusculas(this)">
                                                 </td>
+                                              </tr>
+                                              <tr class="info">
+                                                  <th colspan="3">INFORMACIÓN DE CONTACTO</th>
                                               </tr>
                                               <tr>
                                                 <td>
@@ -1177,6 +1190,16 @@ if (!function_exists("GetSQLValueString")) {
 
 
   //FUNCIÓN PARA GENERAR EL RFC
+  function consultar_grupo(){
+    var pregunta = document.getElementById('grupo_indigena').value;
+
+    if(pregunta == 'SI'){
+      document.getElementById('campo_oculto').style.display = 'block';
+      document.getElementById("nombre_comunidad").focus();
+    }else{
+      document.getElementById('campo_oculto').style.display = 'none';
+    }
+  }
 
   function calculaRFC() {
     function quitaArticulos(palabra) {
@@ -1261,21 +1284,29 @@ if (!function_exists("GetSQLValueString")) {
         $.post("consultar_cp.php", {"cp":$("#cp").val()}, function(data){
         
           // Si devuelve un nombre lo mostramos, si no, vaciamos la casilla
-          if(data.estado)
+          if(data.estado){
             $("#estado").val(data.estado);
-          else
+            $("#num_estado").val(data.num_estado);
+          }
+          else{
             $("#estado").val("");
+          }
             
           // Si devuelve un apellido lo mostramos, si no, vaciamos la casilla
-          if(data.municipio)
+          if(data.municipio){
             $("#municipio").val(data.municipio);
-          else
+            $("#num_municipio").val(data.num_municipio);
+          }
+          else{
             $("#municipio").val("");
+          }
 
-          if(data.ciudad)
+          if(data.ciudad){
             $("#ciudad").val(data.ciudad);
-          else
+          }
+          else{
             $("#ciudad").val("");
+          }
 
         },"json");
       });
@@ -1291,21 +1322,28 @@ if (!function_exists("GetSQLValueString")) {
         $.post("consultar_cp.php", {"cp2":$("#cp2").val()}, function(data){
         
           // Si devuelve un nombre lo mostramos, si no, vaciamos la casilla
-          if(data.estado)
+          if(data.estado){
             $("#estado2").val(data.estado);
-          else
+            $("#num_estado2").val(data.num_estado2);
+          }
+          else{
             $("#estado2").val("");
+          }
             
           // Si devuelve un apellido lo mostramos, si no, vaciamos la casilla
-          if(data.municipio)
+          if(data.municipio){
             $("#municipio2").val(data.municipio);
-          else
+            $("#num_municipio2").val(data.num_municipio2);
+          }
+          else{
             $("#municipio2").val("");
-
-          if(data.ciudad)
+          }
+          if(data.ciudad){
             $("#ciudad2").val(data.ciudad);
-          else
+          }
+          else{
             $("#ciudad2").val("");
+          }
 
         },"json");
       });
@@ -1449,6 +1487,20 @@ if (!function_exists("GetSQLValueString")) {
             document.getElementById("estado_civil").focus();
             return false;
         }
+        grupo_indigena = document.getElementById("grupo_indigena").selectedIndex;
+        if( grupo_indigena == null || grupo_indigena == 0 ) {
+            alert('DEBES SELECCIONAR SI PERTENECE A UN GRUPO INDÍGENA');
+            document.getElementById("grupo_indigena").focus();
+            return false;
+        }
+        respuesta_grupo = document.getElementById('grupo_indigena').value;
+        nombre_comunidad = document.getElementById('nombre_comunidad').value;
+        if(respuesta_grupo == 'SI' && (nombre_comunidad == null || nombre_comunidad.length == 0 || /^\s+$/.test(nombre_comunidad))){
+          alert('DEBES ESCRIBIR EL NOMBRE DEL GRUPO INDÍGENA');
+          document.getElementById("nombre_comunidad").focus();
+          return false;
+        }
+
         cp = document.getElementById("cp").value;
         if ( cp == null || cp.length == 0 || /^\s+$/.test(cp)) {
         // Si no se cumple la condicion...
@@ -1577,7 +1629,7 @@ if (!function_exists("GetSQLValueString")) {
     <script type="text/javascript" language="javascript" src="assets/advanced-datatable/media/js/jquery.dataTables.js"></script>
     <script type="text/javascript" src="assets/data-tables/DT_bootstrap.js"></script>
     <script src="js/respond.min.js" ></script>
-  <script type="text/javascript" src="assets/fuelux/js/spinner.min.js"></script>
+  <!--<script type="text/javascript" src="assets/fuelux/js/spinner.min.js"></script>-->
   <script type="text/javascript" src="assets/bootstrap-fileupload/bootstrap-fileupload.js"></script>
 
     <!--right slidebar-->
