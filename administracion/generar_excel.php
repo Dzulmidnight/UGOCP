@@ -14,24 +14,40 @@ require_once 'PHPExcel/PHPExcel.php';
     // Se asignan las propiedades del libro
     $objPHPExcel->getProperties()->setCreator("spp global") //Autor
                ->setLastModifiedBy("spp global") //Ultimo usuario que lo modificó
-               ->setTitle("LISTA ORGANIZACIONES DE PEQUEÑOS PRODUCTORES")
-               ->setSubject("LISTA ORGANIZACIONES DE PEQUEÑOS PRODUCTORES")
-               ->setDescription("LISTA ORGANIZACIONES DE PEQUEÑOS PRODUCTORES")
-               ->setKeywords("LISTA ORGANIZACIONES DE PEQUEÑOS PRODUCTORES")
-               ->setCategory("LISTA ORGANIZACIONES");
+               ->setTitle("Base de datos - Afiliados UGOCP")
+               ->setSubject("Base de datos - Afiliados UGOCP")
+               ->setDescription("Base de datos - Afiliados UGOCP")
+               ->setKeywords("Base de datos - Afiliados UGOCP")
+               ->setCategory("Afiliados UGOCP");
 
     $tituloReporte = "Base de datos - Afiliados UGOCP";
     //$subtitulos = "Otros";
     $titulosColumnas = array('FOLIO', 'CURP', 'RFC', 'CLAVE ELECTOR', 'Nº DE CREDENCIAL', 'APELLIDO PATERNO', 'APELLIDO MATERNO', 'NOMBRE(S)', 'FECHA DE NACIMIENTO', 'SEXO', 'EDAD', 'ESTADO CIVIL', 'PERTENECE A GRUPO INDIGENA', 'GRUPO INDIGENA', 'CP', 'Nº ESTADO', 'ESTADO', 'CIUDAD o POBLACIÓN', 'Nº MUNICIPIO', 'MUNICIPIO', 'COLONIA', 'CALLE', 'NUMERO', 'CORREO ELECTRONICO', 'TELEFONO', 'CELULAR', 'OCUPACIÓN', 'CARGO o PUESTO', 'EMPRESA', 'TEL OFICINA');
+
+    $subColumnas = array('INFORMACIÓN COMPLEMENTARIA', 'DATOS GENERALES', 'INFORMACIÓN DOMICILIARIA', 'INFORMACION DE CONTACTO', 'INFORMACIÓN PROFESIONAL O LABORAL');
     
     $objPHPExcel->setActiveSheetIndex(0)
                 ->mergeCells('A1:AD1');
-    //$objPHPExcel->setActiveSheetIndex(0)
-      //          ->mergeCells('A2:AB2');
+    $objPHPExcel->setActiveSheetIndex(0)
+    	        ->mergeCells('A2:E2');
+   	$objPHPExcel->setActiveSheetIndex(0)
+    	        ->mergeCells('F2:N2');
+   	$objPHPExcel->setActiveSheetIndex(0)
+    	        ->mergeCells('O2:W2');
+    $objPHPExcel->setActiveSheetIndex(0)
+    	        ->mergeCells('X2:Z2');
+    $objPHPExcel->setActiveSheetIndex(0)
+    	        ->mergeCells('AA2:AD2');
             
     // Se agregan los titulos del reporte
     $objPHPExcel->setActiveSheetIndex(0)
           ->setCellValue('A1',$tituloReporte)
+          //se agregan los subtitulos de las columnas
+          ->setCellValue('A2',  $subColumnas[0])
+          ->setCellValue('F2',  $subColumnas[1])
+          ->setCellValue('O2',  $subColumnas[2])
+          ->setCellValue('X2',  $subColumnas[3])
+          ->setCellValue('AA2',  $subColumnas[4])
          // ->setCellValue('A2',$subtitulos)
                 ->setCellValue('A3',  $titulosColumnas[0])
                 ->setCellValue('B3',  $titulosColumnas[1])
@@ -136,7 +152,7 @@ require_once 'PHPExcel/PHPExcel.php';
               'rotation'   => 0,
               'wrap'          => TRUE
         )
-        );
+    );
 
     $estiloTituloColumnas = array(
             'font' => array(
@@ -173,7 +189,87 @@ require_once 'PHPExcel/PHPExcel.php';
               'horizontal' => PHPExcel_Style_Alignment::HORIZONTAL_CENTER,
               'vertical'   => PHPExcel_Style_Alignment::VERTICAL_CENTER,
               'wrap'          => TRUE
-        ));
+    ));
+
+
+    $estiloCelda1 = array(
+            'font' => array(
+                'name'      => 'Arial',
+                'bold'      => true,                          
+                'color'     => array(
+                    'rgb' => 'ffffff'
+                )
+            ),
+            /*'fill'  => array(
+        'type'    => PHPExcel_Style_Fill::FILL_SOLID,
+        'color'   => array('argb' => 'FFd9b7f4')
+      ),*/
+
+            'fill'  => array(
+        'type'    => PHPExcel_Style_Fill::FILL_SOLID,
+        'color'   => array('rgb' => '34495e') //color de fondo
+      ),
+            'borders' => array(
+              'top'     => array(
+                    'style' => PHPExcel_Style_Border::BORDER_MEDIUM ,
+                    'color' => array(
+                        'rgb' => '143860'
+                    )
+                ),
+                'bottom'     => array(
+                    'style' => PHPExcel_Style_Border::BORDER_MEDIUM ,
+                    'color' => array(
+                        'rgb' => '4000ff'
+                    )
+                )
+            ),
+      'alignment' =>  array(
+              'horizontal' => PHPExcel_Style_Alignment::HORIZONTAL_CENTER,
+              'vertical'   => PHPExcel_Style_Alignment::VERTICAL_CENTER,
+              'wrap'          => TRUE
+    ));
+
+    $estiloCelda2 = array(
+            'font' => array(
+                'name'      => 'Arial',
+                'bold'      => true,                          
+                'color'     => array(
+                    'rgb' => '34495e' //color de texto
+                )
+            ),
+            /*'fill'  => array(
+        'type'    => PHPExcel_Style_Fill::FILL_SOLID,
+        'color'   => array('argb' => 'FFd9b7f4')
+      ),*/
+
+            'fill'  => array(
+        'type'    => PHPExcel_Style_Fill::FILL_SOLID,
+        'color'   => array('rgb' => 'bdc3c7') //color de fondo 5F9EA0
+      ),
+            'borders' => array(
+              'top'     => array(
+                    'style' => PHPExcel_Style_Border::BORDER_MEDIUM ,
+                    'color' => array(
+                        'rgb' => '143860'
+                    )
+                ),
+                'bottom'     => array(
+                    'style' => PHPExcel_Style_Border::BORDER_MEDIUM ,
+                    'color' => array(
+                        'rgb' => '4000ff'
+                    )
+                )
+            ),
+      'alignment' =>  array(
+              'horizontal' => PHPExcel_Style_Alignment::HORIZONTAL_CENTER,
+              'vertical'   => PHPExcel_Style_Alignment::VERTICAL_CENTER,
+              'wrap'          => TRUE
+    ));
+
+
+
+
+
 
     $estiloInformacion = new PHPExcel_Style();
     $estiloInformacion->applyFromArray(
@@ -201,6 +297,12 @@ require_once 'PHPExcel/PHPExcel.php';
     $objPHPExcel->getActiveSheet()->getStyle('A1:AD1')->applyFromArray($estiloTituloReporte);
     $objPHPExcel->getActiveSheet()->getStyle('A3:AD3')->applyFromArray($estiloTituloColumnas);   
     $objPHPExcel->getActiveSheet()->setSharedStyle($estiloInformacion, "A4:AD".($i-1));
+
+    $objPHPExcel->getActiveSheet()->getStyle('A2')->applyFromArray($estiloCelda1);
+    $objPHPExcel->getActiveSheet()->getStyle('F2')->applyFromArray($estiloCelda2);
+    $objPHPExcel->getActiveSheet()->getStyle('O2')->applyFromArray($estiloCelda1);
+    $objPHPExcel->getActiveSheet()->getStyle('X2')->applyFromArray($estiloCelda2);
+    $objPHPExcel->getActiveSheet()->getStyle('AA2')->applyFromArray($estiloCelda1);
 //$objPHPExcel->getActiveSheet()->getStyle('A3:AB3')->getAlignment()->setWrapText(false); 
     //$objPHPExcel->getActiveSheet()->getStyle('A3:B3')->getAlignment()->setWrapText(true);
    
@@ -211,9 +313,10 @@ require_once 'PHPExcel/PHPExcel.php';
     $objPHPExcel->getActiveSheet()->getDefaultColumnDimension()
     ->setWidth(20);
      $objPHPExcel->getActiveSheet()->getRowDimension('1')->setRowHeight(40);
+     $objPHPExcel->getActiveSheet()->getRowDimension('2')->setRowHeight(30);
 
     // Se asigna el nombre a la hoja
-    $objPHPExcel->getActiveSheet()->setTitle('Lista organizaciones');
+    $objPHPExcel->getActiveSheet()->setTitle('Base de datos - Afiliados UGOCP');
 
     // Se activa la hoja para que sea la que se muestre cuando el archivo se abre
     $objPHPExcel->setActiveSheetIndex(0);
@@ -223,7 +326,7 @@ require_once 'PHPExcel/PHPExcel.php';
 
     // Se manda el archivo al navegador web, con el nombre que se indica (Excel2007)
     header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
-    header('Content-Disposition: attachment;filename="Lista_organizaciones.xls"');
+    header('Content-Disposition: attachment;filename="Afiliados_UGOCP.xls"');
     header('Cache-Control: max-age=0');
 
     $objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel5');

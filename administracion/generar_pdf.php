@@ -303,8 +303,22 @@
 			  	font-family: Arial;
 			    font-size:12px;
 			  }
+			  .degradado{
+
+				background: rgba(255,74,46,1);
+				background: -moz-linear-gradient(top, rgba(255,74,46,1) 0%, rgba(255,72,36,1) 22%, rgba(255,76,41,1) 34%, rgba(255,195,184,1) 66%, rgba(255,255,255,1) 82%, rgba(255,255,255,1) 95%);
+				background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(255,74,46,1)), color-stop(22%, rgba(255,72,36,1)), color-stop(34%, rgba(255,76,41,1)), color-stop(66%, rgba(255,195,184,1)), color-stop(82%, rgba(255,255,255,1)), color-stop(95%, rgba(255,255,255,1)));
+				background: -webkit-linear-gradient(top, rgba(255,74,46,1) 0%, rgba(255,72,36,1) 22%, rgba(255,76,41,1) 34%, rgba(255,195,184,1) 66%, rgba(255,255,255,1) 82%, rgba(255,255,255,1) 95%);
+				background: -o-linear-gradient(top, rgba(255,74,46,1) 0%, rgba(255,72,36,1) 22%, rgba(255,76,41,1) 34%, rgba(255,195,184,1) 66%, rgba(255,255,255,1) 82%, rgba(255,255,255,1) 95%);
+				background: -ms-linear-gradient(top, rgba(255,74,46,1) 0%, rgba(255,72,36,1) 22%, rgba(255,76,41,1) 34%, rgba(255,195,184,1) 66%, rgba(255,255,255,1) 82%, rgba(255,255,255,1) 95%);
+				background: linear-gradient(to bottom, rgba(255,74,46,1) 0%, rgba(255,72,36,1) 22%, rgba(255,76,41,1) 34%, rgba(255,195,184,1) 66%, rgba(255,255,255,1) 82%, rgba(255,255,255,1) 95%);
+				filter: progid:DXImageTransform.Microsoft.gradient( startColorstr="#ff4a2e", endColorstr="#ffffff", GradientType=0 );
+
+
+
+			  }
 			  </style>
-				<table border="0">
+				<table border="0" class="degradado">
 				  <tr>
 				    <td width="9.6cm" style="border: 1px dotted black;border-right:none" height="6.4cm" >
 				      <table border="0" width="">
