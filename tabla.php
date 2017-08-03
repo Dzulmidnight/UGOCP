@@ -51,14 +51,14 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ff4a2e', end
 	}
 
 </style>
-				<table border="0" class="degradado">
+				<table border="0" class="degradado" style="width:17cm;height:5.5cm">
 				  <tr>
 				    <td width="9.6cm" style="border: 1px dotted black;border-right:none" height="6.4cm" >
 				      <table border="0" width="">
 				        <tbody>
 				          <tr style="padding:0px; margin:0px;">
 				            <td align="center" width="40px"> 
-				                <img src="../img/logo_ugocp_pdf.png" style="width:60px; height:60px; padding:0px; margin:0px;"/>
+				                <img src="img/logo_ugocp_pdf.png" style="width:60px; height:60px; padding:0px; margin:0px;"/>
 				            </td>
 				            <td style="color: #FE0000">
 				                <p>UNION GENERAL OBRERO,</p><p>CAMPESINA Y POPULAR,A.C.</p>
@@ -156,4 +156,111 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ff4a2e', end
 				  </tr>
 
 
+				</table>
+
+
+
+				<table border="0" style="border: 1px dotted black; font-size:8xp;font-family:arial">
+					<tr>
+						<!-- INICIA CARA FRONTAL -->
+						<td>
+							<table style="width:9cm;height:6.5cm;font-size:10px;">
+								<tr>
+									<td>
+										<img src="../img/logo_ugocp_pdf.png" style="width:1.5cm; height:1.5cm;"/>									
+									</td>
+									<td style="color:red">
+											UNIÓN GENERAL OBRERO,<br>
+											CAMPESINA Y POPULAR, A.C.<br>
+											<hr style="border:1px solid red;width:100%">
+											Comite Ejecutivo Estatal Sonora	
+									</td>
+									<td rowspan="2">
+										<img src="'.$detalle['foto'].'" style="border:2px solid red;width:2cm; height:3cm;"/>
+				                		<p>Folio: <span>'.$num_folio.'</span></p>
+									</td>
+								</tr>
+								<tr>
+									<td style="text-align:center" colspan="2">
+										<p>'.$nombre.'</p>
+										<hr style="border:1px solid red;width:100%">
+										<p style="text-align:center"><b>Nombre</b></p>	
+									</td>
+								</tr>
+								<tr>
+									<td colspan="3">
+										<p><b>Cargo:</b> '.$detalle['cargo'].'</p>
+									</td>
+								</tr>
+								<tr>
+									<td style="text-align:center" >
+										<p>'.$detalle['telefono'].'</p>
+										<hr style="border:1px solid red;width:100%">
+										<p><b>Teléfono</b></p>
+									</td>
+									<td style="text-align:center" >
+										<p>'.$detalle['celular'].'</p>
+										<hr style="border:1px solid red;width:100%">
+										<p><b>Celular</b></p>
+									</td>
+									<td style="text-align:center" >
+										<p>&nbsp;</p>
+										<hr style="border:1px solid red;width:100%">
+										<p>
+											<b>Firma Afiliado</b>
+										</p>
+
+									</td>
+								</tr>
+							
+							</table>							
+						</td>
+						<!-- TERMINA CARA FRONTAL -->
+
+						<!-- INICIA CARA TRASERA -->
+						<td>
+							<table style="width:9cm;height:6.5cm;font-size:10px;">
+								<tr>
+									<td style="width:50%;text-align:center">
+										<p>'.$detalle['curp'].'</p>
+										<hr style="border:1px solid red;width:100%">
+										<p><b>CURP</b></p>
+									</td>
+									<td style="width:50%;text-align:center">
+										<p>'.$detalle['rfc'].'</p>
+										<hr style="border:1px solid red;width:100%">
+										<p><b>RFC</b></p>
+									</td>
+								</tr>
+								<tr>
+									<td style="width:50%;text-align:center">
+										<p>'.$detalle['clave_elector'].'</p>
+										<hr style="border:1px solid red;width:100%">
+										<p><b>Clave Elector</b></p>
+									</td>
+									<td style="width:50%;text-align:center">
+										<p>'.$detalle['num_ine'].'</p>
+										<hr style="border:1px solid red;width:100%">
+										<p><b>Nº INE</b></p>
+									</td>
+								</tr>
+								<tr>
+									<td style="text-align:center" colspan="2">
+										<p>'.$direccion.'</p>
+										<hr style="border:1px solid red;width:100%">
+										<p><b>Domicilio</b></p>
+									</td>
+								</tr>
+								<tr>
+									<td style="text-align:center" colspan="2">
+										<p>Nombre del secretario</p>
+										<hr style="border:1px solid red;width:100%">
+										<p><b>Firma</b></p>
+									</td>
+								</tr>
+
+							</table>
+						</td>
+						<!-- TERMINA CARA TRASERA -->
+					</tr>
 				</table>

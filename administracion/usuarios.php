@@ -108,6 +108,8 @@
 
                 <div class="space15"></div>
 
+
+
                 <div class="table-responsive">
                   <form action="" method="POST">
                     <table class="table table-striped table-hover table-bordered" id="editable-sample">
@@ -183,6 +185,10 @@
         </section>
       </section>
 
+  <section>
+  
+
+  </section>
 
       <!--main content end-->
       <!-- Right Slidebar start -->

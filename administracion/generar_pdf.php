@@ -301,127 +301,130 @@
 			  }
 			  p{
 			  	font-family: Arial;
-			    font-size:12px;
+			    font-size:10px;
 			  }
 			  .degradado{
 
-				background: rgba(255,74,46,1);
-				background: -moz-linear-gradient(top, rgba(255,74,46,1) 0%, rgba(255,72,36,1) 22%, rgba(255,76,41,1) 34%, rgba(255,195,184,1) 66%, rgba(255,255,255,1) 82%, rgba(255,255,255,1) 95%);
-				background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(255,74,46,1)), color-stop(22%, rgba(255,72,36,1)), color-stop(34%, rgba(255,76,41,1)), color-stop(66%, rgba(255,195,184,1)), color-stop(82%, rgba(255,255,255,1)), color-stop(95%, rgba(255,255,255,1)));
-				background: -webkit-linear-gradient(top, rgba(255,74,46,1) 0%, rgba(255,72,36,1) 22%, rgba(255,76,41,1) 34%, rgba(255,195,184,1) 66%, rgba(255,255,255,1) 82%, rgba(255,255,255,1) 95%);
-				background: -o-linear-gradient(top, rgba(255,74,46,1) 0%, rgba(255,72,36,1) 22%, rgba(255,76,41,1) 34%, rgba(255,195,184,1) 66%, rgba(255,255,255,1) 82%, rgba(255,255,255,1) 95%);
-				background: -ms-linear-gradient(top, rgba(255,74,46,1) 0%, rgba(255,72,36,1) 22%, rgba(255,76,41,1) 34%, rgba(255,195,184,1) 66%, rgba(255,255,255,1) 82%, rgba(255,255,255,1) 95%);
-				background: linear-gradient(to bottom, rgba(255,74,46,1) 0%, rgba(255,72,36,1) 22%, rgba(255,76,41,1) 34%, rgba(255,195,184,1) 66%, rgba(255,255,255,1) 82%, rgba(255,255,255,1) 95%);
-				filter: progid:DXImageTransform.Microsoft.gradient( startColorstr="#ff4a2e", endColorstr="#ffffff", GradientType=0 );
-
-
-
+ 
+background: rgba(248,80,50,0.82);
+background: -moz-linear-gradient(top, rgba(248,80,50,0.82) 0%, rgba(241,111,92,0.82) 0%, rgba(246,41,12,0.82) 0%, rgba(240,47,23,0.82) 10%, rgba(241,53,29,0.82) 20%, rgba(241,55,31,0.81) 23%, rgba(248,159,148,0.76) 50%, rgba(252,217,213,0.76) 65%, rgba(255,255,255,0.76) 78%);
+background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(248,80,50,0.82)), color-stop(0%, rgba(241,111,92,0.82)), color-stop(0%, rgba(246,41,12,0.82)), color-stop(10%, rgba(240,47,23,0.82)), color-stop(20%, rgba(241,53,29,0.82)), color-stop(23%, rgba(241,55,31,0.81)), color-stop(50%, rgba(248,159,148,0.76)), color-stop(65%, rgba(252,217,213,0.76)), color-stop(78%, rgba(255,255,255,0.76)));
+background: -webkit-linear-gradient(top, rgba(248,80,50,0.82) 0%, rgba(241,111,92,0.82) 0%, rgba(246,41,12,0.82) 0%, rgba(240,47,23,0.82) 10%, rgba(241,53,29,0.82) 20%, rgba(241,55,31,0.81) 23%, rgba(248,159,148,0.76) 50%, rgba(252,217,213,0.76) 65%, rgba(255,255,255,0.76) 78%);
+background: -o-linear-gradient(top, rgba(248,80,50,0.82) 0%, rgba(241,111,92,0.82) 0%, rgba(246,41,12,0.82) 0%, rgba(240,47,23,0.82) 10%, rgba(241,53,29,0.82) 20%, rgba(241,55,31,0.81) 23%, rgba(248,159,148,0.76) 50%, rgba(252,217,213,0.76) 65%, rgba(255,255,255,0.76) 78%);
+background: -ms-linear-gradient(top, rgba(248,80,50,0.82) 0%, rgba(241,111,92,0.82) 0%, rgba(246,41,12,0.82) 0%, rgba(240,47,23,0.82) 10%, rgba(241,53,29,0.82) 20%, rgba(241,55,31,0.81) 23%, rgba(248,159,148,0.76) 50%, rgba(252,217,213,0.76) 65%, rgba(255,255,255,0.76) 78%);
+background: linear-gradient(to bottom, rgba(248,80,50,0.82) 0%, rgba(241,111,92,0.82) 0%, rgba(246,41,12,0.82) 0%, rgba(240,47,23,0.82) 10%, rgba(241,53,29,0.82) 20%, rgba(241,55,31,0.81) 23%, rgba(248,159,148,0.76) 50%, rgba(252,217,213,0.76) 65%, rgba(255,255,255,0.76) 78%);
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr="#f85032", endColorstr="#ffffff", GradientType=0 );
+			  }
+			  .otro{
+			  	background-image: url("../img/fondo.jpg");
+			  	background-repeat: no-repeat;
+			  	background-size: cover;
 			  }
 			  </style>
-				<table border="0" class="degradado">
-				  <tr>
-				    <td width="9.6cm" style="border: 1px dotted black;border-right:none" height="6.4cm" >
-				      <table border="0" width="">
-				        <tbody>
-				          <tr style="padding:0px; margin:0px;">
-				            <td align="center" width="40px"> 
-				                <img src="../img/logo_ugocp_pdf.png" style="width:60px; height:60px; padding:0px; margin:0px;"/>
-				            </td>
-				            <td style="color: #FE0000">
-				                <p>UNION GENERAL OBRERO,</p><p>CAMPESINA Y POPULAR,A.C.</p>
-				                <hr style="border-top: 1px solid #FF2301; color:#FE0000; margin:5px; padding:10px;">
-				                <p><small>Comite Ejecutivo Estatal Sonora</small></p>
-				            </td>
+				<table  border="0" style="border: 1px dotted black; font-size:8xp;font-family:arial;color:#1a292c">
+					<tr>
+						<!-- INICIA CARA FRONTAL -->
+						<td>
+							<table class="otro" style="width:9cm;height:6cm;font-size:10px;">
+								<tr>
+									<td>
+										<img src="../img/logo_ugocp_pdf.png" style="width:1.5cm; height:1.5cm;"/>									
+									</td>
+									<td style="color:#96979b">
+											UNIÓN GENERAL OBRERO,<br>
+											CAMPESINA Y POPULAR, A.C.<br>
+											<hr style="border:1px solid #2c3e50;width:100%">
+											Comite Ejecutivo Estatal Sonora	
+									</td>
+									<td rowspan="2">
+										<img src="'.$detalle['foto'].'" style="border: 3px solid #2c3e50; width:2cm; height:3cm;"/>
+				                		<p style="color:#1a292c">Folio: <span>'.$num_folio.'</span></p>
+									</td>
+								</tr>
+								<tr>
+									<td style="text-align:center" colspan="2">
+										<p>'.$nombre.'</p>
+										<hr style="border:1px solid #2c3e50;width:100%">
+										<p style="text-align:center"><b>Nombre</b></p>	
+									</td>
+								</tr>
+								<tr>
+									<td colspan="3">
+										<p><b>Cargo:</b> '.$detalle['cargo'].'</p>
+									</td>
+								</tr>
+								<tr>
+									<td style="text-align:center" >
+										<p>'.$detalle['telefono'].'</p>
+										<hr style="border:1px solid #2c3e50;width:100%">
+										<p><b>Teléfono</b></p>
+									</td>
+									<td style="text-align:center" >
+										<p>'.$detalle['celular'].'</p>
+										<hr style="border:1px solid #2c3e50;width:100%">
+										<p><b>Celular</b></p>
+									</td>
+									<td style="text-align:center" >
+										<p>&nbsp;</p>
+										<hr style="border:1px solid #2c3e50;width:100%">
+										<p>
+											<b>Firma Afiliado</b>
+										</p>
 
-				            <td colspan="4" rowspan="4" style="text-align:center;color:red">
-				                <img src="'.$detalle['foto'].'" style="width:80px; height:120px;"/>
-				                Folio: <span>'.$num_folio.'</span>
-				            </td>
-				          </tr>
-				          <tr>
-				            <td colspan="2" align="left">
-				              <h4 style="margin:0px; align:left;">'.$nombre.'</h4>
-				              <hr style="border-top: 1px solid #FF2301; color:black; margin:0px; padding:0px;">
-				            </td>
-				          </tr>
-				          <tr>
-				            <td colspan="2" align="center">
-				              <p><b>Nombre</b></p>
-				            </td>
-				          </tr>
-				          <tr>
-				            <td align="right">
-				              <p><b>Cargo:</b></p>
-				            </td>
-				            <td>
-				                <p><b>'.$detalle['cargo'].'</b></p>
-				            </td>
-				          </tr>
-				         <tr>
-				            <td align="right">
-				              <p><b>Dirección:</b></p>
-				            </td>
-				            <td colspan="4">
-				              <p><small>'.$direccion.'</small></p>
-				            </td>
-				            <td>
-				            </td>
-				          </tr>
-				          <tr>
-				            <td colspan="6">
-				              <table border="0" width="100%">
-				              <tr>
-				                <td align="center" border="0" width="32%">
-				                  <p><small>'.$detalle['telefono'].'</small></p>
-				                  <hr style="border-top: 1px solid #FF2301; color:black; margin:0px; padding:0px;">
-				                  <p><b>Teléfono</b></p>
-				                </td>
-				                <td align="center" border="0" width="32%">
-				                  <p><small>'.$detalle['celular'].'</smal></p>
-				                  <hr style="border-top: 1px solid #FF2301; color:black; margin:0px; padding:0px;">
-				                  <p><b>Celular</b></p>
-				                </td>
-				                <td align="center" border="0" width="34%">
-				                  <p><small>&nbsp;</small></p>
-				                  <hr style="border-top: 1px solid #FF2301; color:black; margin:0px; padding:0px;">
-				                  <p><b>Firma del Afiliado</b></p>
-				                </td>
-				              </tr>
-				              </table>
-				            </td>
-				          </tr>
-				        </tbody>
-				      </table>
-				    </td>
-				    <td style="width:0.2cm">
-				    </td>
-				    <td width="9.6cm" height="6.4cm" style="border: 1px dotted black;border-left:none">
-				      <table border="0" width="9.6cm">
-				        <tbody>
-				        <tr height="100px">
-				          <td colspan="4" style="padding:40px;">
-				              <p style="padding:10px"><b>CURP: </b>'.$detalle['curp'].'</p><br>
-				              <p style="padding:10px"><b>RFC: </b>'.$detalle['rfc'].'</p>
-				          </td>
-				        </tr>
-				        <tr width="100%">
-				            <td colspan="4" align="center" width="50%" style="padding:0px 40px 0px 50px ;">
-				              <p><b>Nombre del Secretario</b></p>
-				              <p><b><hr style="color:black; margin:0px;">&nbsp;</b></p>
-				              <p><b>Firma:</b></p>
-				            </td>
-				        </tr>
-				          <tr>
-				            <td colspan="4" align="center">
-				            </td>
-				          </tr>
-				      </table>
-				    </td>    
-				  </tr>
+									</td>
+								</tr>
+							
+							</table>							
+						</td>
+						<!-- TERMINA CARA FRONTAL -->
 
+						<!-- INICIA CARA TRASERA -->
+						<td>
+							<table style="width:9cm;height:6cm;font-size:10px;">
+								<tr>
+									<td style="width:50%;text-align:center">
+										<p>'.$detalle['curp'].'</p>
+										<hr style="border:1px solid #2c3e50;width:100%">
+										<p><b>CURP</b></p>
+									</td>
+									<td style="width:50%;text-align:center">
+										<p>'.$detalle['rfc'].'</p>
+										<hr style="border:1px solid #2c3e50;width:100%">
+										<p><b>RFC</b></p>
+									</td>
+								</tr>
+								<tr>
+									<td style="width:50%;text-align:center">
+										<p>'.$detalle['clave_elector'].'</p>
+										<hr style="border:1px solid #2c3e50;width:100%">
+										<p><b>Clave Elector</b></p>
+									</td>
+									<td style="width:50%;text-align:center">
+										<p>'.$detalle['num_ine'].'</p>
+										<hr style="border:1px solid #2c3e50;width:100%">
+										<p><b>Nº INE</b></p>
+									</td>
+								</tr>
+								<tr>
+									<td style="text-align:center" colspan="2">
+										<p>'.$direccion.'</p>
+										<hr style="border:1px solid #2c3e50;width:100%">
+										<p><b>Domicilio</b></p>
+									</td>
+								</tr>
+								<tr>
+									<td style="text-align:center" colspan="2">
+										<p>Nombre del secretario</p>
+										<hr style="border:1px solid #2c3e50;width:100%">
+										<p><b>Firma</b></p>
+									</td>
+								</tr>
 
+							</table>
+						</td>
+						<!-- TERMINA CARA TRASERA -->
+					</tr>
 				</table>
-
 	           
 
 		';
