@@ -25,20 +25,20 @@
 	        <div class="col-xs-12">
 	            <table style="font-family: Tahoma, Geneva, sans-serif;font-size:12px;">
 	                    <tr>
-	                        <td style="text-align:left;padding:15px;background-color:#e74c3c;color:#ffffff;" colspan="3">A).- DATOS GENERALES</td>
+	                        <td style="text-align:left;padding:10px;" colspan="3"><h3>A).- DATOS GENERALES</h3></td>
 	                    </tr>
 	                    <tr>
-	                        <td >
+	                        <td>
 	                            <b>'.$detalle['ap_paterno'].'</b>
-	                            <p>APELLIDO PARTENO</p>
+	                            <p class="borde">APELLIDO PARTENO</p>
 	                        </td>
-	                        <td >
+	                        <td>
 	                            <b>'.$detalle['ap_materno'].'</b>
-	                            <p>APELLIDO MATERNO</p>
+	                            <p class="borde">APELLIDO MATERNO</p>
 	                        </td>
 	                        <td >
 	                            <b>'.$detalle['nombre'].'</b>
-	                            <p>NOMBRE</p>
+	                            <p class="borde">NOMBRE</p>
 	                        </td>
 	                    <tr>
 	                    <tr>
@@ -234,12 +234,12 @@
 			                </h2>             
 	                	</div>
 	                	<div>
-							<h2 style="background-color:red;color:#fff;">CEDULA DE AFILIACIÓN</h2>
+							<h2 style="background-color:#e74c3c;color:#fff;">CEDULA DE AFILIACIÓN</h2>
 	                	</div>
 	            </td>
 	            <td style="width:25%;text-align:center">
 	            	<img style="width:145px;height:170px;" src="'.$detalle['foto'].'">
-	            	<h2>FOLIO: <span style="color:red">'.$num_folio.'</span></h2>
+	            	<h2>FOLIO: <span style="color:#e74c3c">Nº'.$num_folio.'</span></h2>
 	            </td>
 	          </tr>
 	        </table>
@@ -324,7 +324,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr="#f85032", end
 				<table  border="0" style="border: 1px dotted black; font-size:8xp;font-family:arial;color:#1a292c">
 					<tr>
 						<!-- INICIA CARA FRONTAL -->
-						<td style="padding-top:-5px;border:3px solid #1a292c;width:9cm;height:6cm;">
+						<td style="padding-top:-5px;border:6px solid #1a292c;width:9cm;height:6cm;">
 							<table class="otro" style="font-size:10px;">
 								<tr>
 									<td>
@@ -336,7 +336,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr="#f85032", end
 												<b>UNIÓN GENERAL OBRERO,<br>
 												CAMPESINA Y POPULAR, A.C.</b><br>
 												<hr style="border:1px solid #2c3e50;width:100%">
-												Comite Ejecutivo Estatal Sonora	
+													
 											</p>
 										</div>
 
@@ -403,29 +403,35 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr="#f85032", end
 									</td>
 								</tr>
 								<tr>
-									<td style="padding-top:20px;width:50%;text-align:center">
+									<td style="padding-top:10px;width:50%;text-align:center">
 										<p>'.$detalle['clave_elector'].'</p>
 										<hr style="border:1px solid #2c3e50;width:100%;margin-bottom:0px;margin-top:0px;">
 										<p><b>Clave Elector</b></p>
 									</td>
-									<td style="padding-top:20px;width:50%;text-align:center">
+									<td style="padding-top:10px;width:50%;text-align:center">
 										<p>'.$detalle['num_ine'].'</p>
 										<hr style="border:1px solid #2c3e50;width:100%;margin-bottom:0px;margin-top:0px;">
 										<p><b>Nº INE</b></p>
 									</td>
 								</tr>
 								<tr>
-									<td style="padding-top:20px;text-align:center" colspan="2">
+									<td style="padding-top:10px;text-align:center" colspan="2">
 										<p>'.$direccion.'</p>
 										<hr style="border:1px solid #2c3e50;width:100%;margin-bottom:0px;margin-top:0px;">
 										<p><b>Domicilio</b></p>
 									</td>
 								</tr>
 								<tr>
-									<td style="padding-top:20px;text-align:center" colspan="2">
-										<p>Nombre del secretario</p>
+									<td style="padding-top:5px;text-align:center;" colspan="2">
+										<p style="">
+											<img style="" src="../img/firma_ugocp_2.jpg"></img>
+										</p>
+										<p>Lic. Enrique Jacob González Rojas</p>
 										<hr style="border:1px solid #2c3e50;width:100%;margin-bottom:0px;margin-top:0px;">
-										<p><b>Firma</b></p>
+										<p>
+											Secretario General
+										</p>
+
 									</td>
 								</tr>
 
@@ -493,7 +499,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr="#f85032", end
 				<table  border="0" style="border: 1px dotted black; font-size:8xp;font-family:arial;color:#1a292c">
 					<tr>
 						<!-- INICIA CARA FRONTAL -->
-						<td style="padding-top:-5px;border:3px solid #1a292c;width:9cm;height:6cm;">
+						<td style="padding-top:-5px;border:6px solid #1a292c;width:9cm;height:6cm;">
 							<table class="otro" style="font-size:10px;">
 								<tr>
 									<td>
@@ -505,7 +511,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr="#f85032", end
 												<b>UNIÓN GENERAL OBRERO,<br>
 												CAMPESINA Y POPULAR, A.C.</b><br>
 												<hr style="border:1px solid #2c3e50;width:100%">
-												Comite Ejecutivo Estatal Sonora	
+													
 											</p>
 										</div>
 
@@ -572,29 +578,35 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr="#f85032", end
 									</td>
 								</tr>
 								<tr>
-									<td style="padding-top:20px;width:50%;text-align:center">
+									<td style="padding-top:10px;width:50%;text-align:center">
 										<p>'.$detalle['clave_elector'].'</p>
 										<hr style="border:1px solid #2c3e50;width:100%;margin-bottom:0px;margin-top:0px;">
 										<p><b>Clave Elector</b></p>
 									</td>
-									<td style="padding-top:20px;width:50%;text-align:center">
+									<td style="padding-top:10px;width:50%;text-align:center">
 										<p>'.$detalle['num_ine'].'</p>
 										<hr style="border:1px solid #2c3e50;width:100%;margin-bottom:0px;margin-top:0px;">
 										<p><b>Nº INE</b></p>
 									</td>
 								</tr>
 								<tr>
-									<td style="padding-top:20px;text-align:center" colspan="2">
+									<td style="padding-top:10px;text-align:center" colspan="2">
 										<p>'.$direccion.'</p>
 										<hr style="border:1px solid #2c3e50;width:100%;margin-bottom:0px;margin-top:0px;">
 										<p><b>Domicilio</b></p>
 									</td>
 								</tr>
 								<tr>
-									<td style="padding-top:20px;text-align:center" colspan="2">
-										<p>Nombre del secretario</p>
+									<td style="padding-top:5px;text-align:center;" colspan="2">
+										<p style="">
+											<img style="" src="../img/firma_ugocp_2.jpg"></img>
+										</p>
+										<p>Lic. Enrique Jacob González Rojas</p>
 										<hr style="border:1px solid #2c3e50;width:100%;margin-bottom:0px;margin-top:0px;">
-										<p><b>Firma</b></p>
+										<p>
+											Secretario General
+										</p>
+
 									</td>
 								</tr>
 
@@ -881,7 +893,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr="#f85032", end
 				<table  border="0" style="border: 1px dotted black; font-size:8xp;font-family:arial;color:#1a292c">
 					<tr>
 						<!-- INICIA CARA FRONTAL -->
-						<td style="padding-top:-5px;border:3px solid #1a292c;width:9cm;height:6cm;">
+						<td style="padding-top:-5px;border:6px solid #1a292c;width:9cm;height:6cm;">
 							<table class="otro" style="font-size:10px;">
 								<tr>
 									<td>
@@ -893,7 +905,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr="#f85032", end
 												<b>UNIÓN GENERAL OBRERO,<br>
 												CAMPESINA Y POPULAR, A.C.</b><br>
 												<hr style="border:1px solid #2c3e50;width:100%">
-												Comite Ejecutivo Estatal Sonora	
+													
 											</p>
 										</div>
 
@@ -960,29 +972,35 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr="#f85032", end
 									</td>
 								</tr>
 								<tr>
-									<td style="padding-top:20px;width:50%;text-align:center">
+									<td style="padding-top:10px;width:50%;text-align:center">
 										<p>'.$detalle['clave_elector'].'</p>
 										<hr style="border:1px solid #2c3e50;width:100%;margin-bottom:0px;margin-top:0px;">
 										<p><b>Clave Elector</b></p>
 									</td>
-									<td style="padding-top:20px;width:50%;text-align:center">
+									<td style="padding-top:10px;width:50%;text-align:center">
 										<p>'.$detalle['num_ine'].'</p>
 										<hr style="border:1px solid #2c3e50;width:100%;margin-bottom:0px;margin-top:0px;">
 										<p><b>Nº INE</b></p>
 									</td>
 								</tr>
 								<tr>
-									<td style="padding-top:20px;text-align:center" colspan="2">
+									<td style="padding-top:10px;text-align:center" colspan="2">
 										<p>'.$direccion.'</p>
 										<hr style="border:1px solid #2c3e50;width:100%;margin-bottom:0px;margin-top:0px;">
 										<p><b>Domicilio</b></p>
 									</td>
 								</tr>
 								<tr>
-									<td style="padding-top:20px;text-align:center" colspan="2">
-										<p>Nombre del secretario</p>
+									<td style="padding-top:5px;text-align:center;" colspan="2">
+										<p style="">
+											<img style="" src="../img/firma_ugocp_2.jpg"></img>
+										</p>
+										<p>Lic. Enrique Jacob González Rojas</p>
 										<hr style="border:1px solid #2c3e50;width:100%;margin-bottom:0px;margin-top:0px;">
-										<p><b>Firma</b></p>
+										<p>
+											Secretario General
+										</p>
+
 									</td>
 								</tr>
 

@@ -54,6 +54,10 @@ b {
   background: #bdc3c7;
   text-align: left;
 }
+.borde{
+  border-top: 1px solid;
+}
+
 #project {
   float: left;
 }
