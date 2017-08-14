@@ -54,8 +54,20 @@ b {
   background: #bdc3c7;
   text-align: left;
 }
-.borde{
-  border-top: 1px solid;
+hr{
+  margin-top:0px;
+  margin-bottom: 0px;
+}
+td{
+  padding-top: 1em;
+}
+.hr2{
+  margin-top:0px;
+  margin-bottom:0px;
+}
+
+.pregunta{
+  font-weight: bold;
 }
 
 #project {

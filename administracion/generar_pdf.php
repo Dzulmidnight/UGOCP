@@ -25,184 +25,174 @@
 	        <div class="col-xs-12">
 	            <table style="font-family: Tahoma, Geneva, sans-serif;font-size:12px;">
 	                    <tr>
-	                        <td style="text-align:left;padding:10px;" colspan="3"><h3>A).- DATOS GENERALES</h3></td>
+	                        <td style="text-align:left;padding:10px;" colspan="3"><h3>A).- DATOS GENERALES:</h3></td>
 	                    </tr>
 	                    <tr>
-	                        <td>
-	                            <b>'.$detalle['ap_paterno'].'</b>
-	                            <p class="borde">APELLIDO PARTENO</p>
+	                        <td style="text-align:center">
+	                            <p>'.$detalle['ap_paterno'].'</p>
+	                            <hr>
+	                            <p class="pregunta">APELLIDO PARTENO</p>
 	                        </td>
-	                        <td>
-	                            <b>'.$detalle['ap_materno'].'</b>
-	                            <p class="borde">APELLIDO MATERNO</p>
+	                        <td style="text-align:center">
+	                            <p>'.$detalle['ap_materno'].'</p>
+	                            <hr>
+	                            <p class="pregunta">APELLIDO MATERNO</p>
 	                        </td>
-	                        <td >
-	                            <b>'.$detalle['nombre'].'</b>
-	                            <p class="borde">NOMBRE</p>
+	                        <td colspan="2" style="text-align:center">
+	                            <p>'.$detalle['nombre'].'</p>
+	                            <hr>
+	                            <p class="pregunta">NOMBRE</p>
 	                        </td>
 	                    <tr>
 	                    <tr>
-	                        <td >
-	                            <b>'.$detalle['calle'].'</b>
-	                            <p>CALLE</p>
-	                        </td>
-	                        <td >
-	                            <b>'.$detalle['numero'].'</b>
-	                            <p>NÚMERO</p>
-	                        </td>	
-	                        <td >
-	                            <b>'.$detalle['colonia'].'</b>
-	                            <p>COLONIA</p>
-	                        </td>
-
+							<td style="padding-top:1em;" colspan="2">
+								<p><span class="pregunta">DIRECCIÓN</span>: '.$detalle['calle'].'</p>
+								<hr>
+							</td>
+							<td style="padding-top:1em;" colspan="2">
+								<p><span class="pregunta">NÚMERO: </span>'.$detalle['numero'].'</p>
+								<hr>
+							</td>
+	                    </tr>
+	                    <tr>
+							<td style="text-align:center;padding-top:1em;">
+								<p>'.$detalle['colonia'].'</p>
+								<hr>
+								<p class="pregunta">COLONIA</p>
+							</td>
+							<td style="text-align:center;padding-top:1em;">
+								<p>'.$detalle['cp'].'</p>
+								<hr>
+								<p class="pregunta">CÓDIGO POSTAL</p>
+							</td>
+							<td colspan="2" style="text-align:center;padding-top:1em;">
+								<p>&nbsp;'.$detalle['ciudad'].'</p>
+								<hr>
+								<p class="pregunta">CIUDAD O POBLACIÓN</p>
+							</td>
 	                    </tr>
 
 	                    <tr>
-	                        <td >
-	                            <b>'.$detalle['cp'].'</b>
-	                            <p>CÓDIGO POSTAL</p>
+							<td style="text-align:center">
+								<p>'.$detalle['municipio'].'</p>
+								<hr>
+								<p class="pregunta">MUNICIPIO</p>
+							</td>
+							<td style="text-align:center">
+								<p>'.$detalle['estado'].'</p>
+								<hr>
+								<p class="pregunta">ESTADO</p>
+							</td>
+							<td style="text-align:center">
+								<p>'.$detalle['telefono'].'</p>
+								<hr>
+								<p class="pregunta">TELÉFONO PART.</p>
+							</td>
+							<td style="text-align:center">
+								<p>'.$detalle['celular'].'</p>
+								<hr>
+								<p class="pregunta">CELULAR</p>
+							</td>
+	                    </tr>
+	                    <tr>
+	                    	
+							<td colspan="4">
+								<p><span class="pregunta">CORREO ELECTRÓNICO</span>: '.$detalle['correo'].'</p>
+								<hr>
+							</td>
+	                    </tr>
+
+	                    <tr>
+	                        <td>
+	                        	<p><span class="pregunta">EDAD</span>: '.$detalle['edad'].' AÑOS</p>
+								<hr>
+	                        </td>
+	                        <td>
+								<p><span class="pregunta">SEXO:</span> '.$sexo.'</p>
+								<hr>
 	                        </td>
 	                        <td colspan="2">
-	                            <b>'.$detalle['ciudad'].'</b>
-	                            <p>CIUDAD, POBLACIÓN O LOCALIDAD</p>
-	                        </td>			
-	                    </tr>
-	                    <tr>
-	                        <td colspan="2" >
-	                            <b>'.$detalle['municipio'].'</b>
-	                            <p>MUNICIPIO</p>
-	                        </td>
-	                        <td >
-	                            <b>'.$detalle['estado'].'</b>
-	                            <p>ESTADO</p>
-	                        </td>
-	                        			
-	                    </tr>
-
-	                    <tr>
-	                        <td>
-	                            <b>'.$detalle['correo'].'</b>
-	                            <p>CORREO ELECTRONICO</p>
-	                        </td>
-	                        <td >
-	                            <b>'.$detalle['telefono'].'</b>
-	                            <p>TELÉFONO</p>
-	                        </td>
-	                        <td >
-	                            <b>'.$detalle['celular'].'</b>
-	                            <p>CELULAR</p>
-	                        </td>
-			
-	                    </tr>
-
-	                    <tr>
-	                        <td >
-	                            <b>'.$detalle['fecha_nacimiento'].'</b>
-	                            <p>FECHA DE NACIMIENTO</p>
-	                        </td>
-	                        <td >
-	                            <b>'.$detalle['edad'].'</b>
-	                            <p>EDAD</p>
-	                        </td>
-	                        <td >
-	                            <b>'.$sexo.'</b>
-	                            <p>SEXO</p>
+								<p><span class="pregunta">ESTADO CIVIL:</span> '.$detalle['estado_civil'].'</p>
+								<hr>
 	                        </td>			
 	                    </tr>
 
 	                    <tr>
-	                        <td >
-	                            <b>'.$detalle['estado_civil'].'</b>
-	                            <p>ESTADO CIVIL</p>
+	                        <td colspan="2" style="text-align:center">
+	                        	<p>'.$detalle['grupo_indigena'].'</p>
+								<hr>
+								<p class="pregunta">¿PERTENECE A UN GRUPO INDIGENA?</p>
 	                        </td>
-	                        <td >
-	                            <b>'.$detalle['grupo_indigena'].'</b>
-	                            <p>GRUPO INDIGENA</p>
+	                        <td colspan="2" style="text-align:center">
+								<p>'.$detalle['nombre_comunidad'].'</p>
+								<hr>
+								<p class="pregunta">NOMBRE DEL GRUPO INDIGENA</p>
 	                        </td>
-	                        <td >
-	                            <b>'.$detalle['nombre_comunidad'].'</b>
-	                            <p>NOMBRE DEL GRUPO</p>
+	                    </tr>
+
+	                    <tr>
+	                        <td style="text-align:left;padding:10px;" colspan="3"><h3>B).- INFORMACIÓN PROFESIONAL O LABORAL:</h3></td>
+	                    </tr>
+
+	                    <tr>
+	                        <td colspan="4">
+	                        	<p><span class="pregunta">OCUPACIÓN:</span> '.$detalle['ocupacion'].'</p>
+	                        	<hr>
+	                        </td>			
+	                    </tr>
+	                    <tr>
+	                        <td colspan="4">
+	                        	<p><span class="pregunta">CARGO O PUESTO QUE DESEMPEÑA:</span> '.$detalle['cargo'].'</p>
+	                        	<hr>
+	                        </td>			
+	                    </tr>
+	                    <tr>
+	                        <td colspan="4">
+	                        	<p><span class="pregunta">NOMBRE DE LA EMPRESA:</span> '.$detalle['empresa'].'</p>
+	                        	<hr>
+	                        </td>			
+	                    </tr>
+	                    <tr>
+	                        <td colspan="4">
+	                        	<p><span class="pregunta">TELS. OFICINA:</span> '.$detalle['tel_oficina'].'</p>
+	                        	<hr>
 	                        </td>			
 	                    </tr>
 
 	                    <tr>
-	                        <td style="text-align:left;padding:15px;background-color:#e74c3c;color:#ffffff;" colspan="3">B).- INFORMACIÓN PROFESIONAL O LABORAL</td>
+	                        <td style="text-align:left;padding:10px;" colspan="3"><h3>C).- INFORMACIÓN COMPLEMENTARIA:</h3></td>
 	                    </tr>
-
 	                    <tr>
-	                        <td >
-	                            OCUPACIÓN:
-	                        </td>
-	                        <td colspan="2" >
-	                            <b>'.$detalle['ocupacion'].'</b>
+	                        <td colspan="4">
+	                        	<p><span class="pregunta">CLAVE ÚNICA DE REGISTRO POBLACIONAL (CURP):</span> '.$detalle['curp'].'</p>
+	                        	<hr>
 	                        </td>			
 	                    </tr>
 	                    <tr>
-	                        <td >
-	                            CARGO O PUESTO QUE DESEMPEÑA:
-	                        </td>
-	                        <td colspan="2" >
-	                            <b>'.$detalle['cargo'].'</b>
+	                        <td colspan="4">
+	                        	<p><span class="pregunta">CLAVE DE ELECTOR (CREDENCIAL INE):</span> '.$detalle['clave_elector'].'</p>
+	                        	<hr>
 	                        </td>			
 	                    </tr>
 	                    <tr>
-	                        <td >
-	                            NOMBRE DE LA EMPRESA:
-	                        </td>
-	                        <td colspan="2" >
-	                            <b>'.$detalle['empresa'].'</b>
-	                        </td>			
-	                    </tr>
-	                    <tr>
-	                        <td >
-	                            TEL. OFICINA:
-	                        </td>
-	                        <td colspan="2" >
-	                            <b>'.$detalle['tel_oficina'].'</b>
+	                        <td colspan="4">
+	                        	<p><span class="pregunta">No. DE CREDENCIAL DEL INE (PARTE POSTERIOR):</span> '.$detalle['num_ine'].'</p>
+	                        	<hr>
 	                        </td>			
 	                    </tr>
 
 	                    <tr>
-	                        <td style="text-align:left;padding:15px;background-color:#e74c3c;color:#ffffff;" colspan="3">C).- INFORMACIÓN COMPLEMENTARIA</td>
-	                    </tr>
-
-	                    <tr>
-	                        <td >
-	                            CLAVE ÚNICA DE REGISTRO POBLACIONAL (CURP):
-	                        </td>
-	                        <td colspan="2" >
-	                            <b>'.$detalle['curp'].'</b>
-	                        </td>			
-	                    </tr>
-	                    <tr>
-	                        <td >
-	                            CLAVE DE ELECTOR:
-	                        </td>
-	                        <td colspan="2" >
-	                            <b>'.$detalle['clave_elector'].'</b>
-	                        </td>			
-	                    </tr>
-	                    <tr>
-	                        <td >
-	                            No. DE CREDENCIAL DEL INE (PARTE POSTERIOR):
-	                        </td>
-	                        <td colspan="2" >
-	                            <b>'.$detalle['num_ine'].'</b>
-	                        </td>			
+	                        <td style="text-align:left;padding:10px;" colspan="3"><h3>D).- DECLARACIÓN:</h3></td>
 	                    </tr>
 
 
 	                    <tr>
-	                        <td style="text-align:left;padding:15px;background-color:#e74c3c;color:#ffffff;" colspan="3">D).- DECLARACIÓN</td>
-	                    </tr>
-
-	                    <tr>
-	                        <td colspan="3" style="text-align:justify;border: 1px solid #ddd">
-								POR MEDIO DE LA PRESENTE SOLICITO LIBRE, CONSCIENTE Y VOLUNTARIAMENTE MI AFILIACIÓN A LA UNIÓN GENERAL, OBRERO, CAMPESINA Y POPULAR A.C. -UGOCP-. ME OBLIGO A RESPETAR EL ESTATUTO. EL PROGRAMA, LOS PRINCIPIOS Y LAS NORMAS CONSTITUTIVAS QUE LA RIGEN, ASÍ COMO A OBSERVAR LOS ACUERDOS EMANADOS DE SUS CONGRESOS, PLENOS DE REPRESENTANTES Y ASAMBLEAS GENERALES. IGUALMENTE A CONTRIBUIR AL FORTALECIMIENTO DE SU ESTRUCTURA Y A VELAR POR LA UNIDAD, PROSPERIDAD E INTEGRIDAD DE ESTA ORGANIZACIÓN.						
+	                        <td colspan="4" style="text-align:justify;font-size:11px;">
+								POR MEDIO DE LA PRESENTE, SOLICITO LIBRE Y CONCIENTE, Y VOLUNTARIAMENTE MI AFILIACIÓN A LA UNIÓN GENERAL OBRERO, CAMPESINA Y POPULAR -UGOCP- ME OBLIGO A RESPETAR EL ESTATUTO, EL PROGRAMA, LOS PRINCIPIOS Y LAS NORMAS CONSTITUTIVAS QUE LE RIGEN, ASI COMO A OBSERVAR LOS ACUERDOS EMANADOS DE SUS CONGRESOS, PLENOS DE REPRESENTANTES Y ASAMBLEAS GENERALES, IGUALMENTE A CONTRIBUIR AL FORTALECIMIENTO DE SU ESTRUCTURA Y A VELAR POR LA UNIDAD, PROSPERIDAD E INTEGRIDAD DE ESTA ORGANIZACIÓN.						
 	                        </td>			
 	                    </tr>
 	                    <tr style="border:none">
-	                        <td colspan="3" style="text-align:center">
+	                        <td colspan="4" style="text-align:center">
 								<hr style="width:40%;margin-top:30px;">
 								FIRMA					
 	                        </td>			
@@ -218,27 +208,27 @@
 	    $mpdf->setAutoTopMargin = 'pad';
 	    $mpdf->keep_table_proportions = TRUE;
 	    $mpdf->SetHTMLHeader('
-	    <header class="clearfix">
+	    <header class="clearfix" style="padding-bottom:-5em;">
 	      <div>
 	        <table style="border:none">
 	          <tr>
-	            <td style="width:25%;text-align:center;margin-bottom:0px;font-size:12px;">
+	            <td style="width:25%;text-align:center;font-size:12px;">
 	                  <div>
 	                    <img src="../img/logo_ugocp_pdf.png" >
 	                  </div>
 	            </td>
-	            <td style="text-align:center;font-size:12px;">
+	            <td style="text-align:center;">
 	                 	<div>
 			                <h2>
 			                    UNIÓN GENERAL OBRERO, CAMPESINA Y POPULAR A.C.
 			                </h2>             
 	                	</div>
 	                	<div>
-							<h2 style="background-color:#e74c3c;color:#fff;">CEDULA DE AFILIACIÓN</h2>
+							<h2 style="background-color:#7f8c8d;color:#fff;">CEDULA DE AFILIACIÓN</h2>
 	                	</div>
 	            </td>
 	            <td style="width:25%;text-align:center">
-	            	<img style="width:145px;height:170px;" src="'.$detalle['foto'].'">
+	            	<img style="border:2px solid #000000;width:145px;height:170px;" src="'.$detalle['foto'].'">
 	            	<h2>FOLIO: <span style="color:#e74c3c">Nº'.$num_folio.'</span></h2>
 	            </td>
 	          </tr>
@@ -255,11 +245,26 @@
 
 	    $css = file_get_contents('reportes/style_reporte.css');  
 	    //$mpdf->AddPage('L'); //se cambia la orientacion de la pagina
-	    $mpdf->pagenumPrefix = $formato_fecha.' - Página';
+	    //$mpdf->pagenumPrefix = $formato_fecha.' - Página';
 	    $mpdf->pagenumSuffix = ' - ';
 	    $mpdf->nbpgPrefix = ' de ';
 	    //$mpdf->nbpgSuffix = ' pages';
-	    $mpdf->SetFooter('{PAGENO}{nbpg}');
+	    $mpdf->SetHTMLFooter('
+			<footer>
+				<table>
+					<tr style="background:#e74c3c">
+						<td style="font-size:10px;text-align:center;color:#ffffff;padding-top:4px;padding-bottom:7px;">
+							<p>
+								Luis G. Monzón No. 400 esq. con Ramón Guzmán - Col. Sochiloa - C.P: 85150 Ciudad Obregón, Sonora - Tel/Fax (644)416-58-57
+							</p>
+							<p>
+								E-mail: ugocpn@prodigy.net.mx www.ugocp.com.mx
+							</p>
+						</td>
+					</tr>
+				</table>
+			</footer>
+	    	');
 	    $mpdf->writeHTML($css,1);
 
 	    ob_end_clean();
@@ -295,32 +300,20 @@
 		$direccion = $detalle['calle'].' #'.$detalle['numero'].', COL. '.$detalle['colonia'].', C.P. '.$detalle['cp'].', MUNICIPIO '.$detalle['municipio'].', '.$detalle['estado'];
 
 		$html = '
-			  <style>
-			  table{
-			  	font-family: Arial;
-			  }
-			  p{
-			  	font-family: Arial;
-			    font-size:10px;
-			  }
-			  .degradado{
-
- 
-background: rgba(248,80,50,0.82);
-background: -moz-linear-gradient(top, rgba(248,80,50,0.82) 0%, rgba(241,111,92,0.82) 0%, rgba(246,41,12,0.82) 0%, rgba(240,47,23,0.82) 10%, rgba(241,53,29,0.82) 20%, rgba(241,55,31,0.81) 23%, rgba(248,159,148,0.76) 50%, rgba(252,217,213,0.76) 65%, rgba(255,255,255,0.76) 78%);
-background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(248,80,50,0.82)), color-stop(0%, rgba(241,111,92,0.82)), color-stop(0%, rgba(246,41,12,0.82)), color-stop(10%, rgba(240,47,23,0.82)), color-stop(20%, rgba(241,53,29,0.82)), color-stop(23%, rgba(241,55,31,0.81)), color-stop(50%, rgba(248,159,148,0.76)), color-stop(65%, rgba(252,217,213,0.76)), color-stop(78%, rgba(255,255,255,0.76)));
-background: -webkit-linear-gradient(top, rgba(248,80,50,0.82) 0%, rgba(241,111,92,0.82) 0%, rgba(246,41,12,0.82) 0%, rgba(240,47,23,0.82) 10%, rgba(241,53,29,0.82) 20%, rgba(241,55,31,0.81) 23%, rgba(248,159,148,0.76) 50%, rgba(252,217,213,0.76) 65%, rgba(255,255,255,0.76) 78%);
-background: -o-linear-gradient(top, rgba(248,80,50,0.82) 0%, rgba(241,111,92,0.82) 0%, rgba(246,41,12,0.82) 0%, rgba(240,47,23,0.82) 10%, rgba(241,53,29,0.82) 20%, rgba(241,55,31,0.81) 23%, rgba(248,159,148,0.76) 50%, rgba(252,217,213,0.76) 65%, rgba(255,255,255,0.76) 78%);
-background: -ms-linear-gradient(top, rgba(248,80,50,0.82) 0%, rgba(241,111,92,0.82) 0%, rgba(246,41,12,0.82) 0%, rgba(240,47,23,0.82) 10%, rgba(241,53,29,0.82) 20%, rgba(241,55,31,0.81) 23%, rgba(248,159,148,0.76) 50%, rgba(252,217,213,0.76) 65%, rgba(255,255,255,0.76) 78%);
-background: linear-gradient(to bottom, rgba(248,80,50,0.82) 0%, rgba(241,111,92,0.82) 0%, rgba(246,41,12,0.82) 0%, rgba(240,47,23,0.82) 10%, rgba(241,53,29,0.82) 20%, rgba(241,55,31,0.81) 23%, rgba(248,159,148,0.76) 50%, rgba(252,217,213,0.76) 65%, rgba(255,255,255,0.76) 78%);
-filter: progid:DXImageTransform.Microsoft.gradient( startColorstr="#f85032", endColorstr="#ffffff", GradientType=0 );
-			  }
-			  .otro{
-			  	background-image: url("../img/fondo.png");
-			  	background-repeat: no-repeat;
-			  	background-size: cover;
-			  }
-			  </style>
+			<style>
+			table{
+				font-family: Arial;
+			}
+			p{
+				font-family: Arial;
+				font-size:10px;
+			}
+			.otro{
+				background-image: url("../img/fondo.png");
+				background-repeat: no-repeat;
+				background-size: cover;
+			}
+			</style>
 				<table  border="0" style="border: 1px dotted black; font-size:8xp;font-family:arial;color:#1a292c">
 					<tr>
 						<!-- INICIA CARA FRONTAL -->
@@ -424,7 +417,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr="#f85032", end
 								<tr>
 									<td style="padding-top:5px;text-align:center;" colspan="2">
 										<p style="">
-											<img style="" src="../img/firma_ugocp_2.jpg"></img>
+											<img style="" src="../img/firma_ugocp.jpg"></img>
 										</p>
 										<p>Lic. Enrique Jacob González Rojas</p>
 										<hr style="border:1px solid #2c3e50;width:100%;margin-bottom:0px;margin-top:0px;">
@@ -445,7 +438,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr="#f85032", end
 		';
 		$mpdf = new mPDF('c', 'A4');
 	    ob_start();
-
+	    $css = file_get_contents('reportes/style_reporte.css');  
 	    $mpdf->pagenumPrefix = $formato_fecha.' - Página';
 	    $mpdf->pagenumSuffix = ' - ';
 	    $mpdf->nbpgPrefix = ' de ';
@@ -599,7 +592,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr="#f85032", end
 								<tr>
 									<td style="padding-top:5px;text-align:center;" colspan="2">
 										<p style="">
-											<img style="" src="../img/firma_ugocp_2.jpg"></img>
+											<img style="" src="../img/firma_ugocp.jpg"></img>
 										</p>
 										<p>Lic. Enrique Jacob González Rojas</p>
 										<hr style="border:1px solid #2c3e50;width:100%;margin-bottom:0px;margin-top:0px;">
@@ -616,208 +609,211 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr="#f85032", end
 					</tr>
 				</table>
 
-                  <table style="font-family: Tahoma, Geneva, sans-serif;font-size:12px;">
-                          <tr>
-                              <td style="text-align:center;padding:10px;background-color:#bdc3c7;color:#2c3e50;" colspan="3"><b>FORMATO DE AFILIACIÓN - FOLIO: <span style="color:#e74c3c">'.$num_folio.'</span></b></td>
-                          </tr>
-                          <tr>
-                              <td style="text-align:left;padding:10px;background-color:#e74c3c;color:#ffffff;" colspan="3">A).- DATOS GENERALES</td>
-                          </tr>
-                          <tr>
-                              <td >
-                                  <b>'.$detalle['ap_paterno'].'</b>
-                                  <p>APELLIDO PARTENO</p>
-                              </td>
-                              <td >
-                                  <b>'.$detalle['ap_materno'].'</b>
-                                  <p>APELLIDO MATERNO</p>
-                              </td>
-                              <td >
-                                  <b>'.$detalle['nombre'].'</b>
-                                  <p>NOMBRE</p>
-                              </td>
-                          <tr>
-                          <tr>
-                              <td >
-                                  <b>'.$detalle['calle'].'</b>
-                                  <p>CALLE</p>
-                              </td>
-                              <td >
-                                  <b>'.$detalle['numero'].'</b>
-                                  <p>NÚMERO</p>
-                              </td>     
-                              <td >
-                                  <b>'.$detalle['colonia'].'</b>
-                                  <p>COLONIA</p>
-                              </td>
-                          </tr>
+                <table style="font-family: Tahoma, Geneva, sans-serif;font-size:12px;">
+					<tr>
+						<td style="text-align:center;padding:10px;background-color:#bdc3c7;color:#2c3e50;" colspan="4">
+							<b>FORMATO DE AFILIACIÓN - FOLIO: <span style="color:#e74c3c">Nº '.$num_folio.'</span></b>
+						</td>
+					</tr>
+                    <tr>
+                    	<td style="text-align:left;padding:10px;" colspan="3">
+                    		<h3>A).- DATOS GENERALES:</h3>
+                    	</td>
+                    </tr>
+                    <tr>
+                        <td style="text-align:center">
+                            <p>'.$detalle['ap_paterno'].'</p>
+                            <hr style="margin-top:0px;margin-bottom:0px;">
+                            <p class="pregunta">APELLIDO PARTENO</p>
+                        </td>
+                        <td style="text-align:center">
+                            <p>'.$detalle['ap_materno'].'</p>
+                            <hr style="margin-top:0px;margin-bottom:0px;">
+                            <p class="pregunta">APELLIDO MATERNO</p>
+                        </td>
+                    	<td colspan="2" style="text-align:center">
+                            <p>'.$detalle['nombre'].'</p>
+                            <hr style="margin-top:0px;margin-bottom:0px;">
+                            <p class="pregunta">NOMBRE</p>
+                    	</td>
+                    <tr>
+                    <tr>
+						<td style="padding-top:1em;" colspan="2">
+							<p><span class="pregunta">DIRECCIÓN</span>: '.$detalle['calle'].'</p>
+							<hr style="margin-top:0px;">
+						</td>
+						<td style="padding-top:1em;" colspan="2">
+							<p><span class="pregunta">NÚMERO: </span>'.$detalle['numero'].'</p>
+							<hr style="margin-top:0px;">
+						</td>
+                    </tr>
+                    <tr>
+						<td style="text-align:center;padding-top:1em;">
+							<p>'.$detalle['colonia'].'</p>
+							<hr style="margin-top:0px;margin-bottom:0px;">
+							<p class="pregunta">COLONIA</p>
+						</td>
+						<td style="text-align:center;padding-top:1em;">
+							<p>'.$detalle['cp'].'</p>
+							<hr style="margin-top:0px;margin-bottom:0px;">
+							<p class="pregunta">CÓDIGO POSTAL</p>
+						</td>
+						<td colspan="2" style="text-align:center;padding-top:1em;">
+							<p>&nbsp;'.$detalle['ciudad'].'</p>
+							<hr style="margin-top:0px;margin-bottom:0px;">
+							<p class="pregunta">CIUDAD O POBLACIÓN</p>
+						</td>
+                    </tr>
+                    <tr>
+						<td style="text-align:center">
+							<p>'.$detalle['municipio'].'</p>
+							<hr style="margin-top:0px;margin-bottom:0px;">
+							<p class="pregunta">MUNICIPIO</p>
+						</td>
+						<td style="text-align:center">
+							<p>'.$detalle['estado'].'</p>
+							<hr style="margin-top:0px;margin-bottom:0px;">
+							<p class="pregunta">ESTADO</p>
+						</td>
+						<td style="text-align:center">
+							<p>'.$detalle['telefono'].'</p>
+							<hr style="margin-top:0px;margin-bottom:0px;">
+							<p class="pregunta">TELÉFONO PART.</p>
+						</td>
+						<td style="text-align:center">
+							<p>'.$detalle['celular'].'</p>
+							<hr style="margin-top:0px;margin-bottom:0px;">
+							<p class="pregunta">CELULAR</p>
+						</td>
+                    </tr>
+                    <tr>
+                    	
+						<td colspan="4">
+							<p><span class="pregunta">CORREO ELECTRÓNICO</span>: '.$detalle['correo'].'</p>
+							<hr style="margin-top:0px;">
+						</td>
+                    </tr>
+                    <tr>
+                        <td>
+                        	<p><span class="pregunta">EDAD</span>: '.$detalle['edad'].' AÑOS</p>
+							<hr style="margin-top:0px;">
+                        </td>
+                        <td>
+							<p><span class="pregunta">SEXO:</span> '.$sexo.'</p>
+							<hr style="margin-top:0px;">
+                        </td>
+                        <td colspan="2">
+							<p><span class="pregunta">ESTADO CIVIL:</span> '.$detalle['estado_civil'].'</p>
+							<hr style="margin-top:0px;">
+                        </td>			
+                    </tr>
+                    <tr>
+                        <td colspan="2" style="text-align:center">
+                        	<p>'.$detalle['grupo_indigena'].'</p>
+							<hr style="margin-top:0px;margin-bottom:0px;">
+							<p class="pregunta">¿PERTENECE A UN GRUPO INDIGENA?</p>
+                        </td>
+                        <td colspan="2" style="text-align:center">
+							<p>'.$detalle['nombre_comunidad'].'</p>
+							<hr style="margin-top:0px;margin-bottom:0px;">
+							<p class="pregunta">NOMBRE DEL GRUPO INDIGENA</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="text-align:left;padding:10px;" colspan="3"><h3>B).- INFORMACIÓN PROFESIONAL O LABORAL:</h3></td>
+                    </tr>
+                    <tr>
+                        <td colspan="4">
+                        	<p><span class="pregunta">OCUPACIÓN:</span> '.$detalle['ocupacion'].'</p>
+                        	<hr style="margin-top:0px;">
+                        </td>			
+                    </tr>
+                    <tr>
+                        <td colspan="4">
+                        	<p><span class="pregunta">CARGO O PUESTO QUE DESEMPEÑA:</span> '.$detalle['cargo'].'</p>
+                        	<hr style="margin-top:0px;">
+                        </td>			
+                    </tr>
+                    <tr>
+                        <td colspan="4">
+                        	<p><span class="pregunta">NOMBRE DE LA EMPRESA:</span> '.$detalle['empresa'].'</p>
+                        	<hr style="margin-top:0px;">
+                        </td>			
+                    </tr>
+                    <tr>
+                        <td colspan="4">
+                        	<p><span class="pregunta">TELS. OFICINA:</span> '.$detalle['tel_oficina'].'</p>
+                        	<hr style="margin-top:0px;">
+                        </td>			
+                    </tr>
 
-                          <tr>
+                    <tr>
+                        <td style="text-align:left;padding:10px;" colspan="3">
+                        	<h3>C).- INFORMACIÓN COMPLEMENTARIA:</h3>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="4">
+                        	<p><span class="pregunta">CLAVE ÚNICA DE REGISTRO POBLACIONAL (CURP):</span> '.$detalle['curp'].'</p>
+                        	<hr style="margin-top:0px;">
+                        </td>			
+                    </tr>
+                    <tr>
+                        <td colspan="4">
+                        	<p><span class="pregunta">CLAVE DE ELECTOR (CREDENCIAL INE):</span> '.$detalle['clave_elector'].'</p>
+                        	<hr style="margin-top:0px;">
+                        </td>			
+                    </tr>
+                    <tr>
+                        <td colspan="4">
+                        	<p><span class="pregunta">No. DE CREDENCIAL DEL INE (PARTE POSTERIOR):</span> '.$detalle['num_ine'].'</p>
+                        	<hr style="margin-top:0px;">
+                        </td>			
+                    </tr>
+                    <tr>
+                        <td style="text-align:left;padding:10px;" colspan="4">
+                        	<h3>D).- DECLARACIÓN:</h3>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="4" style="text-align:justify;font-size:10px;">
+							POR MEDIO DE LA PRESENTE, SOLICITO LIBRE Y CONCIENTE, Y VOLUNTARIAMENTE MI AFILIACIÓN A LA UNIÓN GENERAL OBRERO, CAMPESINA Y POPULAR -UGOCP- ME OBLIGO A RESPETAR EL ESTATUTO, EL PROGRAMA, LOS PRINCIPIOS Y LAS NORMAS CONSTITUTIVAS QUE LE RIGEN, ASI COMO A OBSERVAR LOS ACUERDOS EMANADOS DE SUS CONGRESOS, PLENOS DE REPRESENTANTES Y ASAMBLEAS GENERALES, IGUALMENTE A CONTRIBUIR AL FORTALECIMIENTO DE SU ESTRUCTURA Y A VELAR POR LA UNIDAD, PROSPERIDAD E INTEGRIDAD DE ESTA ORGANIZACIÓN.					
+                        </td>			
+                    </tr>
+                    <tr style="border:none">
+                        <td colspan="4" style="text-align:center">
+							<hr style="width:40%;margin-top:30px;">
+							FIRMA					
+                        </td>			
+                    </tr>
 
-                              <td >
-                                  <b>'.$detalle['cp'].'</b>
-                                  <p>CÓDIGO POSTAL</p>
-                              </td>
-                              <td colspan="2" >
-                                  <b>'.$detalle['ciudad'].'</b>
-                                  <p>CIUDAD, POBLACIÓN O LOCALIDAD</p>
-                              </td>     
-                          </tr>
-                          <tr>
-                              <td colspan="2" >
-                                  <b>'.$detalle['municipio'].'</b>
-                                  <p>MUNICIPIO</p>
-                              </td>
-                              <td >
-                                  <b>'.$detalle['estado'].'</b>
-                                  <p>ESTADO</p>
-                              </td>
-                                    
-                          </tr>
+					<tr style="background:#e74c3c">
+						<td colspan="4" style="text-align:center;color:#ffffff;padding-top:2px;padding-bottom:5px;">
+							<p>
+								Luis G. Monzón No. 400 esq. con Ramón Guzmán - Col. Sochiloa - C.P: 85150 Ciudad Obregón, Sonora - Tel/Fax (644)416-58-57
+							</p>
+							<p>
+								E-mail: ugocpn@prodigy.net.mx www.ugocp.com.mx
+							</p>
+						</td>
+					</tr>
 
-                          <tr>
-                              <td>
-                                  <b>'.$detalle['correo'].'</b>
-                                  <p>CORREO ELECTRONICO</p>
-                              </td>
-                              <td >
-                                  <b>'.$detalle['telefono'].'</b>
-                                  <p>TELÉFONO</p>
-                              </td>
-                              <td >
-                                  <b>'.$detalle['celular'].'</b>
-                                  <p>CELULAR</p>
-                              </td>
-          
-                          </tr>
-
-                          <tr>
-                              <td >
-                                  <b>'.$detalle['fecha_nacimiento'].'</b>
-                                  <p>FECHA DE NACIMIENTO</p>
-                              </td>
-                              <td >
-                                  <b>'.$detalle['edad'].'</b>
-                                  <p>EDAD</p>
-                              </td>
-                              <td >
-                                  <b>'.$sexo.'</b>
-                                  <p>SEXO</p>
-                              </td>     
-                          </tr>
-
-                          <tr>
-                              <td >
-                                  <b>'.$detalle['estado_civil'].'</b>
-                                  <p>ESTADO CIVIL</p>
-                              </td>
-                              <td >
-                                  <b>'.$detalle['grupo_indigena'].'</b>
-                                  <p>GRUPO INDIGENA</p>
-                              </td>
-                              <td >
-                                  <b>'.$detalle['nombre_comunidad'].'</b>
-                                  <p>NOMBRE DEL GRUPO</p>
-                              </td>     
-                          </tr>
-
-                          <tr>
-                              <td style="text-align:left;padding:10px;background-color:#e74c3c;color:#ffffff;" colspan="3">B).- INFORMACIÓN PROFESIONAL O LABORAL</td>
-                          </tr>
-
-                          <tr>
-                              <td >
-                                  OCUPACIÓN:
-                              </td>
-                              <td colspan="2" >
-                                  <b>'.$detalle['ocupacion'].'</b>
-                              </td>     
-                          </tr>
-                          <tr>
-                              <td >
-                                  CARGO O PUESTO QUE DESEMPEÑA:
-                              </td>
-                              <td colspan="2" >
-                                  <b>'.$detalle['cargo'].'</b>
-                              </td>     
-                          </tr>
-                          <tr>
-                              <td >
-                                  NOMBRE DE LA EMPRESA:
-                              </td>
-                              <td colspan="2" >
-                                  <b>'.$detalle['empresa'].'</b>
-                              </td>     
-                          </tr>
-                          <tr>
-                              <td >
-                                  TEL. OFICINA:
-                              </td>
-                              <td colspan="2" >
-                                  <b>'.$detalle['tel_oficina'].'</b>
-                              </td>     
-                          </tr>
-
-                          <tr>
-                              <td style="text-align:left;padding:10px;background-color:#e74c3c;color:#ffffff;" colspan="3">C).- INFORMACIÓN COMPLEMENTARIA</td>
-                          </tr>
-
-                          <tr>
-                              <td >
-                                  CLAVE ÚNICA DE REGISTRO POBLACIONAL (CURP):
-                              </td>
-                              <td colspan="2" >
-                                  <b>'.$detalle['curp'].'</b>
-                              </td>     
-                          </tr>
-                          <tr>
-                              <td >
-                                  CLAVE DE ELECTOR:
-                              </td>
-                              <td colspan="2" >
-                                  <b>'.$detalle['clave_elector'].'</b>
-                              </td>     
-                          </tr>
-                          <tr>
-                              <td >
-                                  No. DE CREDENCIAL DEL INE (PARTE POSTERIOR):
-                              </td>
-                              <td colspan="2" >
-                                  <b>'.$detalle['num_ine'].'</b>
-                              </td>     
-                          </tr>
-
-
-                          <tr>
-                              <td style="text-align:left;padding:10px;background-color:#e74c3c;color:#ffffff;" colspan="3">D).- DECLARACIÓN</td>
-                          </tr>
-
-                          <tr>
-                              <td colspan="3" style="text-align:justify;font-size:10px">
-                    POR MEDIO DE LA PRESENTE SOLICITO LIBRE, CONSCIENTE Y VOLUNTARIAMENTE MI AFILIACIÓN A LA UNIÓN GENERAL, OBRERO, CAMPESINA Y POPULAR A.C. -UGOCP-. ME OBLIGO A RESPETAR EL ESTATUTO. EL PROGRAMA, LOS PRINCIPIOS Y LAS NORMAS CONSTITUTIVAS QUE LA RIGEN, ASÍ COMO A OBSERVAR LOS ACUERDOS EMANADOS DE SUS CONGRESOS, PLENOS DE REPRESENTANTES Y ASAMBLEAS GENERALES. IGUALMENTE A CONTRIBUIR AL FORTALECIMIENTO DE SU ESTRUCTURA Y A VELAR POR LA UNIDAD, PROSPERIDAD E INTEGRIDAD DE ESTA ORGANIZACIÓN.            
-                              </td>     
-                          </tr>
-                          <tr style="border:none">
-                              <td colspan="3" style="text-align:center">
-                    <hr style="width:40%;margin-top:30px;">
-                    FIRMA         
-                              </td>     
-                          </tr>
-                  </table>
+                </table>
 
         ';
 
 
           $mpdf = new mPDF('c','A4','','','15','15','10','10');
           ob_start();
+          $css = file_get_contents('reportes/style2_reporte.css');  
           $mpdf->setAutoTopMargin = 'pad';
           $mpdf->keep_table_proportions = TRUE;
-          $mpdf->pagenumPrefix = $formato_fecha.' - Página';
-          $mpdf->pagenumSuffix = ' - ';
-          $mpdf->nbpgPrefix = ' de ';
+          //$mpdf->pagenumPrefix = $formato_fecha.' - Página';
+          //$mpdf->pagenumSuffix = ' - ';
+          //$mpdf->nbpgPrefix = ' de ';
           //$mpdf->nbpgSuffix = ' pages';
-          $mpdf->SetFooter('{PAGENO}{nbpg}');
-
+        
+          $mpdf->writeHTML($css,1);
           ob_end_clean();
           $mpdf->writeHTML($html);
           $mpdf->Output($fecha_actual.'_formato_afiliacion_credencial.pdf', 'D'); // parametro "D" es para descargar directamente
@@ -993,7 +989,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr="#f85032", end
 								<tr>
 									<td style="padding-top:5px;text-align:center;" colspan="2">
 										<p style="">
-											<img style="" src="../img/firma_ugocp_2.jpg"></img>
+											<img style="" src="../img/firma_ugocp.jpg"></img>
 										</p>
 										<p>Lic. Enrique Jacob González Rojas</p>
 										<hr style="border:1px solid #2c3e50;width:100%;margin-bottom:0px;margin-top:0px;">
@@ -1024,6 +1020,7 @@ margin-top: 1cm;
 
 
 	    ob_end_clean();
+	    $css = file_get_contents('reportes/style_reporte.css');  
 	    $mpdf->writeHTML($html);
 	    //$mpdf->WriteHTML($style);
 		$mpdf->Output();
