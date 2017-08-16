@@ -88,7 +88,7 @@
 								<p class="pregunta">TELÉFONO PART.</p>
 							</td>
 							<td style="text-align:center">
-								<p>'.$detalle['celular'].'</p>
+								<p>&nbsp;'.$detalle['celular'].'</p>
 								<hr>
 								<p class="pregunta">CELULAR</p>
 							</td>

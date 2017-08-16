@@ -22,12 +22,12 @@ require_once 'PHPExcel/PHPExcel.php';
 
     $tituloReporte = "Base de datos - Afiliados UGOCP";
     //$subtitulos = "Otros";
-    $titulosColumnas = array('FOLIO', 'CURP', 'RFC', 'CLAVE ELECTOR', 'Nº DE CREDENCIAL', 'APELLIDO PATERNO', 'APELLIDO MATERNO', 'NOMBRE(S)', 'FECHA DE NACIMIENTO', 'SEXO', 'EDAD', 'ESTADO CIVIL', 'PERTENECE A GRUPO INDIGENA', 'GRUPO INDIGENA', 'CP', 'Nº ESTADO', 'ESTADO', 'CIUDAD o POBLACIÓN', 'Nº MUNICIPIO', 'MUNICIPIO', 'COLONIA', 'CALLE', 'NUMERO', 'CORREO ELECTRONICO', 'TELEFONO', 'CELULAR', 'OCUPACIÓN', 'CARGO o PUESTO', 'EMPRESA', 'TEL OFICINA');
+    $titulosColumnas = array('ORGANIZACIÓN', 'FOLIO', 'CURP', 'RFC', 'CLAVE ELECTOR', 'Nº DE CREDENCIAL', 'APELLIDO PATERNO', 'APELLIDO MATERNO', 'NOMBRE(S)', 'FECHA DE NACIMIENTO', 'SEXO', 'EDAD', 'ESTADO CIVIL', 'PERTENECE A GRUPO INDIGENA', 'GRUPO INDIGENA', 'CP', 'Nº ESTADO', 'ESTADO', 'CIUDAD o POBLACIÓN', 'Nº MUNICIPIO', 'MUNICIPIO', 'COLONIA', 'CALLE', 'NUMERO', 'CORREO ELECTRONICO', 'TELEFONO', 'CELULAR', 'OCUPACIÓN', 'CARGO o PUESTO', 'EMPRESA', 'TEL OFICINA');
 
     $subColumnas = array('INFORMACIÓN COMPLEMENTARIA', 'DATOS GENERALES', 'INFORMACIÓN DOMICILIARIA', 'INFORMACION DE CONTACTO', 'INFORMACIÓN PROFESIONAL O LABORAL');
     
     $objPHPExcel->setActiveSheetIndex(0)
-                ->mergeCells('A1:AD1');
+                ->mergeCells('A1:AE1');
     $objPHPExcel->setActiveSheetIndex(0)
     	        ->mergeCells('A2:E2');
    	$objPHPExcel->setActiveSheetIndex(0)
@@ -37,7 +37,7 @@ require_once 'PHPExcel/PHPExcel.php';
     $objPHPExcel->setActiveSheetIndex(0)
     	        ->mergeCells('X2:Z2');
     $objPHPExcel->setActiveSheetIndex(0)
-    	        ->mergeCells('AA2:AD2');
+    	        ->mergeCells('AA2:AE2');
             
     // Se agregan los titulos del reporte
     $objPHPExcel->setActiveSheetIndex(0)
@@ -78,7 +78,8 @@ require_once 'PHPExcel/PHPExcel.php';
                 ->setCellValue('AA3',  $titulosColumnas[26])
                 ->setCellValue('AB3',  $titulosColumnas[27])
                 ->setCellValue('AC3',  $titulosColumnas[28])
-                ->setCellValue('AD3',  $titulosColumnas[29]);
+                ->setCellValue('AD3',  $titulosColumnas[29])
+                ->setCellValue('AE3',  $titulosColumnas[30]);
     
     //Se agregan los datos de los alumnos
     $i = 4;
@@ -92,36 +93,37 @@ require_once 'PHPExcel/PHPExcel.php';
         $folio = str_pad($afiliado['folio'], 6, '0', STR_PAD_LEFT);
 
       $objPHPExcel->setActiveSheetIndex(0)
-                ->setCellValue('A'.$i,  $folio)
-                ->setCellValue('B'.$i,  $afiliado['curp'])
-                ->setCellValue('C'.$i,  $afiliado['rfc'])
-                ->setCellValue('D'.$i,  $afiliado['clave_elector'])
-                ->setCellValue('E'.$i,  $afiliado['num_ine'])
-                ->setCellValue('F'.$i,  $afiliado['ap_paterno'])
-                ->setCellValue('G'.$i,  $afiliado['ap_materno'])
-                ->setCellValue('H'.$i,  $afiliado['nombre'])
-                ->setCellValue('I'.$i,  $afiliado['fecha_nacimiento'])
-                ->setCellValue('J'.$i,  $sexo)
-                ->setCellValue('K'.$i,  $afiliado['edad'])
-                ->setCellValue('L'.$i,  $afiliado['estado_civil'])
-                ->setCellValue('M'.$i,  $afiliado['grupo_indigena'])
-                ->setCellValue('N'.$i,  $afiliado['nombre_comunidad'])
-                ->setCellValue('O'.$i,  $afiliado['cp'])
-                ->setCellValue('P'.$i,  $afiliado['num_estado'])
-                ->setCellValue('Q'.$i,  $afiliado['estado'])
-                ->setCellValue('R'.$i,  $afiliado['ciudad'])
-                ->setCellValue('S'.$i,  $afiliado['num_municipio'])
-                ->setCellValue('T'.$i,  $afiliado['municipio'])
-                ->setCellValue('U'.$i,  $afiliado['colonia'])
-                ->setCellValue('V'.$i,  $afiliado['calle'])
-                ->setCellValue('W'.$i,  $afiliado['numero'])
-                ->setCellValue('X'.$i,  $afiliado['correo'])
-                ->setCellValue('Y'.$i,  $afiliado['telefono'])
-                ->setCellValue('Z'.$i,  $afiliado['celular'])
-                ->setCellValue('AA'.$i,  $afiliado['ocupacion'])
-                ->setCellValue('AB'.$i,  $afiliado['cargo'])
-                ->setCellValue('AC'.$i,  $afiliado['empresa'])
-                ->setCellValue('AD'.$i,  $afiliado['tel_oficina']);
+                ->setCellValue('A'.$i,  $afiliado['organizacion'])
+                ->setCellValue('B'.$i,  $folio)
+                ->setCellValue('C'.$i,  $afiliado['curp'])
+                ->setCellValue('D'.$i,  $afiliado['rfc'])
+                ->setCellValue('E'.$i,  $afiliado['clave_elector'])
+                ->setCellValue('F'.$i,  $afiliado['num_ine'])
+                ->setCellValue('G'.$i,  $afiliado['ap_paterno'])
+                ->setCellValue('H'.$i,  $afiliado['ap_materno'])
+                ->setCellValue('I'.$i,  $afiliado['nombre'])
+                ->setCellValue('J'.$i,  $afiliado['fecha_nacimiento'])
+                ->setCellValue('K'.$i,  $sexo)
+                ->setCellValue('L'.$i,  $afiliado['edad'])
+                ->setCellValue('M'.$i,  $afiliado['estado_civil'])
+                ->setCellValue('N'.$i,  $afiliado['grupo_indigena'])
+                ->setCellValue('O'.$i,  $afiliado['nombre_comunidad'])
+                ->setCellValue('P'.$i,  $afiliado['cp'])
+                ->setCellValue('Q'.$i,  $afiliado['num_estado'])
+                ->setCellValue('R'.$i,  $afiliado['estado'])
+                ->setCellValue('S'.$i,  $afiliado['ciudad'])
+                ->setCellValue('T'.$i,  $afiliado['num_municipio'])
+                ->setCellValue('U'.$i,  $afiliado['municipio'])
+                ->setCellValue('V'.$i,  $afiliado['colonia'])
+                ->setCellValue('W'.$i,  $afiliado['calle'])
+                ->setCellValue('X'.$i,  $afiliado['numero'])
+                ->setCellValue('Y'.$i,  $afiliado['correo'])
+                ->setCellValue('Z'.$i,  $afiliado['telefono'])
+                ->setCellValue('AA'.$i,  $afiliado['celular'])
+                ->setCellValue('AB'.$i,  $afiliado['ocupacion'])
+                ->setCellValue('AC'.$i,  $afiliado['cargo'])
+                ->setCellValue('AD'.$i,  $afiliado['empresa'])
+                ->setCellValue('AE'.$i,  $afiliado['tel_oficina']);
 
           $i++;
           $contador++;
@@ -294,9 +296,9 @@ require_once 'PHPExcel/PHPExcel.php';
             )
         ));
 
-    $objPHPExcel->getActiveSheet()->getStyle('A1:AD1')->applyFromArray($estiloTituloReporte);
-    $objPHPExcel->getActiveSheet()->getStyle('A3:AD3')->applyFromArray($estiloTituloColumnas);   
-    $objPHPExcel->getActiveSheet()->setSharedStyle($estiloInformacion, "A4:AD".($i-1));
+    $objPHPExcel->getActiveSheet()->getStyle('A1:AE1')->applyFromArray($estiloTituloReporte);
+    $objPHPExcel->getActiveSheet()->getStyle('A3:AE3')->applyFromArray($estiloTituloColumnas);   
+    $objPHPExcel->getActiveSheet()->setSharedStyle($estiloInformacion, "A4:AE".($i-1));
 
     $objPHPExcel->getActiveSheet()->getStyle('A2')->applyFromArray($estiloCelda1);
     $objPHPExcel->getActiveSheet()->getStyle('F2')->applyFromArray($estiloCelda2);
@@ -306,7 +308,7 @@ require_once 'PHPExcel/PHPExcel.php';
 //$objPHPExcel->getActiveSheet()->getStyle('A3:AB3')->getAlignment()->setWrapText(false); 
     //$objPHPExcel->getActiveSheet()->getStyle('A3:B3')->getAlignment()->setWrapText(true);
    
-    for($i = 'A'; $i <= 'AD'; $i++){
+    for($i = 'A'; $i <= 'AE'; $i++){
       $objPHPExcel->setActiveSheetIndex(0)      
         ->getColumnDimension($i)->setAutoSize(TRUE);
     }
