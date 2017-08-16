@@ -113,3 +113,135 @@
 					<!-- TERMINA CARA TRASERA -->
 				</tr>
 			</table>
+
+
+
+
+
+			  <style>
+			  table{
+			  	font-family: Arial;
+			  }
+			  p{
+			  	font-family: Arial;
+			    font-size:10px;
+			  }
+			  .otro{
+			  	background-image: url("../img/fondo_fenam.jpg");
+			  }
+			  </style>
+				<table  border="0" style="border: 1px dotted black; font-size:8xp;font-family:arial;color:#550044">
+					<tr>
+						<!-- INICIA CARA FRONTAL -->
+						<td style="padding-top:-5px;border:6px solid #ffb9e4;width:9cm;height:6cm;">
+							<table class="otro" style="font-size:10px;">
+								<tr>
+									<td>
+										<img src="../img/fenam.png" style="width:1.7cm; height:1.9cm;"/>									
+									</td>
+									<td style="padding-top:15px;padding-left:5px;color:#ffffff;">
+										<p style="font-size:12px;color:#dd137a;">
+											<i>"Por el desarrollo con la equidad de genero"</i><br>
+											<hr style="border:1px solid #2c3e50;width:100%;color:#ff8ac2;">
+										</p>
+									</td>
+									<td style="padding-left:20px;" rowspan="2">
+										<div>
+											<img src="'.$detalle['foto'].'" style="border: 3px solid #ffeaf6; width:2cm; height:2.5cm;"/>
+											<br>
+					                		Folio: <b style="color:#8e44ad">'.$num_folio.'</b>
+										</div>
+
+									</td>
+								</tr>
+								<tr>
+									<td style="text-align:center;padding-top:20px;" colspan="2">
+										<p>'.$nombre.'</p>
+										<hr style="margin-bottom:0px;border:1px solid #2c3e50;width:100%;color:#ff8ac2;">
+										<b style="text-align:center">Nombre</b>	
+									</td>
+								</tr>
+								<tr>
+									<td colspan="3" style="color:#550044;padding-top:10px;padding-bottom:15px;">
+										<p><b>Cargo:</b> '.$detalle['cargo'].'</p>
+									</td>
+								</tr>
+								<tr>
+									<td style="padding-top:5px;text-align:center" >
+										<p>&nbsp;'.$detalle['telefono'].'</p>
+										<hr style="margin-bottom:0px;border:1px solid #2c3e50;color:#ff8ac2;">
+										<p><b>Teléfono</b></p>
+									</td>
+									<td style="padding-top:5px;text-align:center" >
+										<p>&nbsp;'.$detalle['celular'].'</p>
+										<hr style="margin-bottom:0px;border:1px solid #2c3e50;color:#ff8ac2;">
+										<p><b>Celular</b></p>
+									</td>
+									<td style="padding-top:5px;text-align:center" >
+										<p>&nbsp;</p>
+										<hr style="margin-bottom:0px;border:1px solid #2c3e50;color:#ff8ac2;">
+										<p>
+											<b>Firma Afiliado</b>
+										</p>
+
+									</td>
+								</tr>
+							
+							</table>							
+						</td>
+						<!-- TERMINA CARA FRONTAL -->
+
+						<!-- INICIA CARA TRASERA -->
+						<td class="otro" style="border:3px solid #ffb9e4;width:9cm;height:6cm;">
+							<table style="font-size:10px;">
+								<tr>
+									<td style="width:50%;text-align:center">
+										'.$detalle['curp'].'
+										<hr style="border:1px solid #2c3e50;width:100%;margin-bottom:0px;margin-top:0px;color:#ff8ac2;">
+										<b>CURP</b>
+									</td>
+									<td style="width:50%;text-align:center">
+										'.$detalle['rfc'].'
+										<hr style="border:1px solid #2c3e50;width:100%;margin-bottom:0px;margin-top:0px;color:#ff8ac2;">
+										<b>RFC</b>
+									</td>
+								</tr>
+								<tr>
+									<td style="padding-top:10px;width:50%;text-align:center">
+										<p>'.$detalle['clave_elector'].'</p>
+										<hr style="border:1px solid #2c3e50;width:100%;margin-bottom:0px;margin-top:0px;color:#ff8ac2;">
+										<p><b>Clave Elector</b></p>
+									</td>
+									<td style="padding-top:10px;width:50%;text-align:center">
+										<p>'.$detalle['num_ine'].'</p>
+										<hr style="border:1px solid #2c3e50;width:100%;margin-bottom:0px;margin-top:0px;color:#ff8ac2;">
+										<p><b>Nº INE</b></p>
+									</td>
+								</tr>
+								<tr>
+									<td style="padding-top:10px;text-align:center" colspan="2">
+										<p>'.$direccion.'</p>
+										<hr style="border:1px solid #2c3e50;width:100%;margin-bottom:0px;margin-top:0px;color:#ff8ac2;">
+										<p><b>Domicilio</b></p>
+									</td>
+								</tr>
+								<tr>
+									<td style="padding-top:5px;text-align:center;" colspan="2">
+										<p style="">
+											<img style="" src="../img/firma_fenam.png"></img>
+										</p>
+										<p><b>María Margarita Cabrera Solano</b></p>
+										<hr style="border:1px solid #2c3e50;width:100%;margin-bottom:0px;margin-top:0px;color:#ff8ac2;">
+										<p>
+											Secretario General
+										</p>
+
+									</td>
+								</tr>
+
+							</table>
+						</td>
+						<!-- TERMINA CARA TRASERA -->
+					</tr>
+				</table>
+			

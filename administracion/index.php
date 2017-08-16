@@ -68,6 +68,7 @@ if (!function_exists("GetSQLValueString")) {
       }
       $curp = $_POST['curp'];
       $rfc = $_POST['rfc'];
+      $organizacion = $_POST['organizacion'];
 
       /*$insertSQL = sprintf("INSERT INTO afiliado (curp, clave_elector, num_ine, rfc, idadm, foto) VALUES (%s, %s, %s, %s, %s, %s)",
         GetSQLValueString($curp, "text"),
@@ -79,7 +80,7 @@ if (!function_exists("GetSQLValueString")) {
       $insertar = $mysqli->query($insertSQL);*/
 
 
-      $insertSQL = "INSERT INTO afiliado (curp, clave_elector, num_ine, rfc, idadm, foto) VALUES ('$curp', '$_POST[clave_elector]', '$_POST[num_ine]', '$rfc', $idadministrador, '$foto_afiliado')";
+      $insertSQL = "INSERT INTO afiliado (organizacion, curp, clave_elector, num_ine, rfc, idadm, foto) VALUES ('$organizacion', '$curp', '$_POST[clave_elector]', '$_POST[num_ine]', '$rfc', $idadministrador, '$foto_afiliado')";
       $insertar = $mysqli->query($insertSQL);
 
 
@@ -141,7 +142,7 @@ if (!function_exists("GetSQLValueString")) {
 
       $fecha_nacimiento = $dia.'/'.$mes.'/'.$anio;
 
-      $insertSQL = "INSERT INTO datos_generales(folio, nombre, ap_paterno, ap_materno, calle, numero, colonia, cp, municipio, num_municipio, estado, num_estado, telefono, correo, celular, edad, sexo, estado_civil, fecha_nacimiento, grupo_indigena, nombre_comunidad) VALUES ($folio, '$_POST[nombre]', '$_POST[ap_paterno]', '$_POST[ap_materno]', '$_POST[calle]', '$_POST[numero]', '$colonia', '$_POST[cp]', '$_POST[municipio]', $_POST[num_municipio], '$_POST[estado]', $_POST[num_estado], '$_POST[telefono]', '$_POST[correo]', '$_POST[celular]', '$_POST[edad]', '$_POST[sexo]', '$_POST[estado_civil]', '$_POST[fecha_nacimiento]', '$_POST[grupo_indigena]', '$_POST[nombre_comunidad]')";
+      $insertSQL = "INSERT INTO datos_generales(folio, nombre, ap_paterno, ap_materno, calle, numero, colonia, cp, municipio, num_municipio, estado, num_estado, telefono, correo, celular, edad, sexo, estado_civil, fecha_nacimiento, grupo_indigena, nombre_comunidad) VALUES ($folio, '$_POST[nombre]', '$_POST[ap_paterno]', '$_POST[ap_materno]', '$_POST[calle]', '$_POST[numero]', '$colonia', '$_POST[cp]', '$_POST[municipio]', $_POST[num_municipio], '$_POST[estado]', $_POST[num_estado], '$_POST[telefono]', '$_POST[correo]', '$_POST[celular]', '$_POST[edad]', '$_POST[select_sexo]', '$_POST[estado_civil]', '$_POST[fecha_nacimiento]', '$_POST[grupo_indigena]', '$_POST[nombre_comunidad]')";
       $insertar = $mysqli->query($insertSQL);
 
       /// INSERTARMOS LA INFORMACIÓN LABORAL
@@ -412,10 +413,9 @@ if (!function_exists("GetSQLValueString")) {
                                 
                             </tr>
                             <tr>
-                                <th>
-                                  Folio
-                                </th>
+                                <th>Folio</th>
                                 <th>Foto</th>
+                                <th>Organización</th>
                                 <th>Nombre</th>
                                 <th>CURP</th>
                                 <th>Clave Elector</th>
@@ -433,12 +433,17 @@ if (!function_exists("GetSQLValueString")) {
 
                             while($registros = $consultar->fetch_assoc()){
                               $folio = str_pad($registros['folio'], 6, '0', STR_PAD_LEFT);
+                              if($registros['organizacion'] == 'FENAM'){
+                                $clase = 'style="color:#de0c77"';
+                              }else{
+                                $clase = 'style="color:#2c3e50"';
+                              }
                             ?>
-                              <tr class="gradeX">
+                              <tr class="">
                                 <td>
                                   <div class="checkbox">
                                     <label>
-                                      <input class="micheckbox" type="checkbox" name="folios[]" value="<?php echo $registros['folio']; ?>"> <?php echo $folio; ?>
+                                      <input class="micheckbox" type="checkbox" name="folios[]" value="<?php echo $registros['folio']; ?>"> <span style="color:red"><?php echo $folio; ?></span>
                                     </label>
                                   </div>
                                 </td>
@@ -451,7 +456,12 @@ if (!function_exists("GetSQLValueString")) {
                                   }
                                   ?>
                                 </td>
-                                <td><?php echo $registros['nombre']; ?></td>
+                                <td>
+                                  <?php echo '<b '.$clase.'>'.$registros['organizacion'].'</b>'; ?>
+                                </td>
+                                <td>
+                                  <?php echo $registros['nombre']; ?>
+                                </td>
                                 <td><?php echo $registros['curp']; ?></td>
                                 <td><?php echo $registros['clave_elector']; ?></td>
                                 <td><?php echo $registros['num_ine']; ?></td>
@@ -883,11 +893,18 @@ if (!function_exists("GetSQLValueString")) {
                                                   <input type="hidden" name="fecha_nacimiento" id="fecha_nacimiento" value="">
                                                 </td>
                                                 <td>
-                                                  <select class="form-control" name="sexo" id="sexo" onchange="otra_consulta()">
+                                                  <select class="form-control" name="select_sexo" id="select_sexo" onchange="consultar_organizacion()">
                                                     <option value="">Sexo</option>
                                                     <option value="H">Hombre</option>
                                                     <option value="M">Mujer</option>
                                                   </select>
+                                                  <div id="div_organizacion" style="display:none">
+                                                    <label style="background:#e74c3c;color:#ecf0f1;margin-top:1.5em;" for="organizacion"><b>Selecciona la organización a la que pertenece</b></label>
+                                                    <select style="border: 2px solid #2980b9;" class="form-control" name="organizacion" id="organizacion">
+                                                      <option value="FENAM">FENAM</option>
+                                                      <option value="UGOCP">UGOCP</option>
+                                                    </select>
+                                                  </div>
                                                 </td>
 
                                                 <td>
@@ -1190,6 +1207,17 @@ if (!function_exists("GetSQLValueString")) {
 
 
   //FUNCIÓN PARA GENERAR EL RFC
+  function consultar_organizacion(){
+    var pregunta = document.getElementById('select_sexo').value;
+    if(pregunta == 'M'){
+      document.getElementById('div_organizacion').style.display = 'block';
+      document.getElementById("organizacion").focus();
+    }else{
+      document.getElementById('div_organizacion').style.display = 'none';
+    }
+  }
+
+
   function consultar_grupo(){
     var pregunta = document.getElementById('grupo_indigena').value;
 
@@ -1467,10 +1495,10 @@ if (!function_exists("GetSQLValueString")) {
             document.getElementById("fecha_nacimiento").focus();
             return false;
         }*/
-        sexo = document.getElementById("sexo").selectedIndex;
-        if( sexo == null || sexo == 0 ) {
+        select_sexo = document.getElementById("select_sexo").selectedIndex;
+        if( select_sexo == null || select_sexo == 0 ) {
             alert('DEBES SELECCIONAR EL SEXO');
-            document.getElementById("sexo").focus();
+            document.getElementById("select_sexo").focus();
             return false;
         }
         edad = document.getElementById("edad").value;

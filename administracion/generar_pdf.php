@@ -13,7 +13,7 @@
 		$num_folio = str_pad($detalle['folio'], 6, '0', STR_PAD_LEFT);
 		$fecha_nacimiento = date('d/m/Y', $detalle['fecha_nacimiento']);
 		$sexo = '';
-		if($detalle['sexo'] = 'H'){
+		if($detalle['sexo'] == 'H'){
 			$sexo = 'HOMBRE';
 		}else{
 			$sexo = 'MUJER';
@@ -21,7 +21,6 @@
 		$formato_fecha = date("d/m/Y:h:i:sa", time());
 	    /// SE GENERA EL ARCHIVO PDF
 	    $html = '
-
 	        <div class="col-xs-12">
 	            <table style="font-family: Tahoma, Geneva, sans-serif;font-size:12px;">
 	                    <tr>
@@ -291,29 +290,32 @@
 		$num_folio = str_pad($detalle['folio'], 6, '0', STR_PAD_LEFT);
 		$fecha_nacimiento = date('d/m/Y', $detalle['fecha_nacimiento']);
 		$sexo = '';
-		if($detalle['sexo'] = 'H'){
+		if($detalle['sexo'] == 'H'){
 			$sexo = 'HOMBRE';
 		}else{
 			$sexo = 'MUJER';
 		}
-		$nombre = $detalle['nombre'].' '.$detalle['ap_paterno'].' '.$detalle['ap_materno'];
+		$nombre = '<b>'.$detalle['nombre'].'</b> '.$detalle['ap_paterno'].' '.$detalle['ap_materno'];
+		$apellidos = $detalle['ap_paterno'].' '.$detalle['ap_materno'];
 		$direccion = $detalle['calle'].' #'.$detalle['numero'].', COL. '.$detalle['colonia'].', C.P. '.$detalle['cp'].', MUNICIPIO '.$detalle['municipio'].', '.$detalle['estado'];
+		$calle = $detalle['colonia'].' calle '.$detalle['calle'].' #'.$detalle['numero'];
 
-		$html = '
-			<style>
-			table{
-				font-family: Arial;
-			}
-			p{
-				font-family: Arial;
-				font-size:10px;
-			}
-			.otro{
-				background-image: url("../img/fondo.png");
-				background-repeat: no-repeat;
-				background-size: cover;
-			}
-			</style>
+		if($detalle['organizacion'] == 'UGOCP'){
+			$html = '
+				<style>
+				  table{
+				  	font-family: Arial;
+				  }
+				  p{
+				  	font-family: Arial;
+				    font-size:10px;
+				  }
+				  .otro{
+				  	background-image: url("../img/fondo.png");
+				  	background-repeat: no-repeat;
+				  	background-size: cover;
+				  }
+				</style>
 				<table  border="0" style="border: 1px dotted black; font-size:8xp;font-family:arial;color:#1a292c">
 					<tr>
 						<!-- INICIA CARA FRONTAL -->
@@ -433,9 +435,137 @@
 						<!-- TERMINA CARA TRASERA -->
 					</tr>
 				</table>
-	           
+			';
+		}else if($detalle['organizacion'] == 'FENAM'){
+			$html = '
+				<style>
+			  		table{
+			  			font-family: Arial;
+			  		}
+			  		p{
+			  			font-family: Arial;
+			    		font-size:10px;
+					}
+					.otro{
+						background-image: url("../img/fondo_fenam.jpg");
+			 		}
+			  	</style>
+				<table  border="0" style="border: 1px dotted black; font-size:8xp;font-family:arial;color:#550044">
+					<tr>
+						<!-- INICIA CARA FRONTAL -->
+						<td style="padding-top:-5px;border:6px solid #ffb9e4;width:9cm;height:6cm;">
+							<table class="otro" style="font-size:10px;">
+								<tr>
+									<td>
+										<img src="../img/fenam.png" style="width:1.7cm; height:1.9cm;"/>									
+									</td>
+									<td style="padding-top:15px;padding-left:5px;color:#ffffff;">
+										<p style="font-size:12px;color:#dd137a;">
+											<i>"Por el desarrollo con la equidad de genero"</i><br>
+											<hr style="border:1px solid #2c3e50;width:100%;color:#ff8ac2;">
+										</p>
+									</td>
+									<td style="padding-left:20px;" rowspan="2">
+										<div>
+											<img src="'.$detalle['foto'].'" style="border: 3px solid #ffeaf6; width:2cm; height:2.5cm;"/>
+											<br>
+					                		Folio: <b style="color:#8e44ad">'.$num_folio.'</b>
+										</div>
 
-		';
+									</td>
+								</tr>
+								<tr>
+									<td style="text-align:center;padding-top:20px;" colspan="2">
+										<p>'.$nombre.'</p>
+										<hr style="margin-bottom:0px;border:1px solid #2c3e50;width:100%;color:#ff8ac2;">
+										<b style="text-align:center">Nombre</b>	
+									</td>
+								</tr>
+								<tr>
+									<td colspan="3" style="color:#550044;padding-top:10px;padding-bottom:15px;">
+										<p><b>Cargo:</b> '.$detalle['cargo'].'</p>
+									</td>
+								</tr>
+								<tr>
+									<td style="padding-top:5px;text-align:center" >
+										<p>&nbsp;'.$detalle['telefono'].'</p>
+										<hr style="margin-bottom:0px;border:1px solid #2c3e50;color:#ff8ac2;">
+										<p><b>Teléfono</b></p>
+									</td>
+									<td style="padding-top:5px;text-align:center" >
+										<p>&nbsp;'.$detalle['celular'].'</p>
+										<hr style="margin-bottom:0px;border:1px solid #2c3e50;color:#ff8ac2;">
+										<p><b>Celular</b></p>
+									</td>
+									<td style="padding-top:5px;text-align:center" >
+										<p>&nbsp;</p>
+										<hr style="margin-bottom:0px;border:1px solid #2c3e50;color:#ff8ac2;">
+										<p>
+											<b>Firma Afiliado</b>
+										</p>
+
+									</td>
+								</tr>
+							
+							</table>							
+						</td>
+						<!-- TERMINA CARA FRONTAL -->
+
+						<!-- INICIA CARA TRASERA -->
+						<td class="otro" style="border:3px solid #ffb9e4;width:9cm;height:6cm;">
+							<table style="font-size:10px;">
+								<tr>
+									<td style="width:50%;text-align:center">
+										'.$detalle['curp'].'
+										<hr style="border:1px solid #2c3e50;width:100%;margin-bottom:0px;margin-top:0px;color:#ff8ac2;">
+										<b>CURP</b>
+									</td>
+									<td style="width:50%;text-align:center">
+										'.$detalle['rfc'].'
+										<hr style="border:1px solid #2c3e50;width:100%;margin-bottom:0px;margin-top:0px;color:#ff8ac2;">
+										<b>RFC</b>
+									</td>
+								</tr>
+								<tr>
+									<td style="padding-top:10px;width:50%;text-align:center">
+										<p>'.$detalle['clave_elector'].'</p>
+										<hr style="border:1px solid #2c3e50;width:100%;margin-bottom:0px;margin-top:0px;color:#ff8ac2;">
+										<p><b>Clave Elector</b></p>
+									</td>
+									<td style="padding-top:10px;width:50%;text-align:center">
+										<p>'.$detalle['num_ine'].'</p>
+										<hr style="border:1px solid #2c3e50;width:100%;margin-bottom:0px;margin-top:0px;color:#ff8ac2;">
+										<p><b>Nº INE</b></p>
+									</td>
+								</tr>
+								<tr>
+									<td style="padding-top:10px;text-align:center" colspan="2">
+										<p>'.$direccion.'</p>
+										<hr style="border:1px solid #2c3e50;width:100%;margin-bottom:0px;margin-top:0px;color:#ff8ac2;">
+										<p><b>Domicilio</b></p>
+									</td>
+								</tr>
+								<tr>
+									<td style="padding-top:5px;text-align:center;" colspan="2">
+										<p style="">
+											<img style="" src="../img/firma_fenam.png"></img>
+										</p>
+										<p><b>María Margarita Cabrera Solano</b></p>
+										<hr style="border:1px solid #2c3e50;width:100%;margin-bottom:0px;margin-top:0px;color:#ff8ac2;">
+										<p>
+											Secretario General
+										</p>
+
+									</td>
+								</tr>
+
+							</table>
+						</td>
+						<!-- TERMINA CARA TRASERA -->
+					</tr>
+				</table>
+			';
+		}
 		$mpdf = new mPDF('c', 'A4');
 	    ob_start();
 	    $css = file_get_contents('reportes/style_reporte.css');  
@@ -462,7 +592,7 @@
       $num_folio = str_pad($detalle['folio'], 6, '0', STR_PAD_LEFT);
       $fecha_nacimiento = date('d/m/Y', $detalle['fecha_nacimiento']);
       $sexo = '';
-      if($detalle['sexo'] = 'H'){
+      if($detalle['sexo'] == 'H'){
         $sexo = 'HOMBRE';
       }else{
         $sexo = 'MUJER';
@@ -473,22 +603,22 @@
 
         /// SE GENERA EL ARCHIVO PDF
 
-         $html = '
-			<style>
-				table{
-					font-family: Arial;
-				}
-				p{
-					font-family: Arial;
-					font-size:10px;
-				}
-				.otro{
-					background-image: url("../img/fondo.png");
-					background-repeat: no-repeat;
-					background-size: cover;
-				}
-
-            </style>
+		if($detalle['organizacion'] == 'UGOCP'){
+			$html = '
+				<style>
+				  table{
+				  	font-family: Arial;
+				  }
+				  p{
+				  	font-family: Arial;
+				    font-size:10px;
+				  }
+				  .otro{
+				  	background-image: url("../img/fondo.png");
+				  	background-repeat: no-repeat;
+				  	background-size: cover;
+				  }
+				</style>
 				<table  border="0" style="border: 1px dotted black; font-size:8xp;font-family:arial;color:#1a292c">
 					<tr>
 						<!-- INICIA CARA FRONTAL -->
@@ -608,197 +738,328 @@
 						<!-- TERMINA CARA TRASERA -->
 					</tr>
 				</table>
-
-                <table style="font-family: Tahoma, Geneva, sans-serif;font-size:12px;">
+			';
+		}else if($detalle['organizacion'] == 'FENAM'){
+			$html = '
+				<style>
+			  		table{
+			  			font-family: Arial;
+			  		}
+			  		p{
+			  			font-family: Arial;
+			    		font-size:10px;
+					}
+					.otro{
+						background-image: url("../img/fondo_fenam.jpg");
+			 		}
+			  	</style>
+				<table  border="0" style="border: 1px dotted black; font-size:8xp;font-family:arial;color:#550044">
 					<tr>
-						<td style="text-align:center;padding:10px;background-color:#bdc3c7;color:#2c3e50;" colspan="4">
-							<b>FORMATO DE AFILIACIÓN - FOLIO: <span style="color:#e74c3c">Nº '.$num_folio.'</span></b>
+						<!-- INICIA CARA FRONTAL -->
+						<td style="padding-top:-5px;border:6px solid #ffb9e4;width:9cm;height:6cm;">
+							<table class="otro" style="font-size:10px;">
+								<tr>
+									<td>
+										<img src="../img/fenam.png" style="width:1.7cm; height:1.9cm;"/>									
+									</td>
+									<td style="padding-top:15px;padding-left:5px;color:#ffffff;">
+										<p style="font-size:12px;color:#dd137a;">
+											<i>"Por el desarrollo con la equidad de genero"</i><br>
+											<hr style="border:1px solid #2c3e50;width:100%;color:#ff8ac2;">
+										</p>
+									</td>
+									<td style="padding-left:20px;" rowspan="2">
+										<div>
+											<img src="'.$detalle['foto'].'" style="border: 3px solid #ffeaf6; width:2cm; height:2.5cm;"/>
+											<br>
+					                		Folio: <b style="color:#8e44ad">'.$num_folio.'</b>
+										</div>
+
+									</td>
+								</tr>
+								<tr>
+									<td style="text-align:center;padding-top:20px;" colspan="2">
+										<p>'.$nombre.'</p>
+										<hr style="margin-bottom:0px;border:1px solid #2c3e50;width:100%;color:#ff8ac2;">
+										<b style="text-align:center">Nombre</b>	
+									</td>
+								</tr>
+								<tr>
+									<td colspan="3" style="color:#550044;padding-top:10px;padding-bottom:15px;">
+										<p><b>Cargo:</b> '.$detalle['cargo'].'</p>
+									</td>
+								</tr>
+								<tr>
+									<td style="padding-top:5px;text-align:center" >
+										<p>&nbsp;'.$detalle['telefono'].'</p>
+										<hr style="margin-bottom:0px;border:1px solid #2c3e50;color:#ff8ac2;">
+										<p><b>Teléfono</b></p>
+									</td>
+									<td style="padding-top:5px;text-align:center" >
+										<p>&nbsp;'.$detalle['celular'].'</p>
+										<hr style="margin-bottom:0px;border:1px solid #2c3e50;color:#ff8ac2;">
+										<p><b>Celular</b></p>
+									</td>
+									<td style="padding-top:5px;text-align:center" >
+										<p>&nbsp;</p>
+										<hr style="margin-bottom:0px;border:1px solid #2c3e50;color:#ff8ac2;">
+										<p>
+											<b>Firma Afiliado</b>
+										</p>
+
+									</td>
+								</tr>
+							
+							</table>							
 						</td>
+						<!-- TERMINA CARA FRONTAL -->
+
+						<!-- INICIA CARA TRASERA -->
+						<td class="otro" style="border:3px solid #ffb9e4;width:9cm;height:6cm;">
+							<table style="font-size:10px;">
+								<tr>
+									<td style="width:50%;text-align:center">
+										'.$detalle['curp'].'
+										<hr style="border:1px solid #2c3e50;width:100%;margin-bottom:0px;margin-top:0px;color:#ff8ac2;">
+										<b>CURP</b>
+									</td>
+									<td style="width:50%;text-align:center">
+										'.$detalle['rfc'].'
+										<hr style="border:1px solid #2c3e50;width:100%;margin-bottom:0px;margin-top:0px;color:#ff8ac2;">
+										<b>RFC</b>
+									</td>
+								</tr>
+								<tr>
+									<td style="padding-top:10px;width:50%;text-align:center">
+										<p>'.$detalle['clave_elector'].'</p>
+										<hr style="border:1px solid #2c3e50;width:100%;margin-bottom:0px;margin-top:0px;color:#ff8ac2;">
+										<p><b>Clave Elector</b></p>
+									</td>
+									<td style="padding-top:10px;width:50%;text-align:center">
+										<p>'.$detalle['num_ine'].'</p>
+										<hr style="border:1px solid #2c3e50;width:100%;margin-bottom:0px;margin-top:0px;color:#ff8ac2;">
+										<p><b>Nº INE</b></p>
+									</td>
+								</tr>
+								<tr>
+									<td style="padding-top:10px;text-align:center" colspan="2">
+										<p>'.$direccion.'</p>
+										<hr style="border:1px solid #2c3e50;width:100%;margin-bottom:0px;margin-top:0px;color:#ff8ac2;">
+										<p><b>Domicilio</b></p>
+									</td>
+								</tr>
+								<tr>
+									<td style="padding-top:5px;text-align:center;" colspan="2">
+										<p style="">
+											<img style="" src="../img/firma_fenam.png"></img>
+										</p>
+										<p><b>María Margarita Cabrera Solano</b></p>
+										<hr style="border:1px solid #2c3e50;width:100%;margin-bottom:0px;margin-top:0px;color:#ff8ac2;">
+										<p>
+											Secretario General
+										</p>
+
+									</td>
+								</tr>
+
+							</table>
+						</td>
+						<!-- TERMINA CARA TRASERA -->
 					</tr>
-                    <tr>
-                    	<td style="text-align:left;padding:10px;" colspan="3">
-                    		<h3>A).- DATOS GENERALES:</h3>
-                    	</td>
-                    </tr>
-                    <tr>
-                        <td style="text-align:center">
-                            <p>'.$detalle['ap_paterno'].'</p>
-                            <hr style="margin-top:0px;margin-bottom:0px;">
-                            <p class="pregunta">APELLIDO PARTENO</p>
-                        </td>
-                        <td style="text-align:center">
-                            <p>'.$detalle['ap_materno'].'</p>
-                            <hr style="margin-top:0px;margin-bottom:0px;">
-                            <p class="pregunta">APELLIDO MATERNO</p>
-                        </td>
-                    	<td colspan="2" style="text-align:center">
-                            <p>'.$detalle['nombre'].'</p>
-                            <hr style="margin-top:0px;margin-bottom:0px;">
-                            <p class="pregunta">NOMBRE</p>
-                    	</td>
-                    <tr>
-                    <tr>
-						<td style="padding-top:1em;" colspan="2">
-							<p><span class="pregunta">DIRECCIÓN</span>: '.$detalle['calle'].'</p>
-							<hr style="margin-top:0px;">
-						</td>
-						<td style="padding-top:1em;" colspan="2">
-							<p><span class="pregunta">NÚMERO: </span>'.$detalle['numero'].'</p>
-							<hr style="margin-top:0px;">
-						</td>
-                    </tr>
-                    <tr>
-						<td style="text-align:center;padding-top:1em;">
-							<p>'.$detalle['colonia'].'</p>
-							<hr style="margin-top:0px;margin-bottom:0px;">
-							<p class="pregunta">COLONIA</p>
-						</td>
-						<td style="text-align:center;padding-top:1em;">
-							<p>'.$detalle['cp'].'</p>
-							<hr style="margin-top:0px;margin-bottom:0px;">
-							<p class="pregunta">CÓDIGO POSTAL</p>
-						</td>
-						<td colspan="2" style="text-align:center;padding-top:1em;">
-							<p>&nbsp;'.$detalle['ciudad'].'</p>
-							<hr style="margin-top:0px;margin-bottom:0px;">
-							<p class="pregunta">CIUDAD O POBLACIÓN</p>
-						</td>
-                    </tr>
-                    <tr>
-						<td style="text-align:center">
-							<p>'.$detalle['municipio'].'</p>
-							<hr style="margin-top:0px;margin-bottom:0px;">
-							<p class="pregunta">MUNICIPIO</p>
-						</td>
-						<td style="text-align:center">
-							<p>'.$detalle['estado'].'</p>
-							<hr style="margin-top:0px;margin-bottom:0px;">
-							<p class="pregunta">ESTADO</p>
-						</td>
-						<td style="text-align:center">
-							<p>'.$detalle['telefono'].'</p>
-							<hr style="margin-top:0px;margin-bottom:0px;">
-							<p class="pregunta">TELÉFONO PART.</p>
-						</td>
-						<td style="text-align:center">
-							<p>'.$detalle['celular'].'</p>
-							<hr style="margin-top:0px;margin-bottom:0px;">
-							<p class="pregunta">CELULAR</p>
-						</td>
-                    </tr>
-                    <tr>
-                    	
-						<td colspan="4">
-							<p><span class="pregunta">CORREO ELECTRÓNICO</span>: '.$detalle['correo'].'</p>
-							<hr style="margin-top:0px;">
-						</td>
-                    </tr>
-                    <tr>
-                        <td>
-                        	<p><span class="pregunta">EDAD</span>: '.$detalle['edad'].' AÑOS</p>
-							<hr style="margin-top:0px;">
-                        </td>
-                        <td>
-							<p><span class="pregunta">SEXO:</span> '.$sexo.'</p>
-							<hr style="margin-top:0px;">
-                        </td>
-                        <td colspan="2">
-							<p><span class="pregunta">ESTADO CIVIL:</span> '.$detalle['estado_civil'].'</p>
-							<hr style="margin-top:0px;">
-                        </td>			
-                    </tr>
-                    <tr>
-                        <td colspan="2" style="text-align:center">
-                        	<p>'.$detalle['grupo_indigena'].'</p>
-							<hr style="margin-top:0px;margin-bottom:0px;">
-							<p class="pregunta">¿PERTENECE A UN GRUPO INDIGENA?</p>
-                        </td>
-                        <td colspan="2" style="text-align:center">
-							<p>'.$detalle['nombre_comunidad'].'</p>
-							<hr style="margin-top:0px;margin-bottom:0px;">
-							<p class="pregunta">NOMBRE DEL GRUPO INDIGENA</p>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td style="text-align:left;padding:10px;" colspan="3"><h3>B).- INFORMACIÓN PROFESIONAL O LABORAL:</h3></td>
-                    </tr>
-                    <tr>
-                        <td colspan="4">
-                        	<p><span class="pregunta">OCUPACIÓN:</span> '.$detalle['ocupacion'].'</p>
-                        	<hr style="margin-top:0px;">
-                        </td>			
-                    </tr>
-                    <tr>
-                        <td colspan="4">
-                        	<p><span class="pregunta">CARGO O PUESTO QUE DESEMPEÑA:</span> '.$detalle['cargo'].'</p>
-                        	<hr style="margin-top:0px;">
-                        </td>			
-                    </tr>
-                    <tr>
-                        <td colspan="4">
-                        	<p><span class="pregunta">NOMBRE DE LA EMPRESA:</span> '.$detalle['empresa'].'</p>
-                        	<hr style="margin-top:0px;">
-                        </td>			
-                    </tr>
-                    <tr>
-                        <td colspan="4">
-                        	<p><span class="pregunta">TELS. OFICINA:</span> '.$detalle['tel_oficina'].'</p>
-                        	<hr style="margin-top:0px;">
-                        </td>			
-                    </tr>
+				</table>
+			';
+		}
 
-                    <tr>
-                        <td style="text-align:left;padding:10px;" colspan="3">
-                        	<h3>C).- INFORMACIÓN COMPLEMENTARIA:</h3>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td colspan="4">
-                        	<p><span class="pregunta">CLAVE ÚNICA DE REGISTRO POBLACIONAL (CURP):</span> '.$detalle['curp'].'</p>
-                        	<hr style="margin-top:0px;">
-                        </td>			
-                    </tr>
-                    <tr>
-                        <td colspan="4">
-                        	<p><span class="pregunta">CLAVE DE ELECTOR (CREDENCIAL INE):</span> '.$detalle['clave_elector'].'</p>
-                        	<hr style="margin-top:0px;">
-                        </td>			
-                    </tr>
-                    <tr>
-                        <td colspan="4">
-                        	<p><span class="pregunta">No. DE CREDENCIAL DEL INE (PARTE POSTERIOR):</span> '.$detalle['num_ine'].'</p>
-                        	<hr style="margin-top:0px;">
-                        </td>			
-                    </tr>
-                    <tr>
-                        <td style="text-align:left;padding:10px;" colspan="4">
-                        	<h3>D).- DECLARACIÓN:</h3>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td colspan="4" style="text-align:justify;font-size:10px;">
-							POR MEDIO DE LA PRESENTE, SOLICITO LIBRE Y CONCIENTE, Y VOLUNTARIAMENTE MI AFILIACIÓN A LA UNIÓN GENERAL OBRERO, CAMPESINA Y POPULAR -UGOCP- ME OBLIGO A RESPETAR EL ESTATUTO, EL PROGRAMA, LOS PRINCIPIOS Y LAS NORMAS CONSTITUTIVAS QUE LE RIGEN, ASI COMO A OBSERVAR LOS ACUERDOS EMANADOS DE SUS CONGRESOS, PLENOS DE REPRESENTANTES Y ASAMBLEAS GENERALES, IGUALMENTE A CONTRIBUIR AL FORTALECIMIENTO DE SU ESTRUCTURA Y A VELAR POR LA UNIDAD, PROSPERIDAD E INTEGRIDAD DE ESTA ORGANIZACIÓN.					
-                        </td>			
-                    </tr>
-                    <tr style="border:none">
-                        <td colspan="4" style="text-align:center">
-							<hr style="width:40%;margin-top:30px;">
-							FIRMA					
-                        </td>			
-                    </tr>
+		$html .= '
+            <table style="font-family: Tahoma, Geneva, sans-serif;font-size:12px;">
+				<tr>
+					<td style="text-align:center;padding:10px;background-color:#bdc3c7;color:#2c3e50;" colspan="4">
+						<b>FORMATO DE AFILIACIÓN - FOLIO: <span style="color:#e74c3c">Nº '.$num_folio.'</span></b>
+					</td>
+				</tr>
+                <tr>
+                	<td style="text-align:left;padding:10px;" colspan="3">
+                		<h3>A).- DATOS GENERALES:</h3>
+                	</td>
+                </tr>
+                <tr>
+                    <td style="text-align:center">
+                        <p>'.$detalle['ap_paterno'].'</p>
+                        <hr style="margin-top:0px;margin-bottom:0px;">
+                        <p class="pregunta">APELLIDO PARTENO</p>
+                    </td>
+                    <td style="text-align:center">
+                        <p>'.$detalle['ap_materno'].'</p>
+                        <hr style="margin-top:0px;margin-bottom:0px;">
+                        <p class="pregunta">APELLIDO MATERNO</p>
+                    </td>
+                	<td colspan="2" style="text-align:center">
+                        <p>'.$detalle['nombre'].'</p>
+                        <hr style="margin-top:0px;margin-bottom:0px;">
+                        <p class="pregunta">NOMBRE</p>
+                	</td>
+                <tr>
+                <tr>
+					<td style="padding-top:1em;" colspan="2">
+						<p><span class="pregunta">DIRECCIÓN</span>: '.$detalle['calle'].'</p>
+						<hr style="margin-top:0px;">
+					</td>
+					<td style="padding-top:1em;" colspan="2">
+						<p><span class="pregunta">NÚMERO: </span>'.$detalle['numero'].'</p>
+						<hr style="margin-top:0px;">
+					</td>
+                </tr>
+                <tr>
+					<td style="text-align:center;padding-top:1em;">
+						<p>'.$detalle['colonia'].'</p>
+						<hr style="margin-top:0px;margin-bottom:0px;">
+						<p class="pregunta">COLONIA</p>
+					</td>
+					<td style="text-align:center;padding-top:1em;">
+						<p>'.$detalle['cp'].'</p>
+						<hr style="margin-top:0px;margin-bottom:0px;">
+						<p class="pregunta">CÓDIGO POSTAL</p>
+					</td>
+					<td colspan="2" style="text-align:center;padding-top:1em;">
+						<p>&nbsp;'.$detalle['ciudad'].'</p>
+						<hr style="margin-top:0px;margin-bottom:0px;">
+						<p class="pregunta">CIUDAD O POBLACIÓN</p>
+					</td>
+                </tr>
+                <tr>
+					<td style="text-align:center">
+						<p>'.$detalle['municipio'].'</p>
+						<hr style="margin-top:0px;margin-bottom:0px;">
+						<p class="pregunta">MUNICIPIO</p>
+					</td>
+					<td style="text-align:center">
+						<p>'.$detalle['estado'].'</p>
+						<hr style="margin-top:0px;margin-bottom:0px;">
+						<p class="pregunta">ESTADO</p>
+					</td>
+					<td style="text-align:center">
+						<p>'.$detalle['telefono'].'</p>
+						<hr style="margin-top:0px;margin-bottom:0px;">
+						<p class="pregunta">TELÉFONO PART.</p>
+					</td>
+					<td style="text-align:center">
+						<p>'.$detalle['celular'].'</p>
+						<hr style="margin-top:0px;margin-bottom:0px;">
+						<p class="pregunta">CELULAR</p>
+					</td>
+                </tr>
+                <tr>
+                	
+					<td colspan="4">
+						<p><span class="pregunta">CORREO ELECTRÓNICO</span>: '.$detalle['correo'].'</p>
+						<hr style="margin-top:0px;">
+					</td>
+                </tr>
+                <tr>
+                    <td>
+                    	<p><span class="pregunta">EDAD</span>: '.$detalle['edad'].' AÑOS</p>
+						<hr style="margin-top:0px;">
+                    </td>
+                    <td>
+						<p><span class="pregunta">SEXO:</span> '.$sexo.'</p>
+						<hr style="margin-top:0px;">
+                    </td>
+                    <td colspan="2">
+						<p><span class="pregunta">ESTADO CIVIL:</span> '.$detalle['estado_civil'].'</p>
+						<hr style="margin-top:0px;">
+                    </td>			
+                </tr>
+                <tr>
+                    <td colspan="2" style="text-align:center">
+                    	<p>'.$detalle['grupo_indigena'].'</p>
+						<hr style="margin-top:0px;margin-bottom:0px;">
+						<p class="pregunta">¿PERTENECE A UN GRUPO INDIGENA?</p>
+                    </td>
+                    <td colspan="2" style="text-align:center">
+						<p>'.$detalle['nombre_comunidad'].'</p>
+						<hr style="margin-top:0px;margin-bottom:0px;">
+						<p class="pregunta">NOMBRE DEL GRUPO INDIGENA</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="text-align:left;padding:10px;" colspan="3"><h3>B).- INFORMACIÓN PROFESIONAL O LABORAL:</h3></td>
+                </tr>
+                <tr>
+                    <td colspan="4">
+                    	<p><span class="pregunta">OCUPACIÓN:</span> '.$detalle['ocupacion'].'</p>
+                    	<hr style="margin-top:0px;">
+                    </td>			
+                </tr>
+                <tr>
+                    <td colspan="4">
+                    	<p><span class="pregunta">CARGO O PUESTO QUE DESEMPEÑA:</span> '.$detalle['cargo'].'</p>
+                    	<hr style="margin-top:0px;">
+                    </td>			
+                </tr>
+                <tr>
+                    <td colspan="4">
+                    	<p><span class="pregunta">NOMBRE DE LA EMPRESA:</span> '.$detalle['empresa'].'</p>
+                    	<hr style="margin-top:0px;">
+                    </td>			
+                </tr>
+                <tr>
+                    <td colspan="4">
+                    	<p><span class="pregunta">TELS. OFICINA:</span> '.$detalle['tel_oficina'].'</p>
+                    	<hr style="margin-top:0px;">
+                    </td>			
+                </tr>
 
-					<tr style="background:#e74c3c">
-						<td colspan="4" style="text-align:center;color:#ffffff;padding-top:2px;padding-bottom:5px;">
-							<p>
-								Luis G. Monzón No. 400 esq. con Ramón Guzmán - Col. Sochiloa - C.P: 85150 Ciudad Obregón, Sonora - Tel/Fax (644)416-58-57
-							</p>
-							<p>
-								E-mail: ugocpn@prodigy.net.mx www.ugocp.com.mx
-							</p>
-						</td>
-					</tr>
+                <tr>
+                    <td style="text-align:left;padding:10px;" colspan="3">
+                    	<h3>C).- INFORMACIÓN COMPLEMENTARIA:</h3>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="4">
+                    	<p><span class="pregunta">CLAVE ÚNICA DE REGISTRO POBLACIONAL (CURP):</span> '.$detalle['curp'].'</p>
+                    	<hr style="margin-top:0px;">
+                    </td>			
+                </tr>
+                <tr>
+                    <td colspan="4">
+                    	<p><span class="pregunta">CLAVE DE ELECTOR (CREDENCIAL INE):</span> '.$detalle['clave_elector'].'</p>
+                    	<hr style="margin-top:0px;">
+                    </td>			
+                </tr>
+                <tr>
+                    <td colspan="4">
+                    	<p><span class="pregunta">No. DE CREDENCIAL DEL INE (PARTE POSTERIOR):</span> '.$detalle['num_ine'].'</p>
+                    	<hr style="margin-top:0px;">
+                    </td>			
+                </tr>
+                <tr>
+                    <td style="text-align:left;padding:10px;" colspan="4">
+                    	<h3>D).- DECLARACIÓN:</h3>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="4" style="text-align:justify;font-size:10px;">
+						POR MEDIO DE LA PRESENTE, SOLICITO LIBRE Y CONCIENTE, Y VOLUNTARIAMENTE MI AFILIACIÓN A LA UNIÓN GENERAL OBRERO, CAMPESINA Y POPULAR -UGOCP- ME OBLIGO A RESPETAR EL ESTATUTO, EL PROGRAMA, LOS PRINCIPIOS Y LAS NORMAS CONSTITUTIVAS QUE LE RIGEN, ASI COMO A OBSERVAR LOS ACUERDOS EMANADOS DE SUS CONGRESOS, PLENOS DE REPRESENTANTES Y ASAMBLEAS GENERALES, IGUALMENTE A CONTRIBUIR AL FORTALECIMIENTO DE SU ESTRUCTURA Y A VELAR POR LA UNIDAD, PROSPERIDAD E INTEGRIDAD DE ESTA ORGANIZACIÓN.					
+                    </td>			
+                </tr>
+                <tr style="border:none">
+                    <td colspan="4" style="text-align:center">
+						<hr style="width:40%;margin-top:30px;">
+						FIRMA					
+                    </td>			
+                </tr>
 
-                </table>
+				<tr style="background:#e74c3c">
+					<td colspan="4" style="text-align:center;color:#ffffff;padding-top:2px;padding-bottom:5px;">
+						<p>
+							Luis G. Monzón No. 400 esq. con Ramón Guzmán - Col. Sochiloa - C.P: 85150 Ciudad Obregón, Sonora - Tel/Fax (644)416-58-57
+						</p>
+						<p>
+							E-mail: ugocpn@prodigy.net.mx www.ugocp.com.mx
+						</p>
+					</td>
+				</tr>
+            </table>
 
         ';
 
@@ -848,44 +1109,38 @@
 		}
 		//echo 'LA VARIABLE ES: '.$concatenado;
 
-
-		$query = "SELECT afiliado.*, datos_generales.*, informacion_laboral.* FROM afiliado INNER JOIN datos_generales ON afiliado.folio = datos_generales.folio INNER JOIN informacion_laboral ON afiliado.folio = informacion_laboral.folio WHERE $concatenado";
-
-		//echo '<br>'.$query;
-		
+		$query = "SELECT afiliado.*, datos_generales.*, informacion_laboral.* FROM afiliado INNER JOIN datos_generales ON afiliado.folio = datos_generales.folio INNER JOIN informacion_laboral ON afiliado.folio = informacion_laboral.folio WHERE $concatenado";		
 		$ejecutar = $mysqli->query($query);
 
-		//$detalle = $ejecutar->fetch_assoc();
-
-
-		$html = '
-			<style>
-				table{
-					font-family: Arial;
-				}
-				p{
-					font-family: Arial;
-					font-size:10px;
-				}
-				.otro{
-					background-image: url("../img/fondo.jpg");
-					background-repeat: no-repeat;
-					background-size: cover;
-				}
-			</style>';
-		while($detalle = $ejecutar -> fetch_assoc()){
+		$html = '';
+		while($detalle = $ejecutar -> fetch_assoc()){ // INICIA WHILE
 			$num_folio = str_pad($detalle['folio'], 6, '0', STR_PAD_LEFT);
 			$fecha_nacimiento = date('d/m/Y', $detalle['fecha_nacimiento']);
 			$sexo = '';
-			if($detalle['sexo'] = 'H'){
+			if($detalle['sexo'] == 'H'){
 				$sexo = 'HOMBRE';
 			}else{
 				$sexo = 'MUJER';
 			}
 			$nombre = $detalle['nombre'].' '.$detalle['ap_paterno'].' '.$detalle['ap_materno'];
 			$direccion = $detalle['calle'].' #'.$detalle['numero'].', COL. '.$detalle['colonia'].', C.P. '.$detalle['cp'].', MUNICIPIO '.$detalle['municipio'].', '.$detalle['estado'];
-
-			$html .= '
+			
+			if($detalle['organizacion'] == 'UGOCP'){ //// INICIA IF
+				$html .= '
+				<style>
+				  table{
+				  	font-family: Arial;
+				  }
+				  p{
+				  	font-family: Arial;
+				    font-size:10px;
+				  }
+				  .otro{
+				  	background-image: url("../img/fondo.png");
+				  	background-repeat: no-repeat;
+				  	background-size: cover;
+				  }
+				</style>
 				<table  border="0" style="border: 1px dotted black; font-size:8xp;font-family:arial;color:#1a292c">
 					<tr>
 						<!-- INICIA CARA FRONTAL -->
@@ -1005,26 +1260,144 @@
 						<!-- TERMINA CARA TRASERA -->
 					</tr>
 				</table>';
+			//// TERMINA ELSE
+			}else if($detalle['organizacion'] == 'FENAM'){ /// INICIA ELSE
+				$html .= '
+				<style>
+			  		table{
+			  			font-family: Arial;
+			  		}
+			  		p{
+			  			font-family: Arial;
+			    		font-size:10px;
+					}
+					.otro2{
+						background-image: url("../img/fondo_fenam.jpg");
+			 		}
+			  	</style>
+				<table  border="0" style="border: 1px dotted black; font-size:8xp;font-family:arial;color:#550044">
+					<tr>
+						<!-- INICIA CARA FRONTAL -->
+						<td style="padding-top:-5px;border:6px solid #ffb9e4;width:9cm;height:6cm;">
+							<table class="otro2" style="font-size:10px;">
+								<tr>
+									<td>
+										<img src="../img/fenam.png" style="width:1.7cm; height:1.9cm;"/>									
+									</td>
+									<td style="padding-top:15px;padding-left:5px;color:#ffffff;">
+										<p style="font-size:12px;color:#dd137a;">
+											<i>"Por el desarrollo con la equidad de genero"</i><br>
+											<hr style="border:1px solid #2c3e50;width:100%;color:#ff8ac2;">
+										</p>
+									</td>
+									<td style="padding-left:20px;" rowspan="2">
+										<div>
+											<img src="'.$detalle['foto'].'" style="border: 3px solid #ffeaf6; width:2cm; height:2.5cm;"/>
+											<br>
+					                		Folio: <b style="color:#8e44ad">'.$num_folio.'</b>
+										</div>
 
-		}
+									</td>
+								</tr>
+								<tr>
+									<td style="text-align:center;padding-top:20px;" colspan="2">
+										<p>'.$nombre.'</p>
+										<hr style="margin-bottom:0px;border:1px solid #2c3e50;width:100%;color:#ff8ac2;">
+										<b style="text-align:center">Nombre</b>	
+									</td>
+								</tr>
+								<tr>
+									<td colspan="3" style="color:#550044;padding-top:10px;padding-bottom:15px;">
+										<p><b>Cargo:</b> '.$detalle['cargo'].'</p>
+									</td>
+								</tr>
+								<tr>
+									<td style="padding-top:5px;text-align:center" >
+										<p>&nbsp;'.$detalle['telefono'].'</p>
+										<hr style="margin-bottom:0px;border:1px solid #2c3e50;color:#ff8ac2;">
+										<p><b>Teléfono</b></p>
+									</td>
+									<td style="padding-top:5px;text-align:center" >
+										<p>&nbsp;'.$detalle['celular'].'</p>
+										<hr style="margin-bottom:0px;border:1px solid #2c3e50;color:#ff8ac2;">
+										<p><b>Celular</b></p>
+									</td>
+									<td style="padding-top:5px;text-align:center" >
+										<p>&nbsp;</p>
+										<hr style="margin-bottom:0px;border:1px solid #2c3e50;color:#ff8ac2;">
+										<p>
+											<b>Firma Afiliado</b>
+										</p>
 
-$style='<style>@page *{
-margin-top: 1cm;
-    margin-bottom: 1cm;
-    margin-left: 1cm;
-    margin-right: 1cm;
-}</style>';
+									</td>
+								</tr>
+							
+							</table>							
+						</td>
+						<!-- TERMINA CARA FRONTAL -->
+
+						<!-- INICIA CARA TRASERA -->
+						<td class="otro2" style="border:3px solid #ffb9e4;width:9cm;height:6cm;">
+							<table style="font-size:10px;">
+								<tr>
+									<td style="width:50%;text-align:center">
+										'.$detalle['curp'].'
+										<hr style="border:1px solid #2c3e50;width:100%;margin-bottom:0px;margin-top:0px;color:#ff8ac2;">
+										<b>CURP</b>
+									</td>
+									<td style="width:50%;text-align:center">
+										'.$detalle['rfc'].'
+										<hr style="border:1px solid #2c3e50;width:100%;margin-bottom:0px;margin-top:0px;color:#ff8ac2;">
+										<b>RFC</b>
+									</td>
+								</tr>
+								<tr>
+									<td style="padding-top:10px;width:50%;text-align:center">
+										<p>'.$detalle['clave_elector'].'</p>
+										<hr style="border:1px solid #2c3e50;width:100%;margin-bottom:0px;margin-top:0px;color:#ff8ac2;">
+										<p><b>Clave Elector</b></p>
+									</td>
+									<td style="padding-top:10px;width:50%;text-align:center">
+										<p>'.$detalle['num_ine'].'</p>
+										<hr style="border:1px solid #2c3e50;width:100%;margin-bottom:0px;margin-top:0px;color:#ff8ac2;">
+										<p><b>Nº INE</b></p>
+									</td>
+								</tr>
+								<tr>
+									<td style="padding-top:10px;text-align:center" colspan="2">
+										<p>'.$direccion.'</p>
+										<hr style="border:1px solid #2c3e50;width:100%;margin-bottom:0px;margin-top:0px;color:#ff8ac2;">
+										<p><b>Domicilio</b></p>
+									</td>
+								</tr>
+								<tr>
+									<td style="padding-top:5px;text-align:center;" colspan="2">
+										<p style="">
+											<img style="" src="../img/firma_fenam.png"></img>
+										</p>
+										<p><b>María Margarita Cabrera Solano</b></p>
+										<hr style="border:1px solid #2c3e50;width:100%;margin-bottom:0px;margin-top:0px;color:#ff8ac2;">
+										<p>
+											Secretario General
+										</p>
+
+									</td>
+								</tr>
+
+							</table>
+						</td>
+						<!-- TERMINA CARA TRASERA -->
+					</tr>
+				</table>';
+			} //// TERMINA ELSE
+		}//TERMINA WHILE
+		
 		$mpdf = new mPDF('c','A4','','','15','15','10','10'); 
 	    ob_start();
-
-
-
 	    ob_end_clean();
 	    $css = file_get_contents('reportes/style_reporte.css');  
 	    $mpdf->writeHTML($html);
 	    //$mpdf->WriteHTML($style);
 		$mpdf->Output();
 		exit();
-
-
 	}
