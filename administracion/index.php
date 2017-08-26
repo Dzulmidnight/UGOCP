@@ -68,7 +68,11 @@ if (!function_exists("GetSQLValueString")) {
       }
       $curp = $_POST['curp'];
       $rfc = $_POST['rfc'];
-      $organizacion = $_POST['organizacion'];
+      if($_POST['select_sexo'] == 'H'){
+        $organizacion = 'UGOCP';
+      }else{
+        $organizacion = $_POST['organizacion'];
+      }
 
       /*$insertSQL = sprintf("INSERT INTO afiliado (curp, clave_elector, num_ine, rfc, idadm, foto) VALUES (%s, %s, %s, %s, %s, %s)",
         GetSQLValueString($curp, "text"),
@@ -590,7 +594,7 @@ if (!function_exists("GetSQLValueString")) {
                                                                             <input type="text" class="form-control" id="" name="fecha_nacimiento" placeholder="dd/mm/aaaa" onchange="calcularEdad()" onBlur="ponerMayusculas(this)" value="<?php echo $registros['fecha_nacimiento']; ?>">
                                                                           </td>
                                                                           <td>
-                                                                            <select class="form-control" name="sexo" id="sexo" onchange="otra_consulta()">
+                                                                            <select class="form-control" name="sexo" id="" >
                                                                               <option value="">Sexo</option>
                                                                               <option <?php if($registros['sexo'] == 'H'){echo 'selected';} ?> value="H">Hombre</option>
                                                                               <option <?php if($registros['sexo'] == 'M'){echo 'selected';} ?> value="M">Mujer</option>
@@ -604,7 +608,7 @@ if (!function_exists("GetSQLValueString")) {
                                                                         </tr>
                                                                         <tr>
                                                                           <td>
-                                                                            <select class="form-control" name="estado_civil" id="estado_civil">
+                                                                            <select class="form-control" name="estado_civil" id="">
                                                                               <option value="">Estado Civil</option>
                                                                               <option <?php if($registros['estado_civil'] == 'Soltero'){echo 'selected'; } ?> value="Soltero">Soltero</option>
                                                                               <option <?php if($registros['estado_civil'] == 'Casado'){echo 'selected'; } ?> value="Casado">Casado</option>
@@ -962,7 +966,7 @@ if (!function_exists("GetSQLValueString")) {
                                                 </td>
                                                 <td colspan="2">
                                                   <p>Colonia</p>
-                                                  <select style="border: 2px solid #2980b9;" class="form-control" name="colonia" id="colonia">
+                                                  <select style="border: 2px solid #2980b9;" class="form-control" name="colonia" id="colonia" onchange="otra_consulta()">
                                                     <option value="">Colonia</option>
                                                   </select>
                                                   <div class="checkbox">
@@ -1183,7 +1187,7 @@ if (!function_exists("GetSQLValueString")) {
         nombre1 = document.getElementById('nombre').value;
         ap_paterno1 = document.getElementById('ap_paterno').value;
         ap_materno1 = document.getElementById('ap_materno').value;
-        sexo1 = document.getElementById('sexo').value;
+        sexo1 = document.getElementById('select_sexo').value;
 
 
         var estados = ["aguascalientes","baja california","baja california sur","campeche","chiapas","chihuahua","coahuila","colima","ciudad de mexico","distrito federal","durango","guanajuato","guerrero","hidalgo","jalisco","estado de mexico","michoacan","morelos","nayarit","nuevo leon","oaxaca","puebla","queretaro","quintana roo","san luis potosi","sinaloa","sonora","tabasco","tamaulipas","tlaxcala","veracruz","yucatan","zacatecas"];
