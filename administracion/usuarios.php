@@ -1,12 +1,18 @@
 <?php 
-    require('../conexion/conexion.php');
-    require('../conexion/sesion.php');
+  require('../conexion/conexion.php');
+  require('../conexion/sesion.php');
+  $idadministrador = $_SESSION['administrador']['idadministrador'];
+
+  $query_admin = "SELECT root FROM administradores WHERE idadministrador = $idadministrador";
+  $ejecutar = $mysqli->query($query_admin);
+  $permisos = $ejecutar->fetch_assoc();
+  $root = $permisos['root'];
+
+  if($root != 1){
+    header('Location: index.php');
+  }
 
 
-/*$sql2="SELECT idSolicitante FROM Solicitante ORDER BY idSolicitante DESC LIMIT 1";
-            $idsol=$mysqli->query($sql2);
-            $resultado=$idsol->fetch_assoc();
-*/
   if(isset($_POST['guardar_usuario']) && $_POST['guardar_usuario'] == 1){
     $nombre01 = $_POST['nombre01'];
     $ap_paterno01 = $_POST['ap_paterno01'];
@@ -15,9 +21,36 @@
     $correo01 = $_POST['correo01'];
     $usuario01 = $_POST['usuario01'];
     $password01 = $_POST['password01'];
-    $tipo01 = 'administrador';
 
-    $sql = "INSERT INTO administradores(nombre, ap_paterno, ap_materno, telefono, correo, username, password, tipo) VALUES ('$nombre01', '$ap_paterno01', '$ap_materno01', '$telefono01', '$correo01', '$usuario01', '$password01', '$tipo01')";
+    if(isset($_POST['agregar01'])){
+      $agregar = 1;
+    }else{
+      $agregar = 0;
+    }
+    if(isset($_POST['editar01'])){
+      $editar = 1;
+    }else{
+      $editar = 0;
+    }
+    if(isset($_POST['eliminar01'])){
+      $eliminar = 1;
+    }else{
+      $eliminar = 0;
+    }
+    if(isset($_POST['root01'])){
+      $root = 1;
+    }else{
+      $root = 0;
+    }
+
+
+    if(($agregar == 1) && ($editar == 1) && ($eliminar == 1)){
+      $tipo01 = 'administrador';
+    }else{
+      $tipo01 = 'usuario';
+    }
+
+    $sql = "INSERT INTO administradores(nombre, ap_paterno, ap_materno, telefono, correo, username, password, agregar, editar, eliminar, root, tipo) VALUES ('$nombre01', '$ap_paterno01', '$ap_materno01', '$telefono01', '$correo01', '$usuario01', '$agregar', '$editar', '$eliminar', '$password01', '$root01', '$tipo01')";
     $mysqli->query($sql);
 
   }
@@ -36,7 +69,28 @@
     $correo = $_POST['correo'.$idadministrador];
     $usuario = $_POST['usuario'.$idadministrador];
     $password = $_POST['password'.$idadministrador];
-    $sql = "UPDATE administradores SET nombre = '$nombre', ap_paterno = '$ap_paterno', ap_materno = '$ap_materno', telefono = '$telefono', correo = '$correo', username = '$usuario', password = '$password' WHERE idadministrador = $idadministrador";
+    if(isset($_POST['agregar'.$idadministrador])){
+      $agregar = 1;
+    }else{
+      $agregar = 0;
+    }
+    if(isset($_POST['editar'.$idadministrador])){
+      $editar = 1;
+    }else{
+      $editar = 0;
+    }
+    if(isset($_POST['eliminar'.$idadministrador])){
+      $eliminar = 1;
+    }else{
+      $eliminar = 0;
+    }
+    if(isset($_POST['root'.$idadministrador])){
+      $root = 1;
+    }else{
+      $root = 0;
+    }
+
+    $sql = "UPDATE administradores SET nombre = '$nombre', ap_paterno = '$ap_paterno', ap_materno = '$ap_materno', telefono = '$telefono', correo = '$correo', username = '$usuario', password = '$password', agregar = '$agregar', editar = '$editar', eliminar = '$eliminar', root = '$root' WHERE idadministrador = $idadministrador";
     $mysqli->query($sql);
   }
 
@@ -115,6 +169,7 @@
                     <table class="table table-striped table-hover table-bordered" id="editable-sample">
                         <thead>
                           <tr>
+                              <th>Permisos</th>
                               <th>Nombre</th>
                               <th>Ap Paterno</th>
                               <th>Ap Materno</th>
@@ -134,9 +189,28 @@
                           while($registros = $ejecutar->fetch_assoc()){
                           ?>
                             <tr id="<?php echo 'row_info'.$registros['idadministrador']; ?>" class="">
+                                <td style="font-size: 10px;">
+                                  <div class="checkbox">
+                                    <label>
+                                      <input id="agregar" name="<?php echo 'agregar'.$registros['idadministrador']; ?>" type="checkbox" <?php if($registros['agregar']){ echo 'checked'; } ?> value="1"> Agregar
+                                    </label>
+                                  </div>
+                                  <div class="checkbox">
+                                    <label>
+                                      <input id="editar" name="<?php echo 'editar'.$registros['idadministrador']; ?>" type="checkbox" <?php if($registros['editar']){ echo 'checked'; } ?> value="1"> Editar
+                                    </label>
+                                  </div>
+                                  <div class="checkbox">
+                                    <label>
+                                      <input id="eliminar" name="<?php echo 'eliminar'.$registros['idadministrador']; ?>" type="checkbox" <?php if($registros['eliminar']){ echo 'checked'; } ?> value="1"> Eliminar
+                                    </label>
+                                  </div>
+                                </td>
                                 <td>
                                   <input type="text" class="<?php echo 'frm-usuario'.$registros['idadministrador']; ?> form-control" name="<?php echo 'nombre'.$registros['idadministrador']; ?>" value="<?php echo $registros['nombre']; ?>" readonly>
-                                  
+                                  <label>
+                                      <input id="root" name="<?php echo 'root'.$registros['idadministrador']; ?>" type="checkbox" <?php if($registros['root']){ echo 'checked'; } ?> value="1">Root
+                                  </label>
                                 </td>
                                 <td>
                                   <input type="text" class="<?php echo 'frm-usuario'.$registros['idadministrador']; ?> form-control" name="<?php echo 'ap_paterno'.$registros['idadministrador']; ?>" value="<?php echo $registros['ap_paterno']; ?>" readonly>
@@ -239,17 +313,19 @@
                 var cell7 = row.insertCell(6);
                 var cell8 = row.insertCell(7);
                 var cell9 = row.insertCell(8);
+                var cell10 = row.insertCell(9);
 
-                cell1.innerHTML = '<input type="text" class="form-control" name="nombre01" id="" placeholder="">';
-                cell2.innerHTML = '<input type="text" class="form-control" name="ap_paterno01" id="" placeholder="">';
-                cell3.innerHTML = '<input type="text" class="form-control" name="ap_materno01" id="" placeholder="">';
-                cell4.innerHTML = '<input type="text" class="form-control" name="telefono01" id="" placeholder="">';
-                cell5.innerHTML = '<input type="text" class="form-control" name="correo01" id="" placeholder="">';
-                cell6.innerHTML = '<input type="text" class="form-control" name="usuario01" id="" placeholder="">';
-                cell7.innerHTML = '<input type="text" class="form-control" name="password01" id="" placeholder="">';
-                cell8.innerHTML = '<button class="btn btn-success btn-xs" type="submit" id="btn-editar" name="guardar_usuario" class="" value="1">Guardar</button>';
+                cell1.innerHTML = '<div style="font-size:10px;" class="checkbox"><label><input type="checkbox" name="agregar01" value="1">Agregar</label></div><div style="font-size:10px;" class="checkbox"><label><input type="checkbox" name="editar01" value="1">Editar</label></div><div style="font-size:10px;" class="checkbox"><label><input type="checkbox" name="eliminar01" value="1">Eliminar</label></div>'
+                cell2.innerHTML = '<input type="text" class="form-control" name="nombre01" id="" placeholder=""><label><input type="checkbox" name="root01" value="1">Root</label>';
+                cell3.innerHTML = '<input type="text" class="form-control" name="ap_paterno01" id="" placeholder="">';
+                cell4.innerHTML = '<input type="text" class="form-control" name="ap_materno01" id="" placeholder="">';
+                cell5.innerHTML = '<input type="text" class="form-control" name="telefono01" id="" placeholder="">';
+                cell6.innerHTML = '<input type="text" class="form-control" name="correo01" id="" placeholder="">';
+                cell7.innerHTML = '<input type="text" class="form-control" name="usuario01" id="" placeholder="">';
+                cell8.innerHTML = '<input type="text" class="form-control" name="password01" id="" placeholder="">';
+                cell9.innerHTML = '<button class="btn btn-success btn-xs" type="submit" id="btn-editar" name="guardar_usuario" class="" value="1">Guardar</button>';
                 //cell5.innerHTML = '<button type="submit" class="" value="1" >Guardar</button><a id="btn-editar" class="" href="#" onclick="editar()">Guardar</a>';
-                cell9.innerHTML = '<a id="btn-eliminar" class="delete" href="#" onclick="quitar_registro()">Cancelar</a>';
+                cell10.innerHTML = '<a id="btn-eliminar" class="delete" href="#" onclick="quitar_registro()">Cancelar</a>';
             }
           }
           function quitar_registro(){

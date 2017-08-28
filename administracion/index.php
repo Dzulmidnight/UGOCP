@@ -42,12 +42,21 @@ if (!function_exists("GetSQLValueString")) {
 
     if(isset($_SESSION['administrador'])){
         if($_SESSION['administrador']['tipo'] != 'administrador'){
-            header('Location: conexion/salir.php');
+            header('Location: ../conexion/salir.php');
         }
     }
     $menu = 'inicio';
 
     $idadministrador = $_SESSION['administrador']['idadministrador'];
+
+    $query_admin = "SELECT agregar, editar, eliminar, root FROM administradores WHERE idadministrador = $idadministrador";
+    $ejecutar = $mysqli->query($query_admin);
+    $permisos = $ejecutar->fetch_assoc();
+
+    $permiso_agregar = $permisos['agregar'];
+    $permiso_editar = $permisos['editar'];
+    $permiso_eliminar = $permisos['eliminar'];
+    $root = $permisos['root'];
 
     if(isset($_POST['agregar_afiliado']) && $_POST['agregar_afiliado'] == 1){
       //$foto_actual = $_POST['foto_actual'];
@@ -371,9 +380,15 @@ if (!function_exists("GetSQLValueString")) {
                     <div class="panel-body">
 
                       <div class="clearfix">
-                          <div class="btn-group">
+                          <?php 
+                          if($permiso_agregar == 1){
+                          ?>
+                            <div class="btn-group">
                               <button id="" class="btn btn-default" data-toggle="modal" href="#modal_frm_afiliado">Nuevo Registro <i class="fa fa-plus"></i></button>
-                          </div>
+                            </div>
+                          <?php
+                          }
+                           ?>
                           <!--<div class="btn-group pull-right">
                               <button class="btn dropdown-toggle" data-toggle="dropdown">Herramientas <i class="fa fa-angle-down"></i>
                               </button>
@@ -483,12 +498,29 @@ if (!function_exists("GetSQLValueString")) {
                                 </td>
                                 
                                 <td>
+                                  <!-- INICIAN BOTONES DE ACCIONES -->
                                   <form action="" method="POST">
                                     <input type="hidden" name="foto_afiliado" value="<?php echo $registros['foto']; ?>">
                                     <a href="<?php echo 'detalle_afiliado.php?folio='.$registros['folio']; ?>" class="btn btn-primary btn-xs"><i class="fa fa-folder"></i></a>
-                                    <button id="" type="button" class="btn btn-info btn-xs" data-toggle="modal" data-target="<?php echo '#modalAfiliado'.$registros['folio']; ?>"><i class="fa fa-pencil"></i></i></button>
-                                    <button type="submit" name="eliminar_afiliado" class="btn btn-danger btn-xs" value="<?php echo $registros['folio']; ?>" onclick="return confirm('¿Desea eliminar la información?');"><i class="fa fa-trash-o"></i></i></button>                                   
+                                    <!-- boton editar -->
+                                    <?php 
+                                    if($permiso_editar == 1){
+                                    ?>
+                                      <button id="" type="button" class="btn btn-info btn-xs" data-toggle="modal" data-target="<?php echo '#modalAfiliado'.$registros['folio']; ?>"><i class="fa fa-pencil"></i></i></button>
+                                    <?php
+                                    }
+                                     ?>
+                                    <!-- boton eliminar -->
+                                    <?php 
+                                    if($permiso_eliminar == 1){
+                                    ?>
+                                      <button type="submit" name="eliminar_afiliado" class="btn btn-danger btn-xs" value="<?php echo $registros['folio']; ?>" onclick="return confirm('¿Desea eliminar la información?');"><i class="fa fa-trash-o"></i></i></button>
+                                    <?php
+                                    }
+                                     ?>
+                                                                      
                                   </form>
+                                  <!-- TERMINAN BOTONES DE ACCIONES -->
                                 <!-- Modal Editar Afiliado - Folio -->
                                   
                                   <div class="modal fade" id="<?php echo 'modalAfiliado'.$registros['folio']; ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">

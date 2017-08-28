@@ -146,10 +146,14 @@
                                   <div class="progress progress-striped active">
                                     <div class="progress-bar" style="width:0%"></div>
                                   </div>
-                                  <button class="btn btn-sm btn-info upload" type="submit" onclick="return validar()">Cargar</button>
-                                  <button type="button" class="btn btn-sm btn-danger cancel">Cancelar</button>
-
-
+                                  <?php 
+                                  if($permiso_agregar == 1){
+                                  ?>
+                                    <button class="btn btn-sm btn-info upload" type="submit" onclick="return validar()">Cargar</button>
+                                    <button type="button" class="btn btn-sm btn-danger cancel">Cancelar</button>
+                                  <?php
+                                  }
+                                   ?>
                                 </form>
 
                                 <!--<form action="#">

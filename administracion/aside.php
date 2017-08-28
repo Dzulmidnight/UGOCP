@@ -1,4 +1,12 @@
+<?php 
+$idadministrador = $_SESSION['administrador']['idadministrador'];
 
+$query_admin = "SELECT root FROM administradores WHERE idadministrador = $idadministrador";
+$ejecutar = $mysqli->query($query_admin);
+$permisos = $ejecutar->fetch_assoc();
+$root = $permisos['root'];
+
+ ?>
 
       <!--header start-->
       <header class="header white-bg">
@@ -22,6 +30,9 @@
                             <span>Principal</span>
                         </a>
                     </li>
+                    <?php 
+                    if($root == 1){
+                    ?>
                     <li <?php if(isset($menu) && $menu == 'usuarios'){echo 'class="active"';} ?>>
                         <!--<a <?php if(isset($menu) && $menu == 'inicio'){echo 'class="active"';} ?> href="index.php">
                             <i class="fa fa-dashboard"></i>
@@ -32,7 +43,9 @@
                             <span>Administradores</span>
                         </a>
                     </li>
-
+                    <?php
+                    }
+                     ?>
 
                     <!--<li class="sub-menu">
                         <a <?php if(isset($seccion) && $seccion == 'afiliacion'){echo 'class="active"'; } ?> href="javascript:;" >
