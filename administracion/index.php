@@ -410,8 +410,8 @@ if (!function_exists("GetSQLValueString")) {
                                     </label>
                                   </div>
                                   <form name="formulario2" action="" method="POST" id="frm_checkbox">
-                                    <a href="#" onclick="consultar_check()"><img src="img/pdf.png"> Crendial(es)</a>
-                                    <!--<button type="button" class="btn btn-primary" name="btn_checkbox" id="btn_checkbox" onclick="consultar_check()">Generar<br>Credenciales</button>-->
+                                    <!-- solo sirve en chrome <a href="#" target="" onclick="consultar_check()"><img src="img/pdf.png"> Crendial(es)</a>-->
+                                    <button type="button" class="btn btn-default" name="btn_checkbox" id="btn_checkbox" onclick="consultar_check()"><img src="img/pdf.png"> Crendial(es)</button>
                                   </form>
                                 </td>
 
@@ -523,235 +523,7 @@ if (!function_exists("GetSQLValueString")) {
                                   <!-- TERMINAN BOTONES DE ACCIONES -->
                                 <!-- Modal Editar Afiliado - Folio -->
                                   
-                                  <div class="modal fade" id="<?php echo 'modalAfiliado'.$registros['folio']; ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                                      <div class="modal-dialog modal-lg">
-                                          <div class="modal-content">
-                                            <form class="form-horizontal" method="POST" enctype="multipart/form-data" action="" id="editar_afiliacion">
-                                                <div class="modal-header">
-                                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                                    <h4 class="modal-title"><b>Editar Afiliado - Folio: <?php echo '<span style="color:red">'.$folio.'</span>'; ?> </b></h4>
-                                                </div>
-                                                <div class="modal-body">
-                                                  <!-- page start-->
-                                                  <div class="row">
-                                                        <!--<div id="" style="position:fixed;z-index: 1;right:0">
-                                                          <div class="">
-                                                            <button class="btn btn-warning" type="submit" name="agregar_afiliado" value="1"><span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> <b>Agregar</b></button>
-                                                            <button class="btn btn-default" type="button" name="btn_limpiar" onclick="limpiar()"><i class="fa fa-eraser"></i> <b>Limpiar</b></button> 
-                                                          </div>
-                                                        </div>-->
-
-                                                        <aside class="profile-nav col-lg-3">
-                                                            <section class="panel">
-                                                              <div class="col-md-12">
-                                                                <img class="img-thumbnail" src="<?php echo $registros['foto']; ?>" alt="">
-                                                                <div class="form-group">
-                                                                    <div class="controls col-md-12">
-                                                                        <div class="fileupload fileupload-new" data-provides="fileupload">
-                                                                          <span class="btn btn-white btn-file">
-                                                                          <span class="fileupload-new"><i class="fa fa-paper-clip"></i> Cambiar imagen</span>
-                                                                          <span class="fileupload-exists"><i class="fa fa-undo"></i> Cambiar</span>
-                                                                          <input type="file" name="foto_afiliado" class="default" />
-                                                                          </span>
-                                                                            <span class="fileupload-preview" style="margin-left:5px;"></span>
-                                                                            <a href="#" class="close fileupload-exists" data-dismiss="fileupload" style="float: none; margin-left:5px;"></a>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-
-                                                              </div>
-
-
-                                                                <!--<ul class="nav nav-pills nav-stacked">
-                                                                    <li><a href="profile.html"> <i class="fa fa-user"></i> Profile</a></li>
-                                                                    <li><a href="profile-activity.html"> <i class="fa fa-calendar"></i> Recent Activity <span class="label label-danger pull-right r-activity">9</span></a></li>
-                                                                    <li  class="active"><a href="profile-edit.html"> <i class="fa fa-edit"></i> Edit profile</a></li>
-                                                                </ul>-->
-                                                                <table class="table">
-                                                                  <thead>
-                                                                    <tr class="success">
-                                                                      <th>INFORMACIÓN COMPLEMENTARIA</th>
-                                                                    </tr>
-                                                                  </thead>
-                                                                  <tbody>
-                                                                    <tr>
-                                                                      <td>
-                                                                        <input type="text" class="form-control" style="border: 2px solid #2980b9;" id="" name="curp" placeholder="CURP" onBlur="ponerMayusculas(this)" value="<?php echo $registros['curp']; ?>">
-                                                                      </td>
-                                                                    </tr>
-                                                                    <tr>
-                                                                      <td>
-                                                                        <input type="text" class="form-control" style="border: 2px solid #2980b9;" id="rfc" name="rfc" placeholder="RFC" onBlur="ponerMayusculas(this)" value="<?php echo $registros['rfc']; ?>">
-                                                                      </td>
-                                                                    </tr>
-
-                                                                    <tr>
-                                                                      <td>
-                                                                        <input type="text" class="form-control" id="clave_elector" name="clave_elector" placeholder="Clave Elector" onBlur="ponerMayusculas(this)" value="<?php echo $registros['clave_elector']; ?>">
-                                                                      </td>
-                                                                    </tr>
-                                                                    <tr>
-                                                                      <td>
-                                                                        <input type="text" class="form-control" id="num_ine" name="num_ine" placeholder="No. Credencial del INE" onBlur="ponerMayusculas(this)" value="<?php echo $registros['num_ine']; ?>">
-                                                                      </td>
-                                                                    </tr>
-                                                                  </tbody>
-                                                                </table>
-                                                            </section>
-
-                                                        </aside>
-                                                        <aside class="profile-info col-lg-9">
-                                                            <section class="panel">
-                                                                <div class="panel-body bio-graph-info">
-                                                                    <h1>DATOS GENERALES</h1>
-                                                                  
-                                                                      <table class="table">
-                                                                        <tr>
-                                                                          <td>
-                                                                              <p>Apellido Paterno</p>
-                                                                              <input type="text" class="form-control" id="" name="ap_paterno" placeholder="" onBlur="ponerMayusculas(this)" value="<?php echo $registros['ap_paterno']; ?>">
-                                                                          </td>
-                                                                          <td>
-                                                                              <p>Apellido Materno</p>
-                                                                            <input type="text" class="form-control" id="" name="ap_materno" placeholder="" onBlur="ponerMayusculas(this)" value="<?php echo $registros['ap_materno']; ?>">
-                                                                          </td>
-                                                                          <td>
-                                                                              <p>Nombre(s)</p>
-                                                                            <input type="text" class="form-control" id="" name="nombre" placeholder="" onBlur="ponerMayusculas(this)" value="<?php echo $registros['nombre']; ?>">
-                                                                          </td>
-                                                                        </tr>
-                                                                        <tr>
-                                                                          <td>
-                                                                            <p>Fecha de Nacimiento</p>
-                                                                            <input type="text" class="form-control" id="" name="fecha_nacimiento" placeholder="dd/mm/aaaa" onchange="calcularEdad()" onBlur="ponerMayusculas(this)" value="<?php echo $registros['fecha_nacimiento']; ?>">
-                                                                          </td>
-                                                                          <td>
-                                                                            <select class="form-control" name="sexo" id="" >
-                                                                              <option value="">Sexo</option>
-                                                                              <option <?php if($registros['sexo'] == 'H'){echo 'selected';} ?> value="H">Hombre</option>
-                                                                              <option <?php if($registros['sexo'] == 'M'){echo 'selected';} ?> value="M">Mujer</option>
-                                                                            </select>
-                                                                          </td>
-
-                                                                          <td>
-                                                                              <p>Edad</p>
-                                                                            <input type="text" style="border: 2px solid #2980b9;" class="form-control" id="" name="edad" placeholder="" onBlur="ponerMayusculas(this)" value="<?php echo $registros['edad']; ?>">
-                                                                          </td>
-                                                                        </tr>
-                                                                        <tr>
-                                                                          <td>
-                                                                            <select class="form-control" name="estado_civil" id="">
-                                                                              <option value="">Estado Civil</option>
-                                                                              <option <?php if($registros['estado_civil'] == 'Soltero'){echo 'selected'; } ?> value="Soltero">Soltero</option>
-                                                                              <option <?php if($registros['estado_civil'] == 'Casado'){echo 'selected'; } ?> value="Casado">Casado</option>
-                                                                              <option <?php if($registros['estado_civil'] == 'Divorciado'){echo 'selected'; } ?> value="Divorciado">Divorciado</option>
-                                                                            </select>
-                                                                          </td>
-                                                                          <td>
-                                                                              <p>Grupo Indigena</p>
-                                                                            <input type="text" class="form-control" id="" name="grupo_indigena" placeholder="" onBlur="ponerMayusculas(this)" value="<?php echo $registros['grupo_indigena']; ?>">
-                                                                          </td>
-                                                                          <td>
-                                                                              <p>Nombre del Grupo, Ejido o Comunidad</p>
-                                                                            <input type="text" class="form-control" id="" name="nombre_comunidad" placeholder="" onBlur="ponerMayusculas(this)" value="<?php echo $registros['nombre_comunidad']; ?>">
-                                                                          </td>
-
-                                                                        </tr>
-                                                                          <td>
-                                                                              <p>Código Postal</p>
-                                                                            <input type="text" class="form-control" id="" name="cp" placeholder="" onBlur="ponerMayusculas(this)" value="<?php echo $registros['cp']; ?>">
-                                                                          </td>
-                                                                          <td>
-                                                                              <p>Estado</p>
-                                                                            <input type="text" style="border: 2px solid #2980b9;" class="form-control" id="" name="estado" placeholder="" onBlur="ponerMayusculas(this)" value="<?php echo $registros['estado']; ?>">
-                                                                          </td>
-                                                                          <td>
-                                                                              <p>Ciudad, Población o Localidad</p>
-                                                                            <input type="text" style="border: 2px solid #2980b9;" class="form-control" id="" name="ciudad" placeholder="" onBlur="ponerMayusculas(this)" value="<?php echo $registros['ciudad']; ?>">
-                                                                          </td>
-                                                                        </tr>
-                                                                        <tr>
-                                                                          <td>
-                                                                              <p>Municipio</p>
-                                                                            <input type="text" style="border: 2px solid #2980b9;" class="form-control" id="" name="municipio" placeholder="" onBlur="ponerMayusculas(this)" value="<?php echo $registros['municipio']; ?>">
-                                                                          </td>
-                                                                          <td colspan="2">
-                                                                            <p>Colonia</p>
-                                                                            <input class="form-control" style="border: 2px solid #2980b9;" type="text" name="colonia" value="<?php echo $registros['colonia']; ?>">
-
-                                                                          </td>
-                                                                        </tr>
-                                                                        <tr>
-                                                                          <td colspan="2">
-                                                                              <p>Calle</p>
-                                                                            <input type="text" class="form-control" id="" name="calle" placeholder="" onBlur="ponerMayusculas(this)" value="<?php echo $registros['calle']; ?>">
-                                                                          </td>
-                                                                          <td>
-                                                                              <p>Número</p>
-                                                                            <input type="text" class="form-control" id="" name="numero" placeholder="" onBlur="ponerMayusculas(this)" value="<?php echo $registros['numero']; ?>">
-                                                                          </td>
-                                                                        </tr>
-                                                                        <tr>
-                                                                          <td>
-                                                                              <p>Correo Electrónico</p>
-                                                                            <input type="email" class="form-control" id="" name="correo" placeholder="" value="<?php echo $registros['correo']; ?>">
-                                                                          </td>
-                                                                          <td>
-                                                                              <p>Télefono</p>
-                                                                            <input type="text" class="form-control" id="" name="telefono" placeholder="" onBlur="ponerMayusculas(this)" value="<?php echo $registros['telefono']; ?>">
-                                                                          </td>
-                                                                          <td>
-                                                                              <p>Celular</p>
-                                                                            <input type="text" class="form-control" id="" name="celular" placeholder="" onBlur="ponerMayusculas(this)" value="<?php echo $registros['celular']; ?>">
-                                                                          </td>
-
-                                                                        </tr>
-                                                            
-                                                                      </table>
-                                                                      <table class="table">
-                                                                        <thead>
-                                                                          <tr class="info">
-                                                                            <th colspan="2">INFORMACIÓN PROFESIONAL O LABORAL</th>
-                                                                          </tr>
-                                                                        </thead>
-                                                                        <tbody>
-                                                                          <tr>
-                                                                            <td>
-                                                                              <p>Ocupación</p>
-                                                                              <input type="text" class="form-control" id="" name="ocupacion" placeholder="" onBlur="ponerMayusculas(this)" value="<?php echo $registros['ocupacion']; ?>">
-                                                                            </td>
-                                                                            <td>
-                                                                              <p>Cargo o Puesto que desempeña</p>
-                                                                              <input type="text" class="form-control" id="" name="cargo" placeholder="" onBlur="ponerMayusculas(this)" value="<?php echo $registros['cargo']; ?>">
-                                                                            </td>
-                                                                          </tr>
-                                                                          <tr>
-                                                                            <td>
-                                                                              <p>Empresa</p>
-                                                                              <input type="text" class="form-control" id="" name="empresa" placeholder="" onBlur="ponerMayusculas(this)" value="<?php echo $registros['empresa']; ?>">
-                                                                            </td>
-                                                                            <td>
-                                                                              <p>Tel. Oficina</p>
-                                                                              <input type="text" class="form-control" id="" name="tel_oficina" placeholder="" onBlur="ponerMayusculas(this)" value="<?php echo $registros['tel_oficina']; ?>">
-                                                                            </td>
-                                                                          </tr>
-                                                                        </tbody>
-                                                                      </table>
-                                                                </div>
-                                                            </section>
-                                                        </aside>
-
-                                                  </div>
-                                                  <!-- page end-->
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <input type="hidden" name="foto_actual" value="<?php echo $registros['foto']; ?>">
-                                                    <button class="btn btn-warning" type="submit" name="modificar_afiliado" value="<?php echo $registros['folio']; ?>"><span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> <b>Guardar Cambios</b></button>
-                                                </div>              
-                                            </form>
-                                          </div>
-                                      </div>
-                                  </div>
+                                  <?php include('editarAfiliado.php'); ?>
                                   <!-- modal -->
 
                                 <!-- Termina Modal Editar -->
@@ -782,309 +554,7 @@ if (!function_exists("GetSQLValueString")) {
       <!--footer end-->
 
     <!-- Modal Formato de Afiliación -->
-    <div class="modal fade" id="modal_frm_afiliado" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-              <form class="form-horizontal" method="POST" enctype="multipart/form-data" action="" id="frm_afiliacion">
-                  <div class="modal-header">
-                      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                      
-                      <h4 class="modal-title"><b>Formato de Afiliación </b></h4>
-                  </div>
-                  <div class="modal-body">
-                    <!-- page start-->
-                      <div class="row">
-
-                            <aside class="profile-nav col-lg-3">
-                                <section class="panel">
-                                    <div class="user-heading round">
-                                      <div class="fileupload fileupload-new" data-provides="fileupload">
-                                          <div class="fileupload-new thumbnail" style="width: 145px; height: 170px;">
-                                              <img src="http://www.placehold.it/145x170" alt="" />
-                                          </div>
-                                          <div class="fileupload-preview fileupload-exists thumbnail" style="max-width: 145px; max-height: 170px; line-height: 20px;"></div>
-                                          <div>
-                                           <span class="btn btn-white btn-file">
-                                           <span class="fileupload-new" style="color:#000"><i class="fa fa-paper-clip"></i> Agregar Foto</span>
-                                           <span class="fileupload-exists"><i class="fa fa-undo"></i> Cambiar</span>
-                                           <input type="file" id="foto_afiliado" name="foto_afiliado" class="default" />
-                                           </span>
-                                              <!--<a href="#" class="btn btn-danger fileupload-exists" data-dismiss="fileupload"><i class="fa fa-trash"></i> Remove</a>-->
-                                          </div>
-                                      </div>
-
-                                    </div>
-
-                                    <table class="table">
-                                      <thead>
-                                        <tr class="success">
-                                          <th>INFORMACIÓN COMPLEMENTARIA</th>
-                                        </tr>
-                                      </thead>
-                                      <tbody>
-                                        <tr>
-                                          <td>
-                                            <p>CURP</p>
-                                            <input type="text" style="border: 2px solid #2980b9;width:200px;height:30px;" class="" id="curp_otra" name="curp" placeholder="" onBlur="ponerMayusculas(this)">
-                                          </td>
-                                        </tr>
-                                        <tr>
-                                          <td>
-                                            <p>RFC</p>
-                                            <input type="text" style="border: 2px solid #2980b9;width:200px;height:30px;" class="" id="rfc2" name="rfc" placeholder="" onBlur="ponerMayusculas(this)">
-                                          </td>
-                                        </tr>
-                                        <tr>
-                                          <td>
-                                            <p>Clave Elector</p>
-                                            <input type="text" class="form-control" id="clave_elector" name="clave_elector" placeholder="" onBlur="ponerMayusculas(this)">
-                                          </td>
-                                        </tr>
-                                        <tr>
-                                          <td>
-                                            <p>No. DE CREDENCIAL DEL INE (PARTE POSTERIOR)</p>
-                                            <input type="text" class="form-control" id="num_ine" name="num_ine" placeholder="" onBlur="ponerMayusculas(this)">
-                                          </td>
-                                        </tr>
-                                      </tbody>
-                                    </table>
-                                </section>
-
-                            </aside>
-                            <aside class="profile-info col-lg-9">
-                                <section class="panel">
-        
-                                    <div class="panel-body bio-graph-info">
-                                        <h1>DATOS GENERALES</h1>
-                                      
-                                            <table class="table">
-                                              <tr>
-                                                <td>
-                                                    <p>Apellido Paterno</p>
-                                                    <input type="text" class="form-control" id="ap_paterno" name="ap_paterno" placeholder="" onBlur="ponerMayusculas(this)" required>
-                                                </td>
-                                                <td>
-                                                    <p>Apellido Materno</p>
-                                                  <input type="text" class="form-control" id="ap_materno" name="ap_materno" placeholder="" onBlur="ponerMayusculas(this)" required>
-                                                </td>
-                                                <td>
-                                                    <p>Nombre(s)</p>
-                                                  <input type="text" class="form-control" id="nombre" name="nombre" placeholder="" onBlur="ponerMayusculas(this)" required>
-                                                </td>
-                                              </tr>
-                                              <tr>
-                                                <td>
-                                                  <p>Fecha de Nacimiento</p>
-                                                  <!--<input type="text" class="form-control" id="fecha_nacimiento" name="fecha_nacimiento" placeholder="dd/mm/aaaa" onchange="calcularEdad()" onBlur="ponerMayusculas(this)">-->
-                                                  <select class="form-control" name="dia" id="dia">
-                                                    <option value="">Dia</option>
-                                                    <option value="01">01</option>
-                                                    <option value="02">02</option>
-                                                    <option value="03">03</option>
-                                                    <option value="04">04</option>
-                                                    <option value="05">05</option>
-                                                    <option value="06">06</option>
-                                                    <option value="07">07</option>
-                                                    <option value="08">08</option>
-                                                    <option value="09">09</option>
-                                                    <option value="10">10</option>
-                                                    <option value="11">11</option>
-                                                    <option value="12">12</option>
-                                                    <option value="13">13</option>
-                                                    <option value="14">14</option>
-                                                    <option value="15">15</option>
-                                                    <option value="16">16</option>
-                                                    <option value="17">17</option>
-                                                    <option value="18">18</option>
-                                                    <option value="19">19</option>
-                                                    <option value="20">20</option>
-                                                    <option value="21">21</option>
-                                                    <option value="22">22</option>
-                                                    <option value="23">23</option>
-                                                    <option value="24">24</option>
-                                                    <option value="25">25</option>
-                                                    <option value="26">26</option>
-                                                    <option value="27">27</option>
-                                                    <option value="28">28</option>
-                                                    <option value="29">29</option>
-                                                    <option value="30">30</option>
-                                                    <option value="31">31</option>
-                                                  </select>
-                                                  <select class="form-control" name="mes" id="mes">
-                                                    <option value="">Mes</option>
-                                                    <option value="01">ENE</option>
-                                                    <option value="02">FEB</option>
-                                                    <option value="03">MAR</option>
-                                                    <option value="04">ABR</option>
-                                                    <option value="05">MAY</option>
-                                                    <option value="06">JUN</option>
-                                                    <option value="07">JUL</option>
-                                                    <option value="08">AGO</option>
-                                                    <option value="09">SEP</option>
-                                                    <option value="10">OCT</option>
-                                                    <option value="11">NOV</option>
-                                                    <option value="12">DIC</option>
-                                                  </select>
-                                                  <input class="form-control" type="text" id="anio" name="anio" placeholder="aaaa" value="" onchange="calcularEdad()">
-                                                  <input type="hidden" name="fecha_nacimiento" id="fecha_nacimiento" value="">
-                                                </td>
-                                                <td>
-                                                  <select class="form-control" name="select_sexo" id="select_sexo" onchange="consultar_organizacion()">
-                                                    <option value="">Sexo</option>
-                                                    <option value="H">Hombre</option>
-                                                    <option value="M">Mujer</option>
-                                                  </select>
-                                                  <div id="div_organizacion" style="display:none">
-                                                    <label style="background:#e74c3c;color:#ecf0f1;margin-top:1.5em;" for="organizacion"><b>Selecciona la organización a la que pertenece</b></label>
-                                                    <select style="border: 2px solid #2980b9;" class="form-control" name="organizacion" id="organizacion">
-                                                      <option value="FENAM">FENAM</option>
-                                                      <option value="UGOCP">UGOCP</option>
-                                                    </select>
-                                                  </div>
-                                                </td>
-
-                                                <td>
-                                                    <p>Edad</p>
-                                                  <input type="text" style="border: 2px solid #2980b9;" class="form-control" id="edad" name="edad" placeholder="" onBlur="ponerMayusculas(this)">
-                                                </td>
-                                              </tr>
-                                              <tr>
-                                                <td>
-                                                  <select class="form-control" name="estado_civil" id="estado_civil">
-                                                    <option value="">Estado Civil</option>
-                                                    <option value="Soltero">Soltero</option>
-                                                    <option value="Casado">Casado</option>
-                                                    <option value="Divorciado">Divorciado</option>
-                                                  </select>
-                                                </td>
-                                                <td>
-                                                    <p>¿Pertenece a un grupo indígena?</p>
-                                                    <select name="grupo_indigena" id="grupo_indigena" onchange="consultar_grupo()">
-                                                      <option value="">Seleccione una opción</option>
-                                                      <option value="SI">SI</option>
-                                                      <option value="NO">NO</option>
-                                                    </select>
-                                                </td>
-                                                <td id="campo_oculto" style="display:none">
-                                                    <p>Nombre del Grupo</p>
-                                                  <input style="border: 2px solid red;" type="text" class="form-control" id="nombre_comunidad" name="nombre_comunidad" placeholder="" onBlur="ponerMayusculas(this)">
-                                                </td>
-                                              
-                                              </tr>
-                                              <tr class="info">
-                                                  <th colspan="3">INFORMACIÓN DOMICILIARIA</th>
-                                              </tr>
-                                              <tr>
-                                                <td>
-                                                    <p>Código Postal</p>
-                                                  <input type="text" class="form-control" id="cp" name="cp" placeholder="" onchange="otra_consulta()" onBlur="ponerMayusculas(this)">
-                                                </td>
-                                                <td>
-                                                    <p>Estado</p>
-                                                  <input type="text" style="border: 2px solid #2980b9;" class="form-control" id="estado" name="estado" placeholder="" onBlur="ponerMayusculas(this)">
-                                                  <input type="hidden" id="num_estado" name="num_estado" value="">
-                                                </td>
-                                                <td>
-                                                    <p>Ciudad, Población o Localidad</p>
-                                                  <input type="text" style="border: 2px solid #2980b9;" class="form-control" id="ciudad" name="ciudad" placeholder="" onBlur="ponerMayusculas(this)">
-                                                </td>
-                                              </tr>
-
-                                              <tr>
-                                                <td>
-                                                    <p>Municipio</p>
-                                                  <input type="text" style="border: 2px solid #2980b9;" class="form-control" id="municipio" name="municipio" placeholder="" onBlur="ponerMayusculas(this)">
-                                                  <input type="hidden" id="num_municipio" name="num_municipio">
-                                                </td>
-                                                <td colspan="2">
-                                                  <p>Colonia</p>
-                                                  <select style="border: 2px solid #2980b9;" class="form-control" name="colonia" id="colonia" onchange="otra_consulta()">
-                                                    <option value="">Colonia</option>
-                                                  </select>
-                                                  <div class="checkbox">
-                                                      <label>
-                                                        <input type="checkbox" id="checkbox_colonia" onclick="mostrar_colonia()"> Colonia diferente
-                                                      </label>
-                                                  </div>
-                                                  <input type="text" style="display:none;border: 2px solid red;" class="form-control" id="colonia_diferente" name="colonia_diferente" placeholder="Colonia">
-                                                </td>
-                                              </tr>
-                                              <tr>
-                                                <td colspan="2">
-                                                    <p>Calle</p>
-                                                  <input type="text" class="form-control" id="calle" name="calle" placeholder="" onchange="otra_consulta()" onBlur="ponerMayusculas(this)">
-                                                </td>
-                                                <td>
-                                                    <p>Número</p>
-                                                  <input type="text" class="form-control" id="numero" name="numero" placeholder="" onBlur="ponerMayusculas(this)">
-                                                </td>
-                                              </tr>
-                                              <tr class="info">
-                                                  <th colspan="3">INFORMACIÓN DE CONTACTO</th>
-                                              </tr>
-                                              <tr>
-                                                <td>
-                                                    <p>Correo Electrónico</p>
-                                                  <input type="email" class="form-control" id="correo" name="correo" placeholder="">
-                                                </td>
-                                                <td>
-                                                    <p>Télefono</p>
-                                                  <input type="text" class="form-control" id="telefono" name="telefono" placeholder="" onBlur="ponerMayusculas(this)">
-                                                </td>
-                                                <td>
-                                                    <p>Celular</p>
-                                                  <input type="text" class="form-control" id="celular" name="celular" placeholder="" onBlur="ponerMayusculas(this)">
-                                                </td>
-
-                                              </tr>
-                                  
-                                            </table>
-                                            <table class="table">
-                                              <thead>
-                                                <tr class="info">
-                                                  <th colspan="2">INFORMACIÓN PROFESIONAL O LABORAL</th>
-                                                </tr>
-                                              </thead>
-                                              <tbody>
-                                                <tr>
-                                                  <td>
-                                                    <p>Ocupación</p>
-                                                    <input type="text" class="form-control" id="ocupacion" name="ocupacion" placeholder="" onBlur="ponerMayusculas(this)">
-                                                  </td>
-                                                  <td>
-                                                    <p>Cargo o Puesto que desempeña</p>
-                                                    <input type="text" class="form-control" id="cargo" name="cargo" placeholder="" onBlur="ponerMayusculas(this)">
-                                                  </td>
-                                                </tr>
-                                                <tr>
-                                                  <td>
-                                                    <p>Empresa</p>
-                                                    <input type="text" class="form-control" id="empresa" name="empresa" placeholder="" onBlur="ponerMayusculas(this)">
-                                                  </td>
-                                                  <td>
-                                                    <p>Tel. Oficina</p>
-                                                    <input type="text" class="form-control" id="tel_oficina" name="tel_oficina" placeholder="" onBlur="ponerMayusculas(this)">
-                                                  </td>
-                                                </tr>
-                                              </tbody>
-                                            </table>
-                                    </div>
-                                </section>
-                            </aside>
-
-                      </div>
-                    <!-- page end-->
-                  </div>
-                  <div class="modal-footer">
-                        
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-                        <button class="btn btn-primary" type="button" name="btn_limpiar" onclick="limpiar()"><i class="fa fa-eraser"></i> <b>Limpiar</b></button>
-                        <button class="btn btn-warning" type="submit" id="agregar_afiliado"  name="agregar_afiliado" value="1" onclick="return validar()"><span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> <b>Agregar</b></button>
-                  </div>              
-              </form>
-            </div>
-        </div>
-    </div>
+    <?php include('agregarAfiliado.php'); ?>
     <!-- modal -->
 
 <div id="modalDescargar" name="modalDescargar" class="modal fade" role="dialog">
@@ -1240,6 +710,36 @@ if (!function_exists("GetSQLValueString")) {
 
         calculaRFC();
   }
+  function otra_consulta2(){
+
+        dia = document.getElementById("dia").value;
+        mes = document.getElementById("mes").value;
+        anio = document.getElementById("anio").value;
+        nombre1 = document.getElementById('nombre').value;
+        ap_paterno1 = document.getElementById('ap_paterno').value;
+        ap_materno1 = document.getElementById('ap_materno').value;
+        sexo1 = document.getElementById('select_sexo').value;
+
+
+        var estados = ["aguascalientes","baja california","baja california sur","campeche","chiapas","chihuahua","coahuila","colima","ciudad de mexico","distrito federal","durango","guanajuato","guerrero","hidalgo","jalisco","estado de mexico","michoacan","morelos","nayarit","nuevo leon","oaxaca","puebla","queretaro","quintana roo","san luis potosi","sinaloa","sonora","tabasco","tamaulipas","tlaxcala","veracruz","yucatan","zacatecas"];
+        var abreviacion = ["AS","BC","BS","CC","CS","CH","CL","CM","CX","DF","DG","GT","GR","HG","JC","MC","MN","MS","NT","NL","OC","PL","QT","QR","SP","SL","SR","TC","TS","TL","VZ","YN","ZS"];
+
+        prueba_estado = abreviacion[estados.indexOf($("#estado").val().toLowerCase())];
+
+        var curp = generaCurp({
+          nombre            : nombre1,
+          apellido_paterno  : ap_paterno1,
+          apellido_materno  : ap_materno1,
+          sexo              : sexo1,
+          estado            : prueba_estado,
+          fecha_nacimiento  : [dia, mes, anio]
+        });
+        
+        document.getElementById("curp_otra").value = curp;
+
+        calculaRFC();
+  }
+
 
 
   //FUNCIÓN PARA GENERAR EL RFC
@@ -1419,6 +919,11 @@ if (!function_exists("GetSQLValueString")) {
     { 
         nombre.value=nombre.value.toUpperCase(); 
     } 
+    function ponerMayusculas2(nombre) 
+    { 
+        nombre.value=nombre.value.toUpperCase(); 
+    } 
+
 
     /// FUNCIÓN PARA CALCULAR LA EDAD A PARTIR DE LA FECHA DE NACIMIENTO
     function calcularEdad() {
