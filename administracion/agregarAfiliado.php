@@ -142,7 +142,7 @@
                                                     <option value="12">DIC</option>
                                                   </select>
                                                   <input class="form-control" type="text" id="anio" name="anio" placeholder="aaaa" value="" onchange="calcularEdad()">
-                                                  <input type="hidden" name="fecha_nacimiento" id="fecha_nacimiento" value="">
+                                                  <input type="text" name="fecha_nacimiento" id="fecha_nacimiento" value="">
                                                 </td>
                                                 <td>
                                                   <select class="form-control" name="select_sexo" id="select_sexo" onchange="consultar_organizacion()">

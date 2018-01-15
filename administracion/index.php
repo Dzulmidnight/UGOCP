@@ -712,32 +712,32 @@ if (!function_exists("GetSQLValueString")) {
   }
   function otra_consulta2(){
 
-        dia = document.getElementById("dia").value;
-        mes = document.getElementById("mes").value;
-        anio = document.getElementById("anio").value;
-        nombre1 = document.getElementById('nombre').value;
-        ap_paterno1 = document.getElementById('ap_paterno').value;
-        ap_materno1 = document.getElementById('ap_materno').value;
-        sexo1 = document.getElementById('select_sexo').value;
+        dia2 = document.getElementById("dia2").value;
+        mes2 = document.getElementById("mes2").value;
+        anio2 = document.getElementById("anio2").value;
+        nombre2 = document.getElementById('nombre2').value;
+        ap_paterno2 = document.getElementById('ap_paterno2').value;
+        ap_materno2 = document.getElementById('ap_materno2').value;
+        sexo2 = document.getElementById('sexo2').value;
 
 
-        var estados = ["aguascalientes","baja california","baja california sur","campeche","chiapas","chihuahua","coahuila","colima","ciudad de mexico","distrito federal","durango","guanajuato","guerrero","hidalgo","jalisco","estado de mexico","michoacan","morelos","nayarit","nuevo leon","oaxaca","puebla","queretaro","quintana roo","san luis potosi","sinaloa","sonora","tabasco","tamaulipas","tlaxcala","veracruz","yucatan","zacatecas"];
-        var abreviacion = ["AS","BC","BS","CC","CS","CH","CL","CM","CX","DF","DG","GT","GR","HG","JC","MC","MN","MS","NT","NL","OC","PL","QT","QR","SP","SL","SR","TC","TS","TL","VZ","YN","ZS"];
+        var estados2 = ["aguascalientes","baja california","baja california sur","campeche","chiapas","chihuahua","coahuila","colima","ciudad de mexico","distrito federal","durango","guanajuato","guerrero","hidalgo","jalisco","estado de mexico","michoacan","morelos","nayarit","nuevo leon","oaxaca","puebla","queretaro","quintana roo","san luis potosi","sinaloa","sonora","tabasco","tamaulipas","tlaxcala","veracruz","yucatan","zacatecas"];
+        var abreviacion2 = ["AS","BC","BS","CC","CS","CH","CL","CM","CX","DF","DG","GT","GR","HG","JC","MC","MN","MS","NT","NL","OC","PL","QT","QR","SP","SL","SR","TC","TS","TL","VZ","YN","ZS"];
 
-        prueba_estado = abreviacion[estados.indexOf($("#estado").val().toLowerCase())];
+        prueba_estado2 = abreviacion2[estados2.indexOf($("#estado2").val().toLowerCase())];
 
-        var curp = generaCurp({
-          nombre            : nombre1,
-          apellido_paterno  : ap_paterno1,
-          apellido_materno  : ap_materno1,
-          sexo              : sexo1,
-          estado            : prueba_estado,
-          fecha_nacimiento  : [dia, mes, anio]
+        var curp2 = generaCurp({
+          nombre            : nombre2,
+          apellido_paterno  : ap_paterno2,
+          apellido_materno  : ap_materno2,
+          sexo              : sexo2,
+          estado            : prueba_estado2,
+          fecha_nacimiento  : [dia2, mes2, anio2]
         });
         
-        document.getElementById("curp_otra").value = curp;
+        document.getElementById("curp2").value = curp2;
 
-        calculaRFC();
+        calculaRFC2();
   }
 
 
@@ -805,6 +805,48 @@ if (!function_exists("GetSQLValueString")) {
     //alert(rfc);
     //document.getElementById("rfc").value = rfc;
   }
+
+  function calculaRFC2() {
+    function quitaArticulos(palabra) {
+      return palabra.replace("DEL ", "").replace("LAS ", "").replace("DE ",
+          "").replace("LA ", "").replace("Y ", "").replace("A ", "");
+    }
+    function esVocal(letra) {
+      if (letra == 'A' || letra == 'E' || letra == 'I' || letra == 'O'
+          || letra == 'U' || letra == 'a' || letra == 'e' || letra == 'i'
+          || letra == 'o' || letra == 'u')
+        return true;
+      else
+        return false;
+    }
+    nombre2 = $("#nombre2").val();
+    apellidoPaterno2 = $("#ap_paterno2").val();
+    apellidoMaterno2 = $("#ap_materno2").val();
+    fecha2 = $("#fecha_nacimiento2").val();
+    var rfc2 = "";
+    apellidoPaterno2 = quitaArticulos(apellidoPaterno2);
+    apellidoMaterno2 = quitaArticulos(apellidoMaterno2);
+    rfc2 += apellidoPaterno2.substr(0, 1);
+    var l = apellidoPaterno2.length;
+    var c;
+    for (i = 0; i < l; i++) {
+      c = apellidoPaterno2.charAt(i);
+      if (esVocal(c)) {
+        rfc2 += c;
+        break;
+      }
+    }
+    rfc2 += apellidoMaterno2.substr(0, 1);
+    rfc2 += nombre2.substr(0, 1);
+    rfc2 += fecha2.substr(8, 10);
+    rfc2 += fecha2.substr(3, 5).substr(0, 2);
+    rfc2 += fecha2.substr(0, 2);
+    // rfc += "-" + homclave;
+    $("#rfc3").val(rfc2);
+    //alert(rfc);
+    //document.getElementById("rfc").value = rfc;
+  }
+
 
     function marcar_desmarcar(){
         var marca = document.getElementById('marcar');
@@ -883,27 +925,27 @@ if (!function_exists("GetSQLValueString")) {
       
         // enviamos una petición al servidor mediante AJAX enviando el id
         // introducido por el usuario mediante POST
-        $.post("consultar_cp.php", {"cp2":$("#cp2").val()}, function(data){
+        $.post("consultar_cp.php", {"cp2":$("#cp2").val()}, function(data2){
         
           // Si devuelve un nombre lo mostramos, si no, vaciamos la casilla
-          if(data.estado){
-            $("#estado2").val(data.estado);
-            $("#num_estado2").val(data.num_estado2);
+          if(data2.estado){
+            $("#estado2").val(data2.estado);
+            $("#num_estado2").val(data2.num_estado2);
           }
           else{
             $("#estado2").val("");
           }
             
           // Si devuelve un apellido lo mostramos, si no, vaciamos la casilla
-          if(data.municipio){
-            $("#municipio2").val(data.municipio);
-            $("#num_municipio2").val(data.num_municipio2);
+          if(data2.municipio){
+            $("#municipio2").val(data2.municipio);
+            $("#num_municipio2").val(data2.num_municipio2);
           }
           else{
             $("#municipio2").val("");
           }
-          if(data.ciudad){
-            $("#ciudad2").val(data.ciudad);
+          if(data2.ciudad){
+            $("#ciudad2").val(data2.ciudad);
           }
           else{
             $("#ciudad2").val("");
@@ -959,6 +1001,40 @@ if (!function_exists("GetSQLValueString")) {
         }
     }
 
+    function calcularEdad2() {
+        dia2 = document.getElementById("dia2").value;
+        mes2 = document.getElementById("mes2").value;
+        anio2 = document.getElementById("anio2").value;
+        fecha2 = anio2+'/'+mes2+"/"+dia2;
+
+        //alert("la fecha es: "+fecha);
+      
+        //var date= document.getElementById('fecha_nacimiento').value;
+
+        /*var d = new Date(date.split("-").reverse().join("-"));
+        var dd=d.getDate();
+        var mm=d.getMonth()+1;
+        var yy=d.getFullYear();
+        var newdate = yy+"/"+mm+"/"+dd;*/
+
+        
+        var hoy2 = new Date();
+        var cumpleanos2 = new Date(fecha2);
+        var edad2 = hoy2.getFullYear() - cumpleanos2.getFullYear();
+        var m2 = hoy2.getMonth() - cumpleanos2.getMonth();
+
+        if (m2 < 0 || (m2 === 0 && hoy2.getDate() < cumpleanos2.getDate())) {
+            edad2--;
+        }
+        if(edad2){
+          document.getElementById("edad2").value = edad2;
+          document.getElementById("fecha_nacimiento2").value = dia2+'/'+mes2+"/"+anio2;
+        }else{
+          document.getElementById("edad2").value = '';
+        }
+    }
+
+
     ///FUNCIÓN PARA CREAR UN SELECT DE LAS COLONIAS DE UN CP
     $(document).on('ready',function(){
 
@@ -976,6 +1052,26 @@ if (!function_exists("GetSQLValueString")) {
          });
       });
     });
+
+    ///FUNCIÓN PARA CREAR UN SELECT DE LAS COLONIAS DE UN CP
+    $(document).on('ready',function(){
+
+      $('#cp2').keyup(function(){
+        var url = 'select_colonia2.php';                                   
+
+        $.ajax({                        
+           type: 'POST',                 
+           url: url,                    
+           data2: $('#editar_afiliacion').serialize(),
+           success: function(data2)           
+           {
+             $('#colonia2').html(data2);          
+           }
+         });
+      });
+    });
+
+
 
     /// FUNCIÓN PARA VALIDAR LOS CAMPOS OBLIGATORIOS
     function validar() {
