@@ -602,81 +602,106 @@ if (!function_exists("GetSQLValueString")) {
  ?>
 
 <script>
-  function consultar_check(){
-      var seleccionados = ''
-      $('.micheckbox:checked').each(
-          function() {
-              seleccionados += $(this).val() + ",";
+    function consultar_check(){
+        var seleccionados = ''
+        $('.micheckbox:checked').each(
+            function() {
+                seleccionados += $(this).val() + ",";
+                //alert("El checkbox con valor " + $(this).val() + " está seleccionado");
+            }
+
+        );
+        if(seleccionados.length == 0){
+          alert('Debes seleccionar el folio del afiliado');
+        }else{
+          function abrirEnPestana(url) {
+              var a = document.createElement("a");
+              a.target = "_new";
+              a.href = url;
+              a.click();
           }
-
-      );
-      if(seleccionados.length == 0){
-        alert('Debes seleccionar el folio del afiliado');
-      }else{
-        function abrirEnPestana(url) {
-            var a = document.createElement("a");
-            a.target = "_new";
-            a.href = url;
-            a.click();
+          var url="generar_pdf.php?lista="+seleccionados;
+          abrirEnPestana(url);
         }
-        var url="generar_pdf.php?lista="+seleccionados;
-        abrirEnPestana(url);
-      }
-  }  
-  function mostrar_colonia(){
-    document.getElementById('colonia_diferente').style.display = 'block';
-  }
+        //return alert("EL ARRAY ES: "+seleccionados);
+    }
 
-  function consultarFolio(numFolio){
-    var numFolio = numFolio;
+    function mostrar_colonia(){
+      document.getElementById('colonia_diferente').style.display = 'block';
+    }
+    /// GENERAR LOS DIGITOS DE LA CURP
+    /*24_07_2017 function generarCURP(){
+      abc = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+      random09a = Math.floor(Math.random() * (9 - 1 + 1)) + 1;
+      random09b = Math.floor(Math.random() * (9 - 1 + 1)) + 1;
+      randomAZ = Math.floor(Math.random() * (26 - 0 + 1)) + 0;
 
-    /*var dia = 'dia'+numFolio;
-    var mes = 'mes'+numFolio;
-    var anio = 'anio'+numFolio;
-    var nombre = 'nombre'+numFolio;
-    var ap_paterno = 'ap_paterno'+numFolio;
-    var ap_materno = 'ap_materno'+numFolio;
-    var sexo = 'sexo'+numFolio;
-    var estado = 'estado'+numFolio;*/
-    //// inicia funcion otra_consulta
-    //ponerFecha(numFolio);
-    calcularEdad(numFolio);
+      //var date= document.getElementById('fecha_nacimiento').value;
 
-    otra_consulta(numFolio);
-    
-      //otra_consulta(numFolio);
-      //calcularEdad(numFolio);
-    
-    
-    //// fin otra_consulta
-  }
+      /*var d = new Date(date.split("-").reverse().join("-"));
+      var dd=d.getDate();
+      var mm=d.getMonth()+1;
+      var yy=d.getFullYear();
+      var newdate = yy+"/"+mm+"/"+dd;*/
 
-  function otra_consulta(numFolio){
+      /*24_07_2017 ano = Number($("#fecha_nacimiento").val().slice(6, 10));
 
-    nombre = document.getElementById("nombre"+numFolio).value;
-    console.log('el nombre es: '+nombre);
-    ap_paterno = document.getElementById("ap_paterno"+numFolio).value;
-    ap_materno = document.getElementById("ap_materno"+numFolio).value;
+      var CURP = [];
+      CURP[0] = $("#ap_paterno").val().charAt(0).toUpperCase();
+      CURP[1] = $("#ap_paterno").val().slice(1).replace(/\a\e\i\o\u/gi, "").charAt(0).toUpperCase();
+      CURP[2] = $("#ap_materno").val().charAt(0).toUpperCase();
+      CURP[3] = $("#nombre").val().charAt(0).toUpperCase();
+      CURP[4] = ano.toString().slice(2);
+      CURP[5] = $("#fecha_nacimiento").val().slice(3, 5);
+      CURP[6] = $("#fecha_nacimiento").val().slice(0, 2);
+      CURP[7] = $("#sexo").val().toUpperCase();
+      CURP[8] = abreviacion[estados.indexOf($("#estado").val().toLowerCase())];
+      CURP[9] = $("#ap_paterno").val().slice(1).replace(/[aeiou]/gi, "").charAt(0).toUpperCase();
+      CURP[10] = $("#ap_materno").val().slice(1).replace(/[aeiou]/gi, "").charAt(0).toUpperCase();
+      CURP[11] = $("#nombre").val().slice(1).replace(/[aeiou]/gi, "").charAt(0).toUpperCase();;
+      CURP[12] = ano < 2000 ? random09a : abc[randomAZ];
+      CURP[13] = random09b;
+      return CURP.join("");
+    }
 
-    dia = document.getElementById("dia"+numFolio).value;
-    mes = document.getElementById("mes"+numFolio).value;
-    anio = document.getElementById("anio"+numFolio).value;
-    
-    sexo = document.getElementById("select_sexo"+numFolio).value;
-    estado = '#estado'+numFolio;
+    var estados = ["aguascalientes","baja california","baja california sur","campeche","chiapas","chihuahua","coahuila","colima","ciudad de mexico","distrito federal","durango","guanajuato","guerrero","hidalgo","jalisco","estado de mexico","michoacan","morelos","nayarit","nuevo leon","oaxaca","puebla","queretaro","quintana roo","san luis potosi","sinaloa","sonora","tabasco","tamaulipas","tlaxcala","veracruz","yucatan","zacatecas"];
+    var abreviacion = ["AS","BC","BS","CC","CS","CH","CL","CM","CX","DF","DG","GT","GR","HG","JC","MC","MN","MS","NT","NL","OC","PL","QT","QR","SP","SL","SR","TC","TS","TL","VZ","YN","ZS"];
 
-    console.log(document.getElementById('estado'+numFolio).value);
+    /*$("#grupo_indigena").keyup(function(){
+      //alert(generarCURP());
+      //$("#curp").text('ASDF');
+      alert(generarCURP());
+    });*/
 
-      var estados = ["aguascalientes","baja california","baja california sur","campeche","chiapas","chihuahua","coahuila","colima","ciudad de mexico","distrito federal","durango","guanajuato","guerrero","hidalgo","jalisco","estado de mexico","michoacan","morelos","nayarit","nuevo leon","oaxaca","puebla","queretaro","quintana roo","san luis potosi","sinaloa","sonora","tabasco","tamaulipas","tlaxcala","veracruz","yucatan","zacatecas"];
+    /*$(document).ready(function() {
+      $("#sexo").change(function() {
+        document.getElementById("curp_otra").value = 'asdfasd';
+        //alert(generarCURP());
+      });
+    });*/
+
+
+  function otra_consulta(){
+
+        dia = document.getElementById("dia").value;
+        mes = document.getElementById("mes").value;
+        anio = document.getElementById("anio").value;
+        nombre1 = document.getElementById('nombre').value;
+        ap_paterno1 = document.getElementById('ap_paterno').value;
+        ap_materno1 = document.getElementById('ap_materno').value;
+        sexo1 = document.getElementById('select_sexo').value;
+
+
+        var estados = ["aguascalientes","baja california","baja california sur","campeche","chiapas","chihuahua","coahuila","colima","ciudad de mexico","distrito federal","durango","guanajuato","guerrero","hidalgo","jalisco","estado de mexico","michoacan","morelos","nayarit","nuevo leon","oaxaca","puebla","queretaro","quintana roo","san luis potosi","sinaloa","sonora","tabasco","tamaulipas","tlaxcala","veracruz","yucatan","zacatecas"];
         var abreviacion = ["AS","BC","BS","CC","CS","CH","CL","CM","CX","DF","DG","GT","GR","HG","JC","MC","MN","MS","NT","NL","OC","PL","QT","QR","SP","SL","SR","TC","TS","TL","VZ","YN","ZS"];
 
-        prueba_estado = abreviacion[estados.indexOf($(''+estado+'').val().toLowerCase())];
+        prueba_estado = abreviacion[estados.indexOf($("#estado").val().toLowerCase())];
 
         var curp = generaCurp({
-          nombre            : nombre,
-          apellido_paterno  : ap_paterno,
-          apellido_materno  : ap_materno,
-          sexo              : sexo,
+          nombre            : nombre1,
+          apellido_paterno  : ap_paterno1,
+          apellido_materno  : ap_materno1,
+          sexo              : sexo1,
           estado            : prueba_estado,
           fecha_nacimiento  : [dia, mes, anio]
         });
@@ -685,43 +710,6 @@ if (!function_exists("GetSQLValueString")) {
 
         calculaRFC();
   }
-
-
-    /// FUNCIÓN PARA CALCULAR LA EDAD A PARTIR DE LA FECHA DE NACIMIENTO
-    function calcularEdad(numFolio) {
-        dia = document.getElementById("dia"+numFolio).value;
-        mes = document.getElementById("mes"+numFolio).value;
-        anio = document.getElementById("anio"+numFolio).value;
-        fecha = dia+'/'+mes+"/"+anio;
-        
-        var hoy = new Date();
-        var cumpleanos = new Date(fecha);
-        var edad = hoy.getFullYear() - cumpleanos.getFullYear();
-        var m = hoy.getMonth() - cumpleanos.getMonth();
-
-        if (m < 0 || (m === 0 && hoy.getDate() < cumpleanos.getDate())) {
-            edad--;
-        }
-        if(edad){
-          document.getElementById("edad"+numFolio).value = edad;
-          document.getElementById("fecha_nacimiento"+numFolio).value = fecha;
-        }else{
-          document.getElementById("edad"+numFolio).value = '';
-        }
-    }
-
-    function ponerFecha(numFolio){
-      var otroDia = document.getElementById('dia'+numFolio).value;
-      var otroMes = document.getElementById('mes'+numFolio).value;
-      var otroAnio = document.getElementById('anio'+numFolio).value;
-      var fechaVigente = otroDia+'/'+otroMes+'/'+otroAnio;
-
-      document.getElementById('fecha_nacimiento'+numFolio).value = fechaVigente;
-
-      //otra_consulta2();
-      //calcularEdad2();
-    }
-  
   function otra_consulta2(){
 
         dia2 = document.getElementById("dia2").value;
@@ -895,35 +883,35 @@ if (!function_exists("GetSQLValueString")) {
     /// FUNCIÓN PARA CONSULTAR LA INFORMACION RELACIONADA AL CP
     $(document).ready(function(){
       // generamos un evento cada vez que se pulse una tecla
-      $("#cp_add").keyup(function(){
+      $("#cp").keyup(function(){
       
         // enviamos una petición al servidor mediante AJAX enviando el id
         // introducido por el usuario mediante POST
-        $.post("consultar_cp.php", {"cp":$("#cp_add").val()}, function(data){
+        $.post("consultar_cp.php", {"cp":$("#cp").val()}, function(data){
         
           // Si devuelve un nombre lo mostramos, si no, vaciamos la casilla
           if(data.estado){
-            $("#estado_add").val(data.estado);
-            $("#num_estado_add").val(data.num_estado);
+            $("#estado").val(data.estado);
+            $("#num_estado").val(data.num_estado);
           }
           else{
-            $("#estado_add").val("");
+            $("#estado").val("");
           }
             
           // Si devuelve un apellido lo mostramos, si no, vaciamos la casilla
           if(data.municipio){
-            $("#municipio_add").val(data.municipio);
-            $("#num_municipio_add").val(data.num_municipio);
+            $("#municipio").val(data.municipio);
+            $("#num_municipio").val(data.num_municipio);
           }
           else{
-            $("#municipio_add").val("");
+            $("#municipio").val("");
           }
 
           if(data.ciudad){
-            $("#ciudad_add").val(data.ciudad);
+            $("#ciudad").val(data.ciudad);
           }
           else{
-            $("#ciudad_add").val("");
+            $("#ciudad").val("");
           }
 
         },"json");
@@ -979,7 +967,39 @@ if (!function_exists("GetSQLValueString")) {
     } 
 
 
+    /// FUNCIÓN PARA CALCULAR LA EDAD A PARTIR DE LA FECHA DE NACIMIENTO
+    function calcularEdad() {
+        dia = document.getElementById("dia").value;
+        mes = document.getElementById("mes").value;
+        anio = document.getElementById("anio").value;
+        fecha = anio+'/'+mes+"/"+dia;
 
+        //alert("la fecha es: "+fecha);
+      
+        //var date= document.getElementById('fecha_nacimiento').value;
+
+        /*var d = new Date(date.split("-").reverse().join("-"));
+        var dd=d.getDate();
+        var mm=d.getMonth()+1;
+        var yy=d.getFullYear();
+        var newdate = yy+"/"+mm+"/"+dd;*/
+
+        
+        var hoy = new Date();
+        var cumpleanos = new Date(fecha);
+        var edad = hoy.getFullYear() - cumpleanos.getFullYear();
+        var m = hoy.getMonth() - cumpleanos.getMonth();
+
+        if (m < 0 || (m === 0 && hoy.getDate() < cumpleanos.getDate())) {
+            edad--;
+        }
+        if(edad){
+          document.getElementById("edad").value = edad;
+          document.getElementById("fecha_nacimiento").value = dia+'/'+mes+"/"+anio;
+        }else{
+          document.getElementById("edad").value = '';
+        }
+    }
 
     function calcularEdad2() {
         dia2 = document.getElementById("dia2").value;
