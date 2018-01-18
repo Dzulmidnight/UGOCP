@@ -4,7 +4,7 @@
               <form class="form-horizontal" method="POST" enctype="multipart/form-data" action="" id="frm_afiliacion">
                   <div class="modal-header">
                       <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                      
+
                       <h4 class="modal-title"><b>Formato de Afiliación </b></h4>
                   </div>
                   <div class="modal-body">
@@ -41,13 +41,13 @@
                                         <tr>
                                           <td>
                                             <p>CURP</p>
-                                            <input type="text" style="border: 2px solid #2980b9;width:200px;height:30px;" class="" id="curp_otra" name="curp" placeholder="" onBlur="ponerMayusculas(this)">
+                                            <input type="text" style="border: 2px solid #2980b9;width:200px;height:30px;" class="" id="curp_add" name="curp" placeholder="" onBlur="ponerMayusculas(this)">
                                           </td>
                                         </tr>
                                         <tr>
                                           <td>
                                             <p>RFC</p>
-                                            <input type="text" style="border: 2px solid #2980b9;width:200px;height:30px;" class="" id="rfc2" name="rfc" placeholder="" onBlur="ponerMayusculas(this)">
+                                            <input type="text" style="border: 2px solid #2980b9;width:200px;height:30px;" class="" id="rfc_add" name="rfc" placeholder="" onBlur="ponerMayusculas(this)">
                                           </td>
                                         </tr>
                                         <tr>
@@ -69,23 +69,23 @@
                             </aside>
                             <aside class="profile-info col-lg-9">
                                 <section class="panel">
-        
+
                                     <div class="panel-body bio-graph-info">
                                         <h1>DATOS GENERALES</h1>
-                                      
+
                                             <table class="table">
                                               <tr>
                                                 <td>
                                                     <p>Apellido Paterno</p>
-                                                    <input type="text" class="form-control" id="ap_paterno_add" name="ap_paterno" placeholder=""  onBlur="ponerMayusculas(this)" required>
+                                                    <input type="text" class="form-control" onchange="consultarFolio('_add')" id="ap_paterno_add" name="ap_paterno" placeholder=""  onBlur="ponerMayusculas(this)" required>
                                                 </td>
                                                 <td>
                                                     <p>Apellido Materno</p>
-                                                  <input type="text" class="form-control" id="ap_materno_add" name="ap_materno" placeholder=""  onBlur="ponerMayusculas(this)" required>
+                                                  <input type="text" class="form-control" onchange="consultarFolio('_add')" id="ap_materno_add" name="ap_materno" placeholder=""  onBlur="ponerMayusculas(this)" required>
                                                 </td>
                                                 <td>
                                                     <p>Nombre(s)</p>
-                                                  <input type="text" class="form-control" id="nombre_add" name="nombre" placeholder=""  onBlur="ponerMayusculas(this)" required>
+                                                  <input type="text" class="form-control" onchange="consultarFolio('_add')" id="nombre_add" name="nombre" placeholder=""  onBlur="ponerMayusculas(this)" required>
                                                 </td>
                                               </tr>
                                               <tr>
@@ -142,17 +142,17 @@
                                                     <option value="12">DIC</option>
                                                   </select>
                                                   <input class="form-control" type="text" id="anio_add" name="anio" placeholder="aaaa" value="" onChange="consultarFolio('_add')">
-                                                  <input type="text" name="fecha_nacimiento" id="fecha_nacimiento_add" onChange="consultarFolio('_add')" value="">
+                                                  <input type="hidden" name="fecha_nacimiento" id="fecha_nacimiento_add" onChange="consultarFolio('_add')" value="">
                                                 </td>
                                                 <td>
-                                                  <select class="form-control" name="select_sexo" id="select_sexo_add" onchange="consultar_organizacion()">
+                                                  <select class="form-control" name="select_sexo" id="select_sexo_add" onchange="consultar_organizacion('_add')">
                                                     <option value="">Sexo</option>
                                                     <option value="H">Hombre</option>
                                                     <option value="M">Mujer</option>
                                                   </select>
                                                   <div id="div_organizacion" style="display:none">
                                                     <label style="background:#e74c3c;color:#ecf0f1;margin-top:1.5em;" for="organizacion"><b>Selecciona la organización a la que pertenece</b></label>
-                                                    <select style="border: 2px solid #2980b9;" class="form-control" name="organizacion" id="organizacion_add">
+                                                    <select style="border: 2px solid #2980b9;" class="form-control" name="organizacion" id="organizacion_add" onChange="consultarFolio('_add')">
                                                       <option value="FENAM">FENAM</option>
                                                       <option value="UGOCP">UGOCP</option>
                                                     </select>
@@ -175,7 +175,7 @@
                                                 </td>
                                                 <td>
                                                     <p>¿Pertenece a un grupo indígena?</p>
-                                                    <select name="grupo_indigena" id="grupo_indigena_add" onchange="consultar_grupo()">
+                                                    <select name="grupo_indigena" id="grupo_indigena_add" onChange="consultar_grupo('_add')" >
                                                       <option value="">Seleccione una opción</option>
                                                       <option value="SI">SI</option>
                                                       <option value="NO">NO</option>
@@ -185,7 +185,7 @@
                                                     <p>Nombre del Grupo</p>
                                                   <input style="border: 2px solid red;" type="text" class="form-control" id="nombre_comunidad_add" name="nombre_comunidad" placeholder="" onBlur="ponerMayusculas(this)">
                                                 </td>
-                                              
+
                                               </tr>
                                               <tr class="info">
                                                   <th colspan="3">INFORMACIÓN DOMICILIARIA</th>
@@ -193,7 +193,7 @@
                                               <tr>
                                                 <td>
                                                     <p>Código Postal</p>
-                                                  <input type="text" class="form-control" id="cp_add" name="cp" placeholder="" onChange="otra_consulta('_add')" onBlur="ponerMayusculas(this)">
+                                                  <input type="text" class="form-control" id="cp_add" name="cp" placeholder="" onChange="consultarFolio('_add')" onBlur="ponerMayusculas(this)">
                                                 </td>
                                                 <td>
                                                     <p>Estado</p>
@@ -210,25 +210,25 @@
                                                 <td>
                                                     <p>Municipio</p>
                                                   <input type="text" style="border: 2px solid #2980b9;" class="form-control" id="municipio_add" name="municipio" placeholder="" onBlur="ponerMayusculas(this)">
-                                                  <input type="hidden" id="num_municipio" name="num_municipio">
+                                                  <input type="hidden" id="num_municipio_add" name="num_municipio">
                                                 </td>
                                                 <td colspan="2">
                                                   <p>Colonia</p>
-                                                  <select style="border: 2px solid #2980b9;" class="form-control" name="colonia" id="colonia_add" onchange="otra_consulta()">
+                                                  <select style="border: 2px solid #2980b9;" class="form-control" name="colonia" id="colonia_add" onchange="consultarFolio('_add')">
                                                     <option value="">Colonia</option>
                                                   </select>
                                                   <div class="checkbox">
                                                       <label>
-                                                        <input type="checkbox" id="checkbox_colonia_add" onclick="mostrar_colonia()"> Colonia diferente
+                                                        <input type="checkbox" id="checkbox_colonia" onclick="mostrar_colonia()"> Colonia diferente
                                                       </label>
                                                   </div>
-                                                  <input type="text" style="display:none;border: 2px solid red;" class="form-control" id="colonia_diferente_add" name="colonia_diferente" placeholder="Colonia">
+                                                  <input type="text" style="display:none;border: 2px solid red;" class="form-control" id="colonia_diferente" name="colonia_diferente" placeholder="Colonia">
                                                 </td>
                                               </tr>
                                               <tr>
                                                 <td colspan="2">
                                                     <p>Calle</p>
-                                                  <input type="text" class="form-control" id="calle_add" name="calle" placeholder="" onchange="otra_consulta()" onBlur="ponerMayusculas(this)">
+                                                  <input type="text" class="form-control" id="calle_add" name="calle" placeholder="" onchange="consultarFolio('_add')" onBlur="ponerMayusculas(this)">
                                                 </td>
                                                 <td>
                                                     <p>Número</p>
@@ -253,7 +253,7 @@
                                                 </td>
 
                                               </tr>
-                                  
+
                                             </table>
                                             <table class="table">
                                               <thead>
@@ -292,11 +292,11 @@
                     <!-- page end-->
                   </div>
                   <div class="modal-footer">
-                        
+
                         <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
                         <button class="btn btn-primary" type="button" name="btn_limpiar" onclick="limpiar()"><i class="fa fa-eraser"></i> <b>Limpiar</b></button>
                         <button class="btn btn-warning" type="submit" id="agregar_afiliado"  name="agregar_afiliado" value="1" onclick="return validar()"><span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> <b>Agregar</b></button>
-                  </div>              
+                  </div>
               </form>
             </div>
         </div>

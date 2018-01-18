@@ -1,6 +1,6 @@
 <?php
 require('../conexion/conexion.php');
-$cp = $_POST['cp2'];
+$cp = $_POST['cp'];
 
 $query = "SELECT asentamiento FROM codigo WHERE cp = '$cp'";
 $consultar = $mysqli->query($query);
@@ -11,4 +11,3 @@ $consultar = $mysqli->query($query);
   }
 //echo "</select>";
 ?>
-

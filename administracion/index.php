@@ -7,7 +7,7 @@ date_default_timezone_set('America/Mexico_City');
 
 
 if (!function_exists("GetSQLValueString")) {
-  function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDefinedValue = "") 
+  function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDefinedValue = "")
   {
     if (PHP_VERSION < 6) {
       $theValue = get_magic_quotes_gpc() ? stripslashes($theValue) : $theValue;
@@ -18,7 +18,7 @@ if (!function_exists("GetSQLValueString")) {
     switch ($theType) {
       case "text":
         $theValue = ($theValue != "") ? "'" . $theValue . "'" : "NULL";
-        break;    
+        break;
       case "long":
       case "int":
         $theValue = ($theValue != "") ? intval($theValue) : "NULL";
@@ -66,7 +66,7 @@ if (!function_exists("GetSQLValueString")) {
         if(file_exists($foto_actual)){
           unlink($foto_actual);
         }
-            
+
             $_FILES["foto_afiliado"]["name"];
             move_uploaded_file($_FILES["foto_afiliado"]["tmp_name"], $ruta_img.$_FILES["foto_afiliado"]["name"]);
             $foto_afiliado = $ruta_img.basename($_FILES["foto_afiliado"]["name"]);
@@ -83,16 +83,6 @@ if (!function_exists("GetSQLValueString")) {
         $organizacion = $_POST['organizacion'];
       }
 
-      /*$insertSQL = sprintf("INSERT INTO afiliado (curp, clave_elector, num_ine, rfc, idadm, foto) VALUES (%s, %s, %s, %s, %s, %s)",
-        GetSQLValueString($curp, "text"),
-        GetSQLValueString($_POST['clave_elector'], "text"),
-        GetSQLValueString($_POST['num_ine'], "text"),
-        GetSQLValueString($rfc, "text"),
-        GetSQLValueString($idadministrador, "int"),
-        GetSQLValueString($foto_afiliado, "text"));
-      $insertar = $mysqli->query($insertSQL);*/
-
-
       $insertSQL = "INSERT INTO afiliado (organizacion, curp, clave_elector, num_ine, rfc, idadm, foto) VALUES ('$organizacion', '$curp', '$_POST[clave_elector]', '$_POST[num_ine]', '$rfc', $idadministrador, '$foto_afiliado')";
       $insertar = $mysqli->query($insertSQL);
 
@@ -105,67 +95,15 @@ if (!function_exists("GetSQLValueString")) {
         $colonia = $_POST['colonia_diferente'];
       }
 
-      /// INSERTARMO LA DATOS GENERALES
-      /*$insertSQL = sprintf("INSERT INTO datos_generales(folio, nombre, ap_paterno, ap_materno, calle, numero, colonia, cp, municipio, estado, telefono, correo, celular, edad, sexo, estado_civil, fecha_nacimiento, grupo_indigena, nombre_comunidad) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)",
-        GetSQLValueString($folio, "int"),
-        GetSQLValueString($_POST['nombre'], "text"),
-        GetSQLValueString($_POST['ap_paterno'], "text"),
-        GetSQLValueString($_POST['ap_materno'], "text"),
-        GetSQLValueString($_POST['calle'], "text"),
-        GetSQLValueString($_POST['numero'], "text"),
-        GetSQLValueString($colonia, "text"),
-        GetSQLValueString($_POST['cp'], "text"),
-        GetSQLValueString($_POST['municipio'], "text"),
-        GetSQLValueString($_POST['estado'], "text"),
-        GetSQLValueString($_POST['telefono'], "text"),
-        GetSQLValueString($_POST['correo'], "text"),
-        GetSQLValueString($_POST['celular'], "text"),
-        GetSQLValueString($_POST['edad'], "text"),
-        GetSQLValueString($_POST['sexo'], "text"),
-        GetSQLValueString($_POST['estado_civil'], "text"),
-        GetSQLValueString($_POST['fecha_nacimiento'], "text"),
-        GetSQLValueString($_POST['grupo_indigena'], "text"),
-        GetSQLValueString($_POST['nombre_comunidad'], "text"));
-      $insertar = $mysqli->query($insertSQL);*/
-
-      /*$insertSQL = sprintf("INSERT INTO datos_generales(folio, nombre, ap_paterno, ap_materno, calle, numero, colonia, cp, municipio, estado, telefono, correo, celular, edad, sexo, estado_civil, fecha_nacimiento, grupo_indigena, nombre_comunidad) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)",
-        GetSQLValueString($folio, "int"),
-        GetSQLValueString($_POST['nombre'], "text"),
-        GetSQLValueString($_POST['ap_paterno'], "text"),
-        GetSQLValueString($_POST['ap_materno'], "text"),
-        GetSQLValueString($_POST['calle'], "text"),
-        GetSQLValueString($_POST['numero'], "text"),
-        GetSQLValueString($colonia, "text"),
-        GetSQLValueString($_POST['cp'], "text"),
-        GetSQLValueString($_POST['municipio'], "text"),
-        GetSQLValueString($_POST['estado'], "text"),
-        GetSQLValueString($_POST['telefono'], "text"),
-        GetSQLValueString($_POST['correo'], "text"),
-        GetSQLValueString($_POST['celular'], "text"),
-        GetSQLValueString($_POST['edad'], "text"),
-        GetSQLValueString($_POST['sexo'], "text"),
-        GetSQLValueString($_POST['estado_civil'], "text"),
-        GetSQLValueString($_POST['fecha_nacimiento'], "text"),
-        GetSQLValueString($_POST['grupo_indigena'], "text"),
-        GetSQLValueString($_POST['nombre_comunidad'], "text"));
-      $insertar = $mysqli->query($insertSQL);*/
       $dia = $_POST['dia'];
       $mes = $_POST['mes'];
       $anio = $_POST['anio'];
 
       $fecha_nacimiento = $dia.'/'.$mes.'/'.$anio;
 
-      $insertSQL = "INSERT INTO datos_generales(folio, nombre, ap_paterno, ap_materno, calle, numero, colonia, cp, municipio, num_municipio, estado, num_estado, telefono, correo, celular, edad, sexo, estado_civil, fecha_nacimiento, grupo_indigena, nombre_comunidad) VALUES ($folio, '$_POST[nombre]', '$_POST[ap_paterno]', '$_POST[ap_materno]', '$_POST[calle]', '$_POST[numero]', '$colonia', '$_POST[cp]', '$_POST[municipio]', $_POST[num_municipio], '$_POST[estado]', $_POST[num_estado], '$_POST[telefono]', '$_POST[correo]', '$_POST[celular]', '$_POST[edad]', '$_POST[select_sexo]', '$_POST[estado_civil]', '$_POST[fecha_nacimiento]', '$_POST[grupo_indigena]', '$_POST[nombre_comunidad]')";
+      $insertSQL = "INSERT INTO datos_generales(folio, nombre, ap_paterno, ap_materno, calle, numero, colonia, cp, municipio, num_municipio, estado, num_estado, ciudad, telefono, correo, celular, edad, sexo, estado_civil, dia, mes, anio, fecha_nacimiento, grupo_indigena, nombre_comunidad) VALUES ($folio, '$_POST[nombre]', '$_POST[ap_paterno]', '$_POST[ap_materno]', '$_POST[calle]', '$_POST[numero]', '$colonia', '$_POST[cp]', '$_POST[municipio]', $_POST[num_municipio], '$_POST[estado]', $_POST[num_estado], '$_POST[ciudad]', '$_POST[telefono]', '$_POST[correo]', '$_POST[celular]', '$_POST[edad]', '$_POST[select_sexo]', '$_POST[estado_civil]', '$_POST[dia]', '$_POST[mes]', '$_POST[anio]', '$_POST[fecha_nacimiento]', '$_POST[grupo_indigena]', '$_POST[nombre_comunidad]')";
       $insertar = $mysqli->query($insertSQL);
 
-      /// INSERTARMOS LA INFORMACIÓN LABORAL
-      /*$insertSQL = sprintf("INSERT INTO informacion_laboral(folio, ocupacion, cargo, empresa, tel_oficina) VALUES (%s, %s, %s, %s, %s)",
-        GetSQLValueString($folio, "text"),
-        GetSQLValueString($_POST['ocupacion'], "text"),
-        GetSQLValueString($_POST['cargo'], "text"),
-        GetSQLValueString($_POST['empresa'], "text"),
-        GetSQLValueString($_POST['tel_oficina'], "text"));
-      $insertar = $mysqli->query($insertSQL);*/
 
       $insertSQL = "INSERT INTO informacion_laboral(folio, ocupacion, cargo, empresa, tel_oficina) VALUES ($folio, '$_POST[ocupacion]', '$_POST[cargo]', '$_POST[empresa]', '$_POST[tel_oficina]')";
       $insertar = $mysqli->query($insertSQL);
@@ -184,7 +122,7 @@ if (!function_exists("GetSQLValueString")) {
           $sexo = 'MUJER';
         }
         $nombre = $detalle['nombre'].' '.$detalle['ap_paterno'].' '.$detalle['ap_materno'];
-        $direccion = $detalle['calle'].' #'.$detalle['numero'].', COL. '.$detalle['colonia'].', C.P. '.$detalle['cp'].', MUNICIPIO '.$detalle['municipio'].', '.$detalle['estado'];
+        $direccion = $detalle['calle'].' #'.$detalle['numero'].', COL. '.$detalle['colonia'].', C.P. '.$detalle['cp'].', MUNICIPIO '.$detalle['municipio'].', CIUDAD '.$detalle['ciudad'].','.$detalle['estado'];
 
         header('Location: index.php?folio='.$folio);
 
@@ -213,56 +151,22 @@ if (!function_exists("GetSQLValueString")) {
       }
 
       $curp = $_POST['curp'];
-      $rfc = $_POST['rfc'];
-      /// actualizamos la tabla afiliado
-      /*$updateSQL = sprintf("UPDATE afiliado SET curp = %s, clave_elector = %s, num_ine = %s, rfc = %s, foto = %s, idadm = %s WHERE folio = %s",
-        GetSQLValueString($curp, "text"),
-        GetSQLValueString($_POST['clave_elector'], "text"),
-        GetSQLValueString($_POST['num_ine'], "text"),
-        GetSQLValueString($rfc, "text"),
-        GetSQLValueString($foto_afiliado, "text"),
-        GetSQLValueString($idadministrador, "text"),
-        GetSQLValueString($folio, "text"));
-      $actualizar = $mysqli->query($updateSQL);*/
+      $rfc = strtoupper($_POST['rfc']);
+
       $updateSQL = "UPDATE afiliado SET curp = '$curp', clave_elector = '$_POST[clave_elector]', num_ine = '$_POST[num_ine]', rfc = '$rfc', foto = '$foto_afiliado', idadm = $idadministrador WHERE folio = $folio";
       $actualizar = $mysqli->query($updateSQL);
 
       /// actualizamos los datos_generales
-      /*$updateSQL = sprintf("UPDATE datos_generales SET nombre = %s, ap_paterno = %s, ap_materno = %s, calle = %s, numero = %s, colonia = %s, cp = %s, municipio = %s, estado = %s, telefono = %s, correo = %s, celular = %s, edad = %s, sexo = %s, estado_civil = %s, fecha_nacimiento = %s, grupo_indigena = %s, nombre_comunidad = %s WHERE folio = %s",
 
-        GetSQLValueString($_POST['nombre'], "text"),
-        GetSQLValueString($_POST['ap_paterno'], "text"),
-        GetSQLValueString($_POST['ap_materno'], "text"),
-        GetSQLValueString($_POST['calle'], "text"),
-        GetSQLValueString($_POST['numero'], "text"),
-        GetSQLValueString($_POST['colonia'], "text"),
-        GetSQLValueString($_POST['cp'], "text"),
-        GetSQLValueString($_POST['municipio'], "text"),
-        GetSQLValueString($_POST['estado'], "text"),
-        GetSQLValueString($_POST['telefono'], "text"),
-        GetSQLValueString($_POST['correo'], "text"),
-        GetSQLValueString($_POST['celular'], "text"),
-        GetSQLValueString($_POST['edad'], "text"),
-        GetSQLValueString($_POST['sexo'], "text"),
-        GetSQLValueString($_POST['estado_civil'], "text"),
-        GetSQLValueString($_POST['fecha_nacimiento'], "text"),
-        GetSQLValueString($_POST['grupo_indigena'], "text"),
-        GetSQLValueString($_POST['nombre_comunidad'], "text"),
-        GetSQLValueString($folio, "int"));*/
-      $updateSQL = "UPDATE datos_generales SET nombre = '$_POST[nombre]', ap_paterno = '$_POST[ap_paterno]', ap_materno = '$_POST[ap_materno]', calle = '$_POST[calle]', numero = '$_POST[numero]', colonia = '$_POST[colonia]', cp = '$_POST[cp]', municipio = '$_POST[municipio]', estado = '$_POST[estado]', telefono = '$_POST[telefono]', correo = '$_POST[correo]', celular = '$_POST[celular]', edad = '$_POST[edad]', sexo = '$_POST[sexo]', estado_civil = '$_POST[estado_civil]', fecha_nacimiento = '$_POST[fecha_nacimiento]', grupo_indigena = '$_POST[grupo_indigena]', nombre_comunidad = '$_POST[nombre_comunidad]' WHERE folio = $folio";
+      $updateSQL = "UPDATE datos_generales SET nombre = '$_POST[nombre]', ap_paterno = '$_POST[ap_paterno]', ap_materno = '$_POST[ap_materno]', calle = '$_POST[calle]', numero = '$_POST[numero]', colonia = '$_POST[colonia]', cp = '$_POST[cp]', municipio = '$_POST[municipio]', estado = '$_POST[estado]', ciudad = '$_POST[ciudad]', telefono = '$_POST[telefono]', correo = '$_POST[correo]', celular = '$_POST[celular]', edad = '$_POST[edad]', sexo = '$_POST[sexo]', estado_civil = '$_POST[estado_civil]', dia = '$_POST[dia]', mes = '$_POST[mes]', anio = '$_POST[anio]', fecha_nacimiento = '$_POST[fecha_nacimiento]', grupo_indigena = '$_POST[grupo_indigena]', nombre_comunidad = '$_POST[nombre_comunidad]' WHERE folio = $folio";
       $actualizar = $mysqli->query($updateSQL);
 
       /// actualizamos la información laboral
-      /*$updateSQL = sprintf("UPDATE informacion_laboral SET ocupacion = %s, cargo = %s, empresa = %s, tel_oficina = %s WHERE folio = %s",
-        GetSQLValueString($_POST['ocupacion'], "text"),
-        GetSQLValueString($_POST['cargo'], "text"),
-        GetSQLValueString($_POST['empresa'], "text"),
-        GetSQLValueString($_POST['tel_oficina'], "text"),
-        GetSQLValueString($folio, "int"));*/
+
       $updateSQL = "UPDATE informacion_laboral SET ocupacion = '$_POST[ocupacion]', cargo = '$_POST[cargo]', empresa = '$_POST[empresa]', tel_oficina = '$_POST[tel_oficina]' WHERE folio = $folio";
       $actualizar = $mysqli->query($updateSQL);
     }
- 
+
 
     /// TERMINA INSERTAR AFILIADO
 
@@ -272,23 +176,6 @@ if (!function_exists("GetSQLValueString")) {
         if(file_exists($_POST['foto_afiliado'])){
             unlink($_POST['foto_afiliado']);
         }
-
-        /*$deleteSQL = sprintf("DELETE FROM afiliado WHERE folio = %s",
-            GetSQLValueString($folio, "int"));
-        $eliminar = $mysqli->query($deleteSQL);
-
-        $deleteSQL = sprintf("DELETE FROM datos_generales WHERE folio = %s",
-            GetSQLValueString($folio, "int"));
-        $eliminar = $mysqli->query($deleteSQL);
-
-        $deleteSQL = sprintf("DELETE FROM informacion_laboral WHERE folio = %s",
-            GetSQLValueString($folio, "int"));
-        $eliminar = $mysqli->query($deleteSQL);
-
-        $deleteSQL = sprintf("DELETE FROM documentacion WHERE folio = %s",
-            GetSQLValueString($folio, "int"));
-        $eliminar = $mysqli->query($deleteSQL);*/
-
         $deleteSQL = "DELETE FROM afiliado WHERE folio = $folio";
         $eliminar = $mysqli->query($deleteSQL);
 
@@ -300,8 +187,6 @@ if (!function_exists("GetSQLValueString")) {
 
         $deleteSQL = "DELETE FROM documentacion WHERE folio = $folio";
         $eliminar = $mysqli->query($deleteSQL);
-
-
 
         header('Location: index.php');
     }
@@ -317,8 +202,8 @@ if (!function_exists("GetSQLValueString")) {
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
-    <meta name="author" content="Mosaddek">
-    <meta name="keyword" content="FlatLab, Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
+    <meta name="author" content="Inforganic technologies">
+    <meta name="keyword" content="UGOCP, ugocp, obrero campesina, union general obrero campeasin, sindicato ugocp, ugocp oaxaca">
     <link rel="shortcut icon" href="../img/logo_ugocp_xs.png">
 
     <title>Administración - UGOCP</title>
@@ -358,7 +243,7 @@ if (!function_exists("GetSQLValueString")) {
 
       <!--header end-->
       <!--sidebar start-->
-      <?php 
+      <?php
       include('aside.php');
        ?>
       <!--sidebar end-->
@@ -380,7 +265,7 @@ if (!function_exists("GetSQLValueString")) {
                     <div class="panel-body">
 
                       <div class="clearfix">
-                          <?php 
+                          <?php
                           if($permiso_agregar == 1){
                           ?>
                             <div class="btn-group">
@@ -427,9 +312,9 @@ if (!function_exists("GetSQLValueString")) {
                                     <p>Simbologia:</p>
                                       <button class="btn btn-primary btn-xs"><i class="fa fa-folder"></i> Archivos</button>
                                       <button id="" type="button" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> Editar</button>
-                                      <button type="button" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Eliminar</button>                                   
+                                      <button type="button" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Eliminar</button>
                                   </td>
-                                
+
                             </tr>
                             <tr>
                                 <th>Folio</th>
@@ -446,7 +331,7 @@ if (!function_exists("GetSQLValueString")) {
                             </tr>
                           </thead>
                           <tbody id="f1" name="f1">
-                            <?php 
+                            <?php
                             $query = "SELECT afiliado.*, datos_generales.*, informacion_laboral.* FROM afiliado INNER JOIN datos_generales ON afiliado.folio = datos_generales.folio LEFT JOIN informacion_laboral ON afiliado.folio = informacion_laboral.folio";
                             $consultar = $mysqli->query($query);
 
@@ -467,7 +352,7 @@ if (!function_exists("GetSQLValueString")) {
                                   </div>
                                 </td>
                                 <td>
-                                  <?php 
+                                  <?php
                                   if(!empty($registros['foto'])){
                                   ?>
                                     <img class="img-responsive" src="<?php echo $registros['foto']; ?>" alt="" width="40px;">
@@ -496,14 +381,14 @@ if (!function_exists("GetSQLValueString")) {
                                         <input type="hidden" name="generar_formato" value="1">
                                     </form>
                                 </td>
-                                
+
                                 <td>
                                   <!-- INICIAN BOTONES DE ACCIONES -->
                                   <form action="" method="POST">
                                     <input type="hidden" name="foto_afiliado" value="<?php echo $registros['foto']; ?>">
                                     <a href="<?php echo 'detalle_afiliado.php?folio='.$registros['folio']; ?>" class="btn btn-primary btn-xs"><i class="fa fa-folder"></i></a>
                                     <!-- boton editar -->
-                                    <?php 
+                                    <?php
                                     if($permiso_editar == 1){
                                     ?>
                                       <button id="" type="button" class="btn btn-info btn-xs" data-toggle="modal" data-target="<?php echo '#modalAfiliado'.$registros['folio']; ?>"><i class="fa fa-pencil"></i></i></button>
@@ -511,18 +396,18 @@ if (!function_exists("GetSQLValueString")) {
                                     }
                                      ?>
                                     <!-- boton eliminar -->
-                                    <?php 
+                                    <?php
                                     if($permiso_eliminar == 1){
                                     ?>
                                       <button type="submit" name="eliminar_afiliado" class="btn btn-danger btn-xs" value="<?php echo $registros['folio']; ?>" onclick="return confirm('¿Desea eliminar la información?');"><i class="fa fa-trash-o"></i></i></button>
                                     <?php
                                     }
                                      ?>
-                                                                      
+
                                   </form>
                                   <!-- TERMINAN BOTONES DE ACCIONES -->
                                 <!-- Modal Editar Afiliado - Folio -->
-                                  
+
                                   <?php include('editarAfiliado.php'); ?>
                                   <!-- modal -->
 
@@ -569,14 +454,14 @@ if (!function_exists("GetSQLValueString")) {
         <div class="modal-body text-center">
           <div class="row">
             <h3>Se ha agreado un nuevo afiliado</h3>
-            <h3 style="color:#e67e22">¿DESEA DESCARGAR EL FORMATO DE AFILIACIÓN Y LA CREDENCIAL?</h3> 
+            <h3 style="color:#e67e22">¿DESEA DESCARGAR EL FORMATO DE AFILIACIÓN Y LA CREDENCIAL?</h3>
             <div class="col-md-6">
               <button type="button" style="width:70%" class="btn btn-default" data-dismiss="modal">Cerrar</button>
             </div>
             <div class="col-md-6">
               <button type="submit" id="btn_descargar" style="width:70%" class="btn btn-success">Descargar</button>
               <input type="hidden" name="folio_primera_vez" value="<?php echo $_GET['folio']; ?>">
-            </div>            
+            </div>
           </div>
         </div>
       </div>
@@ -589,7 +474,7 @@ if (!function_exists("GetSQLValueString")) {
   </section>
 
 
-<?php 
+<?php
   if(isset($_GET['folio']) && $_GET['folio'] != 0){
   ?>
   <script>
@@ -601,306 +486,159 @@ if (!function_exists("GetSQLValueString")) {
   }
  ?>
 
-<script>
-  function consultar_check(){
-      var seleccionados = ''
-      $('.micheckbox:checked').each(
-          function() {
-              seleccionados += $(this).val() + ",";
+  <script>
+    function consultar_check(){
+        var seleccionados = ''
+        $('.micheckbox:checked').each(
+            function() {
+                seleccionados += $(this).val() + ",";
+            }
+
+        );
+        if(seleccionados.length == 0){
+          alert('Debes seleccionar el folio del afiliado');
+        }else{
+          function abrirEnPestana(url) {
+              var a = document.createElement("a");
+              a.target = "_new";
+              a.href = url;
+              a.click();
           }
-
-      );
-      if(seleccionados.length == 0){
-        alert('Debes seleccionar el folio del afiliado');
-      }else{
-        function abrirEnPestana(url) {
-            var a = document.createElement("a");
-            a.target = "_new";
-            a.href = url;
-            a.click();
+          var url="generar_pdf.php?lista="+seleccionados;
+          abrirEnPestana(url);
         }
-        var url="generar_pdf.php?lista="+seleccionados;
-        abrirEnPestana(url);
-      }
-  }  
-  function mostrar_colonia(){
-    document.getElementById('colonia_diferente').style.display = 'block';
-  }
+    }
+    function mostrar_colonia(){
+      document.getElementById('colonia_diferente').style.display = 'block';
+    }
 
-  function consultarFolio(numFolio){
-    var numFolio = numFolio;
+    function consultarFolio(numFolio){
+      var numFolio = numFolio;
+      //ya
+      calcularEdad(numFolio);
+      otra_consulta(numFolio);
 
-    /*var dia = 'dia'+numFolio;
-    var mes = 'mes'+numFolio;
-    var anio = 'anio'+numFolio;
-    var nombre = 'nombre'+numFolio;
-    var ap_paterno = 'ap_paterno'+numFolio;
-    var ap_materno = 'ap_materno'+numFolio;
-    var sexo = 'sexo'+numFolio;
-    var estado = 'estado'+numFolio;*/
-    //// inicia funcion otra_consulta
-    //ponerFecha(numFolio);
-    calcularEdad(numFolio);
+    }
 
-    otra_consulta(numFolio);
-    
-      //otra_consulta(numFolio);
-      //calcularEdad(numFolio);
-    
-    
-    //// fin otra_consulta
-  }
+    ///FUNCION QUE SE LLAMA PARA EL FORMULARIO DE EDITAR AFILIADO //////////////////
+    function editarFolio(numFolio){
+      var numFolio = numFolio;
+      //ya
+      calcularEdad(numFolio);
+      /// mostramos las organizaciones en caso de que sea mujer
+      //no aplica consultar_organizacion(numFolio);
+      //consultamos el grupo indigena
+      //consultar_grupo();
+      otra_consulta(numFolio);
+      //// INICIAN FUNCIONES DE CODIGO POSTAL ////
+      /// FUNCIÓN PARA CONSULTAR LA INFORMACION RELACIONADA AL CP
+      var idcp = '#cp'+numFolio;
+      var idestado = '#estado'+numFolio;
+      var idnum_estado = '#num_estado'+numFolio;
+      var idmunicipio = '#municipio'+numFolio;
+      var idnum_municipio = '#num_municipio'+numFolio;
+      var idciudad = '#ciudad'+numFolio;
+      var idfrm_editar_afiliado = '#frm_editar_afiliado'+numFolio
+      var idcolonia = '#colonia'+numFolio;
 
-  function otra_consulta(numFolio){
+      $(document).ready(function(){
+        // generamos un evento cada vez que se pulse una tecla
+        $(idcp).keyup(function(){
 
-    nombre = document.getElementById("nombre"+numFolio).value;
-    console.log('el nombre es: '+nombre);
-    ap_paterno = document.getElementById("ap_paterno"+numFolio).value;
-    ap_materno = document.getElementById("ap_materno"+numFolio).value;
+          // enviamos una petición al servidor mediante AJAX enviando el id
+          // introducido por el usuario mediante POST
+          $.post("consultar_cp.php", {"cp":$('#cp'+numFolio).val()}, function(data){
 
-    dia = document.getElementById("dia"+numFolio).value;
-    mes = document.getElementById("mes"+numFolio).value;
-    anio = document.getElementById("anio"+numFolio).value;
-    
-    sexo = document.getElementById("select_sexo"+numFolio).value;
-    estado = '#estado'+numFolio;
+            // Si devuelve un nombre lo mostramos, si no, vaciamos la casilla
+            if(data.estado){
+              $('#estado'+numFolio).val(data.estado);
+              $('#num_estado'+numFolio).val(data.num_estado);
+            }
+            else{
+              $('#estado'+numFolio).val("");
+            }
 
-    console.log(document.getElementById('estado'+numFolio).value);
+            // Si devuelve un apellido lo mostramos, si no, vaciamos la casilla
+            if(data.municipio){
+              $('#municipio'+numFolio).val(data.municipio);
+              $('#num_municipio'+numFolio).val(data.num_municipio);
+            }
+            else{
+              $('#municipio'+numFolio).val("");
+            }
 
-      var estados = ["aguascalientes","baja california","baja california sur","campeche","chiapas","chihuahua","coahuila","colima","ciudad de mexico","distrito federal","durango","guanajuato","guerrero","hidalgo","jalisco","estado de mexico","michoacan","morelos","nayarit","nuevo leon","oaxaca","puebla","queretaro","quintana roo","san luis potosi","sinaloa","sonora","tabasco","tamaulipas","tlaxcala","veracruz","yucatan","zacatecas"];
+            if(data.ciudad){
+              $('#ciudad'+numFolio).val(data.ciudad);
+            }
+            else{
+              $('#ciudad'+numFolio).val("");
+            }
+
+          },"json");
+        });
+      });
+      ///FUNCIÓN PARA CREAR UN SELECT DE LAS COLONIAS DE UN CP
+      $(document).on('ready',function(){
+
+        $('#cp'+numFolio).keyup(function(){
+          var url = 'select_colonia2.php';
+
+          $.ajax({
+             type: 'POST',
+             url: url,
+             data: $('#frm_editar_afiliado'+numFolio).serialize(),
+             success: function(data)
+             {
+               $('#colonia'+numFolio).html(data);
+             }
+           });
+        });
+      });
+
+      ///// TERMINAN FUNCIONES DE CODIGO POSTAL ///
+    }
+
+
+    function otra_consulta(numFolio){
+      nombre = document.getElementById("nombre"+numFolio).value;
+      ap_paterno = document.getElementById("ap_paterno"+numFolio).value;
+      ap_materno = document.getElementById("ap_materno"+numFolio).value;
+
+      dia = document.getElementById("dia"+numFolio).value;
+      mes = document.getElementById("mes"+numFolio).value;
+      anio = document.getElementById("anio"+numFolio).value;
+
+      sexo = document.getElementById("select_sexo"+numFolio).value;
+      estado = 'estado'+numFolio;
+      idestado = '#estado'+numFolio;
+
+       estados = ["aguascalientes","baja california","baja california sur","campeche","chiapas","chihuahua","coahuila","colima","ciudad de mexico","distrito federal","durango","guanajuato","guerrero","hidalgo","jalisco","estado de mexico","michoacan","morelos","nayarit","nuevo leon","oaxaca","puebla","queretaro","quintana roo","san luis potosi","sinaloa","sonora","tabasco","tamaulipas","tlaxcala","veracruz","yucatan","zacatecas"];
         var abreviacion = ["AS","BC","BS","CC","CS","CH","CL","CM","CX","DF","DG","GT","GR","HG","JC","MC","MN","MS","NT","NL","OC","PL","QT","QR","SP","SL","SR","TC","TS","TL","VZ","YN","ZS"];
 
-        prueba_estado = abreviacion[estados.indexOf($(''+estado+'').val().toLowerCase())];
+      prueba_estado = abreviacion[estados.indexOf($('#estado'+numFolio).val().toLowerCase())];
 
-        var curp = generaCurp({
-          nombre            : nombre,
-          apellido_paterno  : ap_paterno,
-          apellido_materno  : ap_materno,
-          sexo              : sexo,
-          estado            : prueba_estado,
-          fecha_nacimiento  : [dia, mes, anio]
-        });
-        
-        document.getElementById("curp_otra").value = curp;
-
-        calculaRFC();
-  }
-
-
-    /// FUNCIÓN PARA CALCULAR LA EDAD A PARTIR DE LA FECHA DE NACIMIENTO
-    function calcularEdad(numFolio) {
-        dia = document.getElementById("dia"+numFolio).value;
-        mes = document.getElementById("mes"+numFolio).value;
-        anio = document.getElementById("anio"+numFolio).value;
-        fecha = dia+'/'+mes+"/"+anio;
-        
-        var hoy = new Date();
-        var cumpleanos = new Date(fecha);
-        var edad = hoy.getFullYear() - cumpleanos.getFullYear();
-        var m = hoy.getMonth() - cumpleanos.getMonth();
-
-        if (m < 0 || (m === 0 && hoy.getDate() < cumpleanos.getDate())) {
-            edad--;
-        }
-        if(edad){
-          document.getElementById("edad"+numFolio).value = edad;
-          document.getElementById("fecha_nacimiento"+numFolio).value = fecha;
-        }else{
-          document.getElementById("edad"+numFolio).value = '';
-        }
-    }
-
-    function ponerFecha(numFolio){
-      var otroDia = document.getElementById('dia'+numFolio).value;
-      var otroMes = document.getElementById('mes'+numFolio).value;
-      var otroAnio = document.getElementById('anio'+numFolio).value;
-      var fechaVigente = otroDia+'/'+otroMes+'/'+otroAnio;
-
-      document.getElementById('fecha_nacimiento'+numFolio).value = fechaVigente;
-
-      //otra_consulta2();
-      //calcularEdad2();
-    }
-  
-  function otra_consulta2(){
-
-        dia2 = document.getElementById("dia2").value;
-        mes2 = document.getElementById("mes2").value;
-        anio2 = document.getElementById("anio2").value;
-        nombre2 = document.getElementById('nombre2').value;
-        ap_paterno2 = document.getElementById('ap_paterno2').value;
-        ap_materno2 = document.getElementById('ap_materno2').value;
-        sexo2 = document.getElementById('sexo2').value;
-
-
-        var estados2 = ["aguascalientes","baja california","baja california sur","campeche","chiapas","chihuahua","coahuila","colima","ciudad de mexico","distrito federal","durango","guanajuato","guerrero","hidalgo","jalisco","estado de mexico","michoacan","morelos","nayarit","nuevo leon","oaxaca","puebla","queretaro","quintana roo","san luis potosi","sinaloa","sonora","tabasco","tamaulipas","tlaxcala","veracruz","yucatan","zacatecas"];
-        var abreviacion2 = ["AS","BC","BS","CC","CS","CH","CL","CM","CX","DF","DG","GT","GR","HG","JC","MC","MN","MS","NT","NL","OC","PL","QT","QR","SP","SL","SR","TC","TS","TL","VZ","YN","ZS"];
-
-        prueba_estado2 = abreviacion2[estados2.indexOf($("#estado2").val().toLowerCase())];
-
-        var curp2 = generaCurp({
-          nombre            : nombre2,
-          apellido_paterno  : ap_paterno2,
-          apellido_materno  : ap_materno2,
-          sexo              : sexo2,
-          estado            : prueba_estado2,
-          fecha_nacimiento  : [dia2, mes2, anio2]
-        });
-        
-        document.getElementById("curp2").value = curp2;
-
-        calculaRFC2();
-  }
-
-
-
-  //FUNCIÓN PARA GENERAR EL RFC
-  function consultar_organizacion(){
-    var pregunta = document.getElementById('select_sexo').value;
-    if(pregunta == 'M'){
-      document.getElementById('div_organizacion').style.display = 'block';
-      document.getElementById("organizacion").focus();
-    }else{
-      document.getElementById('div_organizacion').style.display = 'none';
-    }
-  }
-
-
-  function consultar_grupo(){
-    var pregunta = document.getElementById('grupo_indigena').value;
-
-    if(pregunta == 'SI'){
-      document.getElementById('campo_oculto').style.display = 'block';
-      document.getElementById("nombre_comunidad").focus();
-    }else{
-      document.getElementById('campo_oculto').style.display = 'none';
-    }
-  }
-
-  function calculaRFC() {
-    function quitaArticulos(palabra) {
-      return palabra.replace("DEL ", "").replace("LAS ", "").replace("DE ",
-          "").replace("LA ", "").replace("Y ", "").replace("A ", "");
-    }
-    function esVocal(letra) {
-      if (letra == 'A' || letra == 'E' || letra == 'I' || letra == 'O'
-          || letra == 'U' || letra == 'a' || letra == 'e' || letra == 'i'
-          || letra == 'o' || letra == 'u')
-        return true;
-      else
-        return false;
-    }
-    nombre = $("#nombre").val();
-    apellidoPaterno = $("#ap_paterno").val();
-    apellidoMaterno = $("#ap_materno").val();
-    fecha = $("#fecha_nacimiento").val();
-    var rfc = "";
-    apellidoPaterno = quitaArticulos(apellidoPaterno);
-    apellidoMaterno = quitaArticulos(apellidoMaterno);
-    rfc += apellidoPaterno.substr(0, 1);
-    var l = apellidoPaterno.length;
-    var c;
-    for (i = 0; i < l; i++) {
-      c = apellidoPaterno.charAt(i);
-      if (esVocal(c)) {
-        rfc += c;
-        break;
-      }
-    }
-    rfc += apellidoMaterno.substr(0, 1);
-    rfc += nombre.substr(0, 1);
-    rfc += fecha.substr(8, 10);
-    rfc += fecha.substr(3, 5).substr(0, 2);
-    rfc += fecha.substr(0, 2);
-    // rfc += "-" + homclave;
-    $("#rfc2").val(rfc);
-    //alert(rfc);
-    //document.getElementById("rfc").value = rfc;
-  }
-
-  function calculaRFC2() {
-    function quitaArticulos(palabra) {
-      return palabra.replace("DEL ", "").replace("LAS ", "").replace("DE ",
-          "").replace("LA ", "").replace("Y ", "").replace("A ", "");
-    }
-    function esVocal(letra) {
-      if (letra == 'A' || letra == 'E' || letra == 'I' || letra == 'O'
-          || letra == 'U' || letra == 'a' || letra == 'e' || letra == 'i'
-          || letra == 'o' || letra == 'u')
-        return true;
-      else
-        return false;
-    }
-    nombre2 = $("#nombre2").val();
-    apellidoPaterno2 = $("#ap_paterno2").val();
-    apellidoMaterno2 = $("#ap_materno2").val();
-    fecha2 = $("#fecha_nacimiento2").val();
-    var rfc2 = "";
-    apellidoPaterno2 = quitaArticulos(apellidoPaterno2);
-    apellidoMaterno2 = quitaArticulos(apellidoMaterno2);
-    rfc2 += apellidoPaterno2.substr(0, 1);
-    var l = apellidoPaterno2.length;
-    var c;
-    for (i = 0; i < l; i++) {
-      c = apellidoPaterno2.charAt(i);
-      if (esVocal(c)) {
-        rfc2 += c;
-        break;
-      }
-    }
-    rfc2 += apellidoMaterno2.substr(0, 1);
-    rfc2 += nombre2.substr(0, 1);
-    rfc2 += fecha2.substr(8, 10);
-    rfc2 += fecha2.substr(3, 5).substr(0, 2);
-    rfc2 += fecha2.substr(0, 2);
-    // rfc += "-" + homclave;
-    $("#rfc3").val(rfc2);
-    //alert(rfc);
-    //document.getElementById("rfc").value = rfc;
-  }
-
-
-    function marcar_desmarcar(){
-        var marca = document.getElementById('marcar');
-        var cb = document.getElementsByName('folios[]');
-
-        for (i=0; i<cb.length; i++){
-            if(marca.checked == true){
-              cb[i].checked = true
-            }else{
-              cb[i].checked = false;
-            }
-        }
-     
-    }
-
-    ///OCULTAMOS EL MODAL_DESCARGAR DESPUES DE DAR CLIC EN DESCARGAR
-    $(document).ready(function() {
-      $("#btn_descargar").click(function() {
-        $('#modalDescargar').modal('hide');
+      var curp = generaCurp({
+        nombre            : nombre,
+        apellido_paterno  : ap_paterno,
+        apellido_materno  : ap_materno,
+        sexo              : sexo,
+        estado            : prueba_estado,
+        fecha_nacimiento  : [dia, mes, anio]
       });
-    });
-
-    ///funciones de bootstrap para mostrar los tooltip
-    $(function () {
-      $('[data-toggle="tooltip"]').tooltip()
-    })
-
-    //FUNCIÓN PARA LIMPIAR EL FORMUARLIO FRM_AFILIACION
-    function limpiar(){
-      // borra el formulario (asumiendo que sólo hay uno; si hay más, especifica su Id)
-      document.getElementById("frm_afiliacion").reset();
+      document.getElementById("curp"+numFolio).value = curp;
+      calculaRFC(numFolio);
     }
 
+    /// INICIA funciones para consultar el codigo postal ///
     /// FUNCIÓN PARA CONSULTAR LA INFORMACION RELACIONADA AL CP
     $(document).ready(function(){
       // generamos un evento cada vez que se pulse una tecla
       $("#cp_add").keyup(function(){
-      
+
         // enviamos una petición al servidor mediante AJAX enviando el id
         // introducido por el usuario mediante POST
         $.post("consultar_cp.php", {"cp":$("#cp_add").val()}, function(data){
-        
+
           // Si devuelve un nombre lo mostramos, si no, vaciamos la casilla
           if(data.estado){
             $("#estado_add").val(data.estado);
@@ -909,7 +647,7 @@ if (!function_exists("GetSQLValueString")) {
           else{
             $("#estado_add").val("");
           }
-            
+
           // Si devuelve un apellido lo mostramos, si no, vaciamos la casilla
           if(data.municipio){
             $("#municipio_add").val(data.municipio);
@@ -929,339 +667,313 @@ if (!function_exists("GetSQLValueString")) {
         },"json");
       });
     });
-
-    /// FUNCIÓN PARA CONSULTAR LA INFORMACION RELACIONADA AL CP (FORM-EDITAR)
-    $(document).ready(function(){
-      // generamos un evento cada vez que se pulse una tecla
-      $("#cp2").keyup(function(){
-      
-        // enviamos una petición al servidor mediante AJAX enviando el id
-        // introducido por el usuario mediante POST
-        $.post("consultar_cp.php", {"cp2":$("#cp2").val()}, function(data2){
-        
-          // Si devuelve un nombre lo mostramos, si no, vaciamos la casilla
-          if(data2.estado){
-            $("#estado2").val(data2.estado);
-            $("#num_estado2").val(data2.num_estado2);
-          }
-          else{
-            $("#estado2").val("");
-          }
-            
-          // Si devuelve un apellido lo mostramos, si no, vaciamos la casilla
-          if(data2.municipio){
-            $("#municipio2").val(data2.municipio);
-            $("#num_municipio2").val(data2.num_municipio2);
-          }
-          else{
-            $("#municipio2").val("");
-          }
-          if(data2.ciudad){
-            $("#ciudad2").val(data2.ciudad);
-          }
-          else{
-            $("#ciudad2").val("");
-          }
-
-        },"json");
-      });
-    });
-
-
-    //FUNCIÓN PARA CAMBIAR A MAYUSCULAS EL TEXTO DE UN CAMPO
-    function ponerMayusculas(nombre) 
-    { 
-        nombre.value=nombre.value.toUpperCase(); 
-    } 
-    function ponerMayusculas2(nombre) 
-    { 
-        nombre.value=nombre.value.toUpperCase(); 
-    } 
-
-
-
-
-    function calcularEdad2() {
-        dia2 = document.getElementById("dia2").value;
-        mes2 = document.getElementById("mes2").value;
-        anio2 = document.getElementById("anio2").value;
-        fecha2 = anio2+'/'+mes2+"/"+dia2;
-
-        //alert("la fecha es: "+fecha);
-      
-        //var date= document.getElementById('fecha_nacimiento').value;
-
-        /*var d = new Date(date.split("-").reverse().join("-"));
-        var dd=d.getDate();
-        var mm=d.getMonth()+1;
-        var yy=d.getFullYear();
-        var newdate = yy+"/"+mm+"/"+dd;*/
-
-        
-        var hoy2 = new Date();
-        var cumpleanos2 = new Date(fecha2);
-        var edad2 = hoy2.getFullYear() - cumpleanos2.getFullYear();
-        var m2 = hoy2.getMonth() - cumpleanos2.getMonth();
-
-        if (m2 < 0 || (m2 === 0 && hoy2.getDate() < cumpleanos2.getDate())) {
-            edad2--;
-        }
-        if(edad2){
-          document.getElementById("edad2").value = edad2;
-          document.getElementById("fecha_nacimiento2").value = dia2+'/'+mes2+"/"+anio2;
-        }else{
-          document.getElementById("edad2").value = '';
-        }
-    }
-
-
     ///FUNCIÓN PARA CREAR UN SELECT DE LAS COLONIAS DE UN CP
     $(document).on('ready',function(){
 
-      $('#cp').keyup(function(){
-        var url = 'select_colonia.php';                                   
+      $('#cp_add').keyup(function(){
+        var url = 'select_colonia.php';
 
-        $.ajax({                        
-           type: 'POST',                 
-           url: url,                    
+        $.ajax({
+           type: 'POST',
+           url: url,
            data: $('#frm_afiliacion').serialize(),
-           success: function(data)           
+           success: function(data)
            {
-             $('#colonia').html(data);          
+             $('#colonia_add').html(data);
            }
          });
       });
     });
+    /// TERMINA funciones para consular el codigo postal //
+    /// FUNCIÓN PARA CALCULAR LA EDAD A PARTIR DE LA FECHA DE NACIMIENTO
+    function calcularEdad(numFolio) {
+        dia = document.getElementById("dia"+numFolio).value;
+        mes = document.getElementById("mes"+numFolio).value;
+        anio = document.getElementById("anio"+numFolio).value;
+        fecha = anio+'/'+mes+"/"+dia;
+        console.log('dia: '+dia);
+        console.log('mes: '+mes);
+        console.log('anio: '+anio);
+        console.log('fecha: '+fecha);
 
-    ///FUNCIÓN PARA CREAR UN SELECT DE LAS COLONIAS DE UN CP
-    $(document).on('ready',function(){
+        var hoy = new Date();
+        var cumpleanos = new Date(fecha);
+        var edad = hoy.getFullYear() - cumpleanos.getFullYear();
+        var m = hoy.getMonth() - cumpleanos.getMonth();
 
-      $('#cp2').keyup(function(){
-        var url = 'select_colonia2.php';                                   
-
-        $.ajax({                        
-           type: 'POST',                 
-           url: url,                    
-           data2: $('#editar_afiliacion').serialize(),
-           success: function(data2)           
-           {
-             $('#colonia2').html(data2);          
-           }
-         });
-      });
-    });
-
-
-
-    /// FUNCIÓN PARA VALIDAR LOS CAMPOS OBLIGATORIOS
-    function validar() {
-        ap_paterno = document.getElementById("ap_paterno").value;
-        if ( ap_paterno == null || ap_paterno.length == 0 || /^\s+$/.test(ap_paterno)) {
-        // Si no se cumple la condicion...
-            alert('DEBES INGRESAR EL APELLIDO PATERNO');
-            document.getElementById("ap_paterno").focus();
-            return false;
+        if (m < 0 || (m === 0 && hoy.getDate() < cumpleanos.getDate())) {
+            edad--;
         }
-        ap_materno = document.getElementById("ap_materno").value;
-        if ( ap_materno == null || ap_materno.length == 0 || /^\s+$/.test(ap_materno)) {
-        // Si no se cumple la condicion...
-            alert('DEBES INGRESAR EL APELLIDO MATERNO');
-            document.getElementById("ap_materno").focus();
-            return false;
+        if(edad){
+          document.getElementById("edad"+numFolio).value = edad;
+          document.getElementById("fecha_nacimiento"+numFolio).value = fecha;
+        }else{
+          document.getElementById("edad"+numFolio).value = '';
         }
-        nombre = document.getElementById("nombre").value;
-        if ( nombre == null || nombre.length == 0 || /^\s+$/.test(nombre)) {
-        // Si no se cumple la condicion...
-            alert('DEBES INGRESAR EL NOMBRE');
-            document.getElementById("nombre").focus();
-            return false;
-        }
-        foto_afiliado = document.getElementById("foto_afiliado").value;
-        if ( foto_afiliado == null || foto_afiliado.length == 0 || /^\s+$/.test(foto_afiliado)) {
-        // Si no se cumple la condicion...
-            alert('DEBES SELECCIONAR UNA FOTO DEL AFILIADO');
-            document.getElementById("foto_afiliado").focus();
-            return false;
-        }
-
-        dia = document.getElementById("dia").selectedIndex;
-        if( dia == null || dia == 0 ) {
-            alert('DEBES SELECCIONAR EL DÍA DE NACIMIENTO');
-            document.getElementById("dia").focus();
-            return false;
-        }
-        mes = document.getElementById("mes").selectedIndex;
-        if( mes == null || mes == 0 ) {
-            alert('DEBES SELECCIONAR EL MES DE NACIMIENTO');
-            document.getElementById("mes").focus();
-            return false;
-        }
-
-        anio = document.getElementById("anio").value;
-        if ( anio == null || anio.length == 0 || /^\s+$/.test(anio)) {
-        // Si no se cumple la condicion...
-            alert('DEBES INGRESAR EL AÑO DE NACIMIENTO');
-            document.getElementById("anio").focus();
-            return false;
-
-        }
-        /*fecha_nacimiento = document.getElementById("fecha_nacimiento").value;
-        if ( fecha_nacimiento == null || fecha_nacimiento.length == 0 || /^\s+$/.test(fecha_nacimiento)) {
-        // Si no se cumple la condicion...
-            alert('DEBES INGRESAR LA FECHA DE NACIMIENTO');
-            document.getElementById("fecha_nacimiento").focus();
-            return false;
-        }*/
-        select_sexo = document.getElementById("select_sexo").selectedIndex;
-        if( select_sexo == null || select_sexo == 0 ) {
-            alert('DEBES SELECCIONAR EL SEXO');
-            document.getElementById("select_sexo").focus();
-            return false;
-        }
-        edad = document.getElementById("edad").value;
-        if ( edad == null || edad.length == 0 || /^\s+$/.test(edad)) {
-        // Si no se cumple la condicion...
-            alert('DEBES INGRESAR LA EDAD');
-            document.getElementById("edad").focus();
-            return false;
-
-        }
-        estado_civil = document.getElementById("estado_civil").selectedIndex;
-        if( estado_civil == null || estado_civil == 0 ) {
-            alert('DEBES SELECCIONAR EL ESTADO CIVIL');
-            document.getElementById("estado_civil").focus();
-            return false;
-        }
-        grupo_indigena = document.getElementById("grupo_indigena").selectedIndex;
-        if( grupo_indigena == null || grupo_indigena == 0 ) {
-            alert('DEBES SELECCIONAR SI PERTENECE A UN GRUPO INDÍGENA');
-            document.getElementById("grupo_indigena").focus();
-            return false;
-        }
-        respuesta_grupo = document.getElementById('grupo_indigena').value;
-        nombre_comunidad = document.getElementById('nombre_comunidad').value;
-        if(respuesta_grupo == 'SI' && (nombre_comunidad == null || nombre_comunidad.length == 0 || /^\s+$/.test(nombre_comunidad))){
-          alert('DEBES ESCRIBIR EL NOMBRE DEL GRUPO INDÍGENA');
-          document.getElementById("nombre_comunidad").focus();
-          return false;
-        }
-
-        cp = document.getElementById("cp").value;
-        if ( cp == null || cp.length == 0 || /^\s+$/.test(cp)) {
-        // Si no se cumple la condicion...
-            alert('DEBES INGRESAR EL CODIGO POSTAL');
-            document.getElementById("cp").focus();
-            return false;
-        }
-        calle = document.getElementById("calle").value;
-        if ( calle == null || calle.length == 0 || /^\s+$/.test(calle)) {
-        // Si no se cumple la condicion...
-            alert('DEBES INGRESAR LA CALLE');
-            document.getElementById("calle").focus();
-            return false;
-        }
-        correo = document.getElementById("correo").value;
-        if ( correo == null || correo.length == 0 || /^\s+$/.test(correo)) {
-        // Si no se cumple la condicion...
-            alert('DEBES INGRESAR UN CORREO ELECTRONICO');
-            document.getElementById("correo").focus();
-            return false;
-        }
-        telefono = document.getElementById("telefono").value;
-        if ( telefono == null || telefono.length == 0 || /^\s+$/.test(telefono)) {
-        // Si no se cumple la condicion...
-            alert('DEBES INGRESAR UN TELEFONO');
-            document.getElementById("telefono").focus();
-            return false;
-        }
-        curp = document.getElementById("curp").value;
-        if ( curp == null || curp.length == 0 || /^\s+$/.test(curp)) {
-        // Si no se cumple la condicion...
-            alert('DEBES INGRESAR EL NUMERO DE CURP');
-            document.getElementById("curp").focus();
-            return false;
-        }
-        rfc = document.getElementById("rfc").value;
-        if ( rfc == null || rfc.length == 0 || /^\s+$/.test(rfc)) {
-        // Si no se cumple la condicion...
-            alert('DEBES INGRESAR EL RFC');
-            document.getElementById("rfc").focus();
-            return false;
-        }
-        clave_elector = document.getElementById("clave_elector").value;
-        if ( clave_elector == null || clave_elector.length == 0 || /^\s+$/.test(clave_elector)) {
-        // Si no se cumple la condicion...
-            alert('DEBES INGRESAR LA CLAVE DE ELECTOR');
-            document.getElementById("clave_elector").focus();
-            return false;
-        }
-        num_ine = document.getElementById("num_ine").value;
-        if ( num_ine == null || num_ine.length == 0 || /^\s+$/.test(num_ine)) {
-        // Si no se cumple la condicion...
-            alert('DEBES INGRESAR EL NUMERO DE INE');
-            document.getElementById("num_ine").focus();
-            return false;
-        }
-       
-        return true;
     }
 
+    function consultar_organizacion(numFolio){
+      var pregunta = document.getElementById('select_sexo'+numFolio).value;
+      if(pregunta == 'M'){
+        document.getElementById('div_organizacion').style.display = 'block';
+        document.getElementById("organizacion").focus();
+      }else{
+        document.getElementById('div_organizacion').style.display = 'none';
+      }
+    }
 
-  </script>
+    function consultar_grupo(numFolio){
+      var pregunta = document.getElementById('grupo_indigena'+numFolio).value;
 
-<script type="text/javascript">
+      if(pregunta == 'SI'){
+        document.getElementById('campo_oculto').style.display = 'block';
+        document.getElementById("nombre_comunidad_add").focus();
+      }else{
+        document.getElementById('campo_oculto').style.display = 'none';
+      }
+    }
 
+    function calculaRFC(numFolio) {
+      dia = document.getElementById("dia"+numFolio).value;
+      mes = document.getElementById("mes"+numFolio).value;
+      anio = document.getElementById("anio"+numFolio).value;
+      var idNombre = '#nombre'+numFolio;
+      var idApPaterno = '#ap_paterno'+numFolio;
+      var idApMaterno = '#ap_materno'+numFolio;
+      var idFechaNacimiento = '#fecha_nacimiento'+numFolio;
 
-      /*$(document).ready(function() {
+      function quitaArticulos(palabra) {
+        return palabra.replace("DEL ", "").replace("LAS ", "").replace("DE ",
+            "").replace("LA ", "").replace("Y ", "").replace("A ", "");
+      }
+      function esVocal(letra) {
+        if (letra == 'A' || letra == 'E' || letra == 'I' || letra == 'O'
+            || letra == 'U' || letra == 'a' || letra == 'e' || letra == 'i'
+            || letra == 'o' || letra == 'u')
+          return true;
+        else
+          return false;
+      }
+      nombre = $(idNombre).val();
+      apellidoPaterno = $(idApPaterno).val();
+      apellidoMaterno = $(idApMaterno).val();
+      //fecha = $(idFechaNacimiento).val();
+      fecha = dia+'/'+mes+'/'+anio;
+      var rfc = "";
+      apellidoPaterno = quitaArticulos(apellidoPaterno);
+      apellidoMaterno = quitaArticulos(apellidoMaterno);
+      rfc += apellidoPaterno.substr(0, 1);
+      var l = apellidoPaterno.length;
+      var c;
+      for (i = 0; i < l; i++) {
+        c = apellidoPaterno.charAt(i);
+        if (esVocal(c)) {
+          rfc += c;
+          break;
+        }
+      }
+      rfc += apellidoMaterno.substr(0, 1);
+      rfc += nombre.substr(0, 1);
+      rfc += fecha.substr(8, 10);
+      rfc += fecha.substr(3, 5).substr(0, 2);
+      rfc += fecha.substr(0, 2);
+      // rfc += "-" + homclave;
+      $("#rfc"+numFolio).val(rfc);
+      //alert(rfc);
+      //document.getElementById("rfc").value = rfc;
+    }
 
-        $("#agregar_afiliado").click(function() {
-          var ruta = 'prueba_ajax.php';    
-           var formData = new FormData(('#frm_afiliacion').serialize());                               
+    function marcar_desmarcar(){
+        var marca = document.getElementById('marcar');
+        var cb = document.getElementsByName('folios[]');
 
-          $.ajax({                        
-             url: ruta,
-                type: "POST",
-                data: formData,
-              
-             success: function(data)           
-             {
-               $('#desplegar').html(data);
-               $('#modal_frm_afiliado').modal('hide');
-               document.getElementById("frm_afiliacion").reset();
-             }
-           });
+        for (i=0; i<cb.length; i++){
+            if(marca.checked == true){
+              cb[i].checked = true
+            }else{
+              cb[i].checked = false;
+            }
+        }
+
+    }
+
+      ///OCULTAMOS EL MODAL_DESCARGAR DESPUES DE DAR CLIC EN DESCARGAR
+      $(document).ready(function() {
+        $("#btn_descargar").click(function() {
+          $('#modalDescargar').modal('hide');
         });
-      });*/
+      });
 
-    /*17_07_2017
-        $(function(){
-            $("#frm_afiliacion").on("submit", function(e){
-                e.preventDefault();
-                var f = $(this);
-                var formData = new FormData(document.getElementById("frm_afiliacion"));
-                formData.append("dato", "valor");
-                //formData.append(f.attr("name"), $(this)[0].files[0]);
-                $.ajax({
-                    url: "prueba_ajax.php",
-                    type: "post",
-                    dataType: "html",
-                    data: formData,
-                    cache: false,
-                    contentType: false,
-                    processData: false
-                })
-                    .done(function(res){
-                        $('#modal_frm_afiliado').modal('hide');
-                        document.getElementById("frm_afiliacion").reset();
-                        //$("#desplegar").html("Respuesta: " + res);
-                        location.reload(true);
-                    });
-            });
-        });
-        17_07_2017*/
+      ///funciones de bootstrap para mostrar los tooltip
+      $(function () {
+        $('[data-toggle="tooltip"]').tooltip()
+      })
 
-</script>
+      //FUNCIÓN PARA LIMPIAR EL FORMUARLIO FRM_AFILIACION
+      function limpiar(){
+        // borra el formulario (asumiendo que sólo hay uno; si hay más, especifica su Id)
+        document.getElementById("frm_afiliacion").reset();
+      }
+      //FUNCIÓN PARA CAMBIAR A MAYUSCULAS EL TEXTO DE UN CAMPO
+      function ponerMayusculas(nombre)
+      {
+          nombre.value=nombre.value.toUpperCase();
+      }
+      function ponerMayusculas2(nombre)
+      {
+          nombre.value=nombre.value.toUpperCase();
+      }
 
+
+      /// FUNCIÓN PARA VALIDAR LOS CAMPOS OBLIGATORIOS
+      function validar() {
+          ap_paterno = document.getElementById("ap_paterno_add").value;
+          if ( ap_paterno == null || ap_paterno.length == 0 || /^\s+$/.test(ap_paterno)) {
+          // Si no se cumple la condicion...
+              alert('DEBES INGRESAR EL APELLIDO PATERNO');
+              document.getElementById("ap_paterno_add").focus();
+              return false;
+          }
+          ap_materno = document.getElementById("ap_materno_add").value;
+          if ( ap_materno == null || ap_materno.length == 0 || /^\s+$/.test(ap_materno)) {
+          // Si no se cumple la condicion...
+              alert('DEBES INGRESAR EL APELLIDO MATERNO');
+              document.getElementById("ap_materno_add").focus();
+              return false;
+          }
+          nombre = document.getElementById("nombre_add").value;
+          if ( nombre == null || nombre.length == 0 || /^\s+$/.test(nombre)) {
+          // Si no se cumple la condicion...
+              alert('DEBES INGRESAR EL NOMBRE');
+              document.getElementById("nombre_add").focus();
+              return false;
+          }
+          foto_afiliado = document.getElementById("foto_afiliado").value;
+          if ( foto_afiliado == null || foto_afiliado.length == 0 || /^\s+$/.test(foto_afiliado)) {
+          // Si no se cumple la condicion...
+              alert('DEBES SELECCIONAR UNA FOTO DEL AFILIADO');
+              document.getElementById("foto_afiliado").focus();
+              return false;
+          }
+
+          dia = document.getElementById("dia_add").selectedIndex;
+          if( dia == null || dia == 0 ) {
+              alert('DEBES SELECCIONAR EL DÍA DE NACIMIENTO');
+              document.getElementById("dia_add").focus();
+              return false;
+          }
+          mes = document.getElementById("mes_add").selectedIndex;
+          if( mes == null || mes == 0 ) {
+              alert('DEBES SELECCIONAR EL MES DE NACIMIENTO');
+              document.getElementById("mes_add").focus();
+              return false;
+          }
+
+          anio = document.getElementById("anio_add").value;
+          if ( anio == null || anio.length == 0 || /^\s+$/.test(anio)) {
+          // Si no se cumple la condicion...
+              alert('DEBES INGRESAR EL AÑO DE NACIMIENTO');
+              document.getElementById("anio_add").focus();
+              return false;
+
+          }
+
+          select_sexo = document.getElementById("select_sexo_add").selectedIndex;
+          if( select_sexo == null || select_sexo == 0 ) {
+              alert('DEBES SELECCIONAR EL SEXO');
+              document.getElementById("select_sexo_add").focus();
+              return false;
+          }
+          edad = document.getElementById("edad_add").value;
+          if ( edad == null || edad.length == 0 || /^\s+$/.test(edad)) {
+          // Si no se cumple la condicion...
+              alert('DEBES INGRESAR LA EDAD');
+              document.getElementById("edad_add").focus();
+              return false;
+
+          }
+          estado_civil = document.getElementById("estado_civil_add").selectedIndex;
+          if( estado_civil == null || estado_civil == 0 ) {
+              alert('DEBES SELECCIONAR EL ESTADO CIVIL');
+              document.getElementById("estado_civil_add").focus();
+              return false;
+          }
+          grupo_indigena = document.getElementById("grupo_indigena_add").selectedIndex;
+          if( grupo_indigena == null || grupo_indigena == 0 ) {
+              alert('DEBES SELECCIONAR SI PERTENECE A UN GRUPO INDÍGENA');
+              document.getElementById("grupo_indigena_add").focus();
+              return false;
+          }
+          respuesta_grupo = document.getElementById('grupo_indigena_add').value;
+          nombre_comunidad = document.getElementById('nombre_comunidad_add').value;
+          if(respuesta_grupo == 'SI' && (nombre_comunidad == null || nombre_comunidad.length == 0 || /^\s+$/.test(nombre_comunidad))){
+            alert('DEBES ESCRIBIR EL NOMBRE DEL GRUPO INDÍGENA');
+            document.getElementById("nombre_comunidad_add").focus();
+            return false;
+          }
+
+          cp = document.getElementById("cp_add").value;
+          if ( cp == null || cp.length == 0 || /^\s+$/.test(cp)) {
+          // Si no se cumple la condicion...
+              alert('DEBES INGRESAR EL CODIGO POSTAL');
+              document.getElementById("cp_add").focus();
+              return false;
+          }
+          calle = document.getElementById("calle_add").value;
+          if ( calle == null || calle.length == 0 || /^\s+$/.test(calle)) {
+          // Si no se cumple la condicion...
+              alert('DEBES INGRESAR LA CALLE');
+              document.getElementById("calle_add").focus();
+              return false;
+          }
+          correo = document.getElementById("correo_add").value;
+          if ( correo == null || correo.length == 0 || /^\s+$/.test(correo)) {
+          // Si no se cumple la condicion...
+              alert('DEBES INGRESAR UN CORREO ELECTRONICO');
+              document.getElementById("correo_add").focus();
+              return false;
+          }
+          telefono = document.getElementById("telefono_add").value;
+          if ( telefono == null || telefono.length == 0 || /^\s+$/.test(telefono)) {
+          // Si no se cumple la condicion...
+              alert('DEBES INGRESAR UN TELEFONO');
+              document.getElementById("telefono_add").focus();
+              return false;
+          }
+          curp = document.getElementById("curp_add").value;
+          if ( curp == null || curp.length == 0 || /^\s+$/.test(curp)) {
+          // Si no se cumple la condicion...
+              alert('DEBES INGRESAR EL NUMERO DE CURP');
+              document.getElementById("curp_add").focus();
+              return false;
+          }
+          rfc = document.getElementById("rfc_add").value;
+          if ( rfc == null || rfc.length == 0 || /^\s+$/.test(rfc)) {
+          // Si no se cumple la condicion...
+              alert('DEBES INGRESAR EL RFC');
+              document.getElementById("rfc_add").focus();
+              return false;
+          }
+          clave_elector = document.getElementById("clave_elector").value;
+          if ( clave_elector == null || clave_elector.length == 0 || /^\s+$/.test(clave_elector)) {
+          // Si no se cumple la condicion...
+              alert('DEBES INGRESAR LA CLAVE DE ELECTOR');
+              document.getElementById("clave_elector_add").focus();
+              return false;
+          }
+          num_ine = document.getElementById("num_ine_add").value;
+          if ( num_ine == null || num_ine.length == 0 || /^\s+$/.test(num_ine)) {
+          // Si no se cumple la condicion...
+              alert('DEBES INGRESAR EL NUMERO DE INE');
+              document.getElementById("num_ine_add").focus();
+              return false;
+          }
+
+          return true;
+      }
+
+
+    </script>
 
     <script src="js/jquery.js"></script>
     <!-- js placed at the end of the document so the pages load faster -->

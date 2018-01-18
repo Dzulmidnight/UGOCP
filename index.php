@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="esp">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
-    <meta name="author" content="Mosaddek">
-    <meta name="keyword" content="FlatLab, Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
+    <meta name="author" content="Inforganic technologies">
+    <meta name="keyword" content="UGOCP, ugocp, obrero campesina, union general obrero campeasin, sindicato ugocp, ugocp oaxaca">
     <link rel="shortcut icon" href="img/logo_ugocp_xs.png">
 
     <title>Inicio de Sesión - UGOCP</title>
@@ -29,11 +29,11 @@
   <body class="login-body">
     <div class="container">
         <div class="text-center col-md-12" style="margin-top:2em;">
-            <img class="" src="img/logo_ugocp.png" width="200px" alt="">  
+            <img class="" src="img/logo_ugocp.png" width="200px" alt="">
         </div>
     </div>
-              
-  
+
+
     <div class="container">
       <form class="form-signin" id="form-login" action="" method="POST">
 
